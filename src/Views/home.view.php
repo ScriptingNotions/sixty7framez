@@ -1,7 +1,13 @@
 <?= $this->partial("header"); ?>
+<nav>
+    <img src="<?= $this->getImage("logo-small.png") ?>" alt="brand logo">
+    <div>
+        <span>Menu</span>
+    </div>
+</nav>
 
 <section class="hero-section">
-    <img src="<?= $this->getImage("logo-small.png") ?>" alt="Group enjoying a photo booth experience">
+    <img src="<?= $this->getImage("") ?>" alt="Group enjoying a photo booth experience">
     <div class="hero-content">
         <h1>An experience to remember</h1>
         <p>Elevate your event with a photo booth experience that's all about fun, style, and lasting memories.</p>
