@@ -15,14 +15,14 @@
     </div>
 </section>
 
-<section class="section-1 intro">
+<section class="home-section-1 intro">
     <h2>Unforgettable Moments.</h2>
     <p>
         Be it a wedding, a conference, a corporate event, a virtual meet-up, a brand launch, or a birthday celebration, we craft unforgettable, immersive moments.
     </p>
 </section>
   
-<section class="section-2 features-list">
+<section class="home-section-2 features-list">
     <h2>Features You'll Love:</h2>
     <ul>
       <li class="feature-item">
@@ -52,13 +52,13 @@
     </ul>
 </section>
 
-<section class="section-3 open-air-booth">
+<section class="home-section-3 open-air-booth">
     <h2>Our Open-Air Booth.</h2>
     <img src="" alt="">
     <p>Capture the crowd with our open-air booth! This setup allows for larger group photos and works well in any setting. Equipped with custom backdrops and a full selection of props, it’s a hit for parties, corporate events, and festivals.</p>
 </section>
 
-<section class="section-4 packages">
+<section class="home-section-4 packages">
     <h2>Packages:</h2>
     <div class="package-list">
         <div class="package-item">
@@ -91,7 +91,7 @@
     </div>
 </section>
 
-<section class="section-5 start-booking">
+<section class="home-section-5 start-booking">
     <h2>Get started booking your next event</h2>
     <form action="#" class="get-started-contact-form">
         <fieldset>
@@ -115,7 +115,7 @@
     </form>
 </section>
 
-<section class="section-6 FAQ">
+<section class="home-section-6 FAQ">
     <ul>
         <li>
             <h3>What types of photo booths do you offer?</h3>
