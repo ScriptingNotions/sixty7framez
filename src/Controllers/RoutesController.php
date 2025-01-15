@@ -14,6 +14,13 @@ class RoutesController extends Controller
         $this->view("home");
     }
 
+    public function process()
+    {
+        $this->pageTitle = "The Process";
+
+        $this->view("process");
+    }
+
     public function about()
     {
         $this->pageTitle = "About";

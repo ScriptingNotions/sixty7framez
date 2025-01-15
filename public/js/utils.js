@@ -78,4 +78,85 @@
 //         });
 // };
 
+var isProcessing = false;
 
+
+export async function initFetch(method, url, data=null) {
+    let options = {
+        method: method,
+        mode: "cors"
+    };
+
+    if (data !== null) {
+        if (data instanceof FormData) {
+            options.body = data;
+        } else {
+            let fd = new FormData();
+            for (let key in data) {
+                fd.append(key, data[key]);
+            }
+            options.body = fd;
+        }
+    }
+
+    const req = new Request(url, options);
+console.log(isProcessing);
+    if(!isProcessing) {
+        try {
+            isProcessing = true;
+            const result = await fetch(req);
+            const response = await result.text();
+            return response;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        } finally {
+            isProcessing = false;
+        }
+    }
+
+}
+
+export function disableScroll(scrollTop) {
+    if (scrollTop >= 0) {
+        _$('body').style.top = `${scrollTop}px`;
+
+        _$('body').style.position = "fixed";
+
+        _$('body').style.top = `-${scrollTop}px`;
+        _$('body').style.left = `0px`;
+        _$('body').style.right = `0px`;
+
+    }
+}
+
+export function openModal(content) {
+    console.log(typeof content);
+    let modal = document.createElement('DIV');
+    let modalUnderlay = document.createElement('DIV');
+    let modalContent = document.createElement('DIV');
+
+    disableScroll(window.scrollY);
+    
+    modal.id = "modal";
+    modalUnderlay.classList.add("modal-underlay");
+    modalContent.classList.add("modal-content");
+    modal.classList.remove("closing");
+    modal.style.display = "flex"; // Make the modal visible
+    modal.appendChild(modalUnderlay);
+    
+    if(typeof content === "object") {
+        modalContent.appendChild(content);
+    }
+
+    if(typeof content === "string") {
+        modalContent.innerHTML =  content;
+    }
+    
+    modal.appendChild(modalContent);
+            console.log(modal);
+
+        if(!_$('#modal')) {
+            _$('body').appendChild(modal);
+        }
+}

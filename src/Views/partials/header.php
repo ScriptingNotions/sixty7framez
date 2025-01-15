@@ -6,8 +6,8 @@
     <title><?= $this->pageTitle ? $this->pageTitle  . ' &ndash; ' . SITE_NAME : SITE_NAME; ?></title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <!-- <link href="<?= $this->getStylesheet($this->pageFile); ?>" rel="stylesheet" id="main-css"> -->
-    <link href="<?= $this->getStylesheet("styles"); ?>" rel="stylesheet" id="main-css">
     <link href="<?= $this->getStylesheet("reset"); ?>" rel="stylesheet">
+    <link href="<?= $this->getStylesheet("style"); ?>" rel="stylesheet" id="main-css">
     <!-- <link href="<?= $this->getImage("favicon.ico"); ?>" rel="icon"> -->
     <link rel="apple-touch-icon" sizes="180x180" href="<?= $this->getIcon("favicon_io/apple-touch-icon.png"); ?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?= $this->getIcon("favicon_io/favicon-32x32.png"); ?>">
@@ -17,3 +17,5 @@
 </head>
 <body>
     <main id="root">
+        <section  class="main-content">
+        <?= $this->partial("mobile-nav-menu"); ?>

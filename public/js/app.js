@@ -1,10 +1,9 @@
 import * as Func from './functions.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const _$ = document.querySelector.bind(document);
-    const _$$ = document.querySelectorAll.bind(document);
     
     _$('body').onclick = (e) => {
+        console.log(e.target);
         [...e.target.attributes].some(attr => {
             if(attr.name.startsWith("few:")) {
                 let funcNames = attr.value.split(",");

@@ -15,7 +15,12 @@ class Routes {
             
             // Define the routes
             $r->addRoute('GET', '/', ['ScriptingThoughts\Controllers\RoutesController', 'home']);
+            $r->addRoute('GET', '/process', ['ScriptingThoughts\Controllers\RoutesController', 'process']);
+            $r->addRoute('GET', '/packages', ['ScriptingThoughts\Controllers\RoutesController', 'packages']);
             $r->addRoute('GET', '/about', ['ScriptingThoughts\Controllers\RoutesController', 'about']);
+            $r->addRoute('GET', '/contact', ['ScriptingThoughts\Controllers\RoutesController', 'contact']);
+            
+            $r->addRoute('GET', '/mobile-menu', ['ScriptingThoughts\Controllers\ComponentController', 'mobileMenu']);
 
             // Add route for /users/{id}, where {id} must be a number
             // $r->addRoute('GET', '/users/{id:\d+}', [$this, 'get_user_handler']);
