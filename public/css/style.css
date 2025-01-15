@@ -470,5 +470,73 @@ footer {
   font-weight: 700;
   color: #8473FC;
 }
+.process-wrapper .process-section-1,
+.process-wrapper .process-section-2,
+.process-wrapper .process-section-3,
+.process-wrapper .process-section-4,
+.process-wrapper .process-section-5 {
+  margin-top: 50px;
+  display: flex;
+}
+.process-wrapper .process-section-1 h3,
+.process-wrapper .process-section-2 h3,
+.process-wrapper .process-section-3 h3,
+.process-wrapper .process-section-4 h3,
+.process-wrapper .process-section-5 h3 {
+  font-family: "Lora", serif;
+  font-size: 2.5rem;
+  margin-right: 20px;
+  font-weight: bold;
+  color: #939393;
+}
+.process-wrapper .process-section-1 div,
+.process-wrapper .process-section-2 div,
+.process-wrapper .process-section-3 div,
+.process-wrapper .process-section-4 div,
+.process-wrapper .process-section-5 div {
+  padding-top: 15px;
+}
+.process-wrapper .process-section-1 div span,
+.process-wrapper .process-section-2 div span,
+.process-wrapper .process-section-3 div span,
+.process-wrapper .process-section-4 div span,
+.process-wrapper .process-section-5 div span {
+  font-weight: 600;
+  margin-right: 10px;
+}
+.process-wrapper .process-section-1 div p,
+.process-wrapper .process-section-2 div p,
+.process-wrapper .process-section-3 div p,
+.process-wrapper .process-section-4 div p,
+.process-wrapper .process-section-5 div p {
+  margin-bottom: 10px;
+  line-height: 1.2;
+  color: #323232;
+}
+.process-wrapper .process-section-1 h4,
+.process-wrapper .process-section-2 h4,
+.process-wrapper .process-section-3 h4,
+.process-wrapper .process-section-4 h4,
+.process-wrapper .process-section-5 h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.process-wrapper .process-section-1 ul,
+.process-wrapper .process-section-2 ul,
+.process-wrapper .process-section-3 ul,
+.process-wrapper .process-section-4 ul,
+.process-wrapper .process-section-5 ul {
+  list-style: initial;
+  padding-left: 30px;
+}
+.process-wrapper .process-section-1 ul li,
+.process-wrapper .process-section-2 ul li,
+.process-wrapper .process-section-3 ul li,
+.process-wrapper .process-section-4 ul li,
+.process-wrapper .process-section-5 ul li {
+  margin-bottom: 10px;
+  color: #323232;
+}
 
 /*# sourceMappingURL=style.css.map */

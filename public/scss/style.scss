@@ -558,4 +558,52 @@ footer {
       color: #8473FC;
     }
   }
+
+  .process-section-1,
+  .process-section-2,
+  .process-section-3,
+  .process-section-4,
+  .process-section-5 {
+    margin-top: 50px;
+    display: flex;
+
+    h3 {
+      font-family: $secondary-font;
+      font-size: 2.5rem;
+      margin-right: 20px;
+      font-weight: bold;
+      color: #939393;
+    }
+
+    div {
+      padding-top: 15px;
+
+      span {
+        font-weight: 600;
+        margin-right: 10px;
+      }
+
+      p {
+        margin-bottom: 10px;
+        line-height: 1.2;
+        color: #323232;
+      }
+    }
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style: initial;
+      padding-left: 30px;
+
+      li {
+        margin-bottom: 10px;
+        color: #323232;
+      }
+    }
+  }
 }
