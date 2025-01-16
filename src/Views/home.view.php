@@ -83,7 +83,7 @@
     <p>Capture the crowd with our open-air booth! This setup allows for larger group photos and works well in any setting. Equipped with custom backdrops and a full selection of props, it’s a hit for parties, corporate events, and festivals.</p>
 </section>
 
-<section class="home-section-4 packages">
+<section id="packages" class="home-section-4 packages">
     <h2>Packages <span>:</span></h2>
     <div class="package-list">
         <div class="package-item">
@@ -178,18 +178,18 @@
         <form action="#" class="get-started-contact-form">
             <fieldset>
                 <div class="form-group">
-                    <label for="home-full-name">Full Name</label>
-                    <input type="text" id="home-full-name" name="home-full-name" placeholder="Enter your full name" required>
+                    <label for="home-name">Name</label>
+                    <input type="text" id="home-name" name="home-name" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="home-email">Email</label>
-                    <input type="email" id="home-email" name="home-email" placeholder="Enter your email" required>
+                    <input type="email" id="home-email" name="home-email"  required>
                 </div>
                 
                 <div class="form-group">
                     <label for="home-phone">Phone Number</label>
-                    <input type="tel" id="home-phone" name="home-phone" placeholder="Enter your phone number" required>
+                    <input type="tel" id="home-phone" name="home-phone" required>
                 </div>
                 <div class="button-container">
                     <button type="button">Start Booking</button>
