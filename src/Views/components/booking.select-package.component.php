@@ -7,7 +7,9 @@
             <option value="deluxe-memory">Deluxe Memory</option>
         </select>
     </div>
-    <div class="selected-package-container"></div>
+    <div class="selected-package-container">
+        <?= $this->renderView($this->component($this->package), []) ?> 
+    </div>
     <div class="booking-navigation">
         <button type="button" class="next-button">Next</button>
     </div>
