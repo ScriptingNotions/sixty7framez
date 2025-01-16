@@ -19,7 +19,8 @@ class Routes {
             $r->addRoute('GET', '/packages', ['ScriptingThoughts\Controllers\RoutesController', 'packages']);
             $r->addRoute('GET', '/about', ['ScriptingThoughts\Controllers\RoutesController', 'about']);
             $r->addRoute('GET', '/contact', ['ScriptingThoughts\Controllers\RoutesController', 'contact']);
-            
+            $r->addRoute('GET', '/booking', ['ScriptingThoughts\Controllers\RoutesController', 'booking']);
+
             $r->addRoute('GET', '/mobile-menu', ['ScriptingThoughts\Controllers\ComponentController', 'mobileMenu']);
 
             // Add route for /users/{id}, where {id} must be a number
