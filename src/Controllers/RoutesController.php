@@ -5,6 +5,8 @@ class RoutesController extends Controller
 {
     public $pageTitle;
     public $pageFile;
+    public $bookingPosition = "";
+    public $bookingContent;
 
     public function home()
     {
@@ -24,8 +26,38 @@ class RoutesController extends Controller
     public function about()
     {
         $this->pageTitle = "About";
-        $this->pageFile = "about";
 
         $this->view("about");
+    }
+
+    public function contact()
+    {
+        $this->pageTitle = "Contact";
+
+        $this->view("contact");
+    }
+
+    public function booking()
+    {
+        $this->pageTitle = "Booking";
+
+        
+        switch($this->bookingPosition) {
+            case "":
+                $this->bookingContent = $this->renderView($this->component("booking.select-package"), 
+                [
+                    
+                ]);
+                break;
+
+            case "package":
+                echo $this->renderView($this->component(""), 
+                [
+                    
+                ]);
+                break;
+        }
+
+        $this->view("booking");
     }
 }
