@@ -12,6 +12,7 @@ a {
 
 input {
   height: 40px;
+  width: 100%;
   border-radius: 8px;
   outline: none;
   border: none;
@@ -43,7 +44,7 @@ label {
 
 .form-group {
   display: flex;
-  flex-flow: column;
+  flex-flow: wrap;
   margin-bottom: 20px;
 }
 
@@ -95,11 +96,13 @@ nav .menu-container span {
   display: flex;
   justify-content: center;
 }
+.main-content .mobile-menu-container div button a {
+  color: #fff;
+}
 .main-content .hero-section {
   border-radius: calc(0.5vw + 0.5rem);
   height: 350px;
   width: 100%;
-  margin-top: 20px;
   position: relative;
   overflow: hidden;
 }
@@ -129,7 +132,7 @@ nav .menu-container span {
 }
 .main-content .hero-section .hero-content h1 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 500;
   margin-bottom: 10px;
   color: #fff;
@@ -537,6 +540,174 @@ footer {
 .process-wrapper .process-section-5 ul li {
   margin-bottom: 10px;
   color: #323232;
+}
+
+/* THE PROCESS END */
+/* ABOUT */
+.about-section-1,
+.about-section-2,
+.about-section-3,
+.about-section-4 {
+  margin-top: 70px;
+}
+.about-section-1 h2,
+.about-section-2 h2,
+.about-section-3 h2,
+.about-section-4 h2 {
+  font-family: "Lora", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.about-section-1 h2 span,
+.about-section-2 h2 span,
+.about-section-3 h2 span,
+.about-section-4 h2 span {
+  font-weight: 700;
+  color: #8473FC;
+}
+.about-section-1 p,
+.about-section-2 p,
+.about-section-3 p,
+.about-section-4 p {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+  margin-top: 15px;
+  color: #323232;
+}
+
+/* ABOUT END */
+/* CONTACT */
+.contact-section-1 {
+  margin-top: 70px;
+}
+.contact-section-1 h2 {
+  font-family: "Lora", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.contact-section-1 h2 span {
+  font-weight: 700;
+  color: #8473FC;
+}
+.contact-section-1 p {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+  margin-top: 15px;
+  color: #323232;
+}
+
+.contact-section-2 {
+  margin-top: 50px;
+  display: flex;
+  gap: 20px;
+}
+.contact-section-2 .contact-form {
+  width: 50%;
+}
+.contact-section-2 .contact-form .form-group {
+  margin-bottom: 20px;
+}
+.contact-section-2 form {
+  width: 100%;
+}
+.contact-section-2 input {
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #CDCDCD;
+  height: 30px;
+  width: 100%;
+}
+.contact-section-2 textarea {
+  resize: none;
+  border: 1px solid #CDCDCD;
+  height: 100px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+}
+.contact-section-2 .button-group {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contact-section-3 {
+  margin-top: 70px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #F5F1ED;
+}
+.contact-section-3 .contact-details {
+  text-align: center;
+}
+.contact-section-3 .paper-plane-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  transform: translateX(-50%);
+  left: 50%;
+  position: relative;
+  margin-bottom: 15px;
+}
+.contact-section-3 p {
+  line-height: 1.2;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #323232;
+}
+
+/* CONTACT END */
+/* BOOKING */
+.booking-section-1 {
+  margin-top: 70px;
+}
+.booking-section-1 h2 {
+  font-family: "Lora", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.booking-section-1 h2 span {
+  font-weight: 700;
+  color: #8473FC;
+}
+.booking-section-1 p {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 15px;
+  color: #323232;
+}
+.booking-section-1 .booking-progress-container {
+  width: 100%;
+  margin-top: 30px;
+  display: grid;
+  justify-content: center;
+}
+.booking-section-1 .booking-progress-container .booking-progress-bar {
+  width: 280px;
+  height: 5px;
+  border-radius: 25px;
+  background-color: #CDCDCD;
+}
+.booking-section-1 .booking-progress-container .booking-progress-bar .booking-progress {
+  height: 5px;
+  border-radius: 25px;
+  background-color: #000;
+}
+.booking-section-1 .booking-progress-container p {
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */
