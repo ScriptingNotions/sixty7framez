@@ -145,7 +145,7 @@
             </div>
         </div>
         <div class="package-item">
-        <h3>Luxe</h3>
+            <h3>Luxe</h3>
             <p>$1,100</p>
             <ul>
                 <li>Open-air booth</li>
