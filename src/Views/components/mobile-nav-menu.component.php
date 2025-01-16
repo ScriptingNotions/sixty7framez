@@ -7,5 +7,5 @@
         <li>About</li>
         <li>Contact</li>
     </ul>
-    <button>Book Now</button>
+    <button><a href="/booking">Book Now</a></button>
 </div>
