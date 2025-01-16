@@ -1,5 +1,9 @@
+<?= $this->partial("header"); ?>
+
+<?= $this->partial("nav"); ?>
+
 <section class="contact-section-1">
-    <h1>Contact.</h1>
+    <h2>Contact <span>.</span></h2>
     <p>Ready to make your event unforgettable? Reach out with questions or to book your photo booth experience. Fill out the form below, and we’ll be in touch soon!</p>
 </section>
 
@@ -23,7 +27,9 @@
                     <label for="contact-phone">Message</label>
                 <textarea name="contact-message" id="contact-message"></textarea>
                 </div>
-                <button type="button">Send</button>
+                <div class="button-group">
+                    <button type="button">Send</button>
+                </div>
             </fieldset>
         </form>
     
@@ -31,9 +37,13 @@
 
 <section class="contact-section-3">
     <div class="contact-details">
-        <img src="" alt="paper airplane icon">
+        <div class="paper-plane-container">
+            <img src="<?= $this->getIcon("paper-plane-line.svg") ?>" alt="paper airplane icon">
+        </div>
         <p>4833 Berewick Town Center Dr. Suite #191 Charlotte, NC 28278</p>
         <p>email@email.com</p>
         <p>(704) 555-5555</p>
     </div>
 </section>
+
+<?= $this->partial("footer"); ?>
