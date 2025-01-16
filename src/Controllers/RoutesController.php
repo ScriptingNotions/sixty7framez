@@ -7,6 +7,7 @@ class RoutesController extends Controller
     public $pageFile;
     public $bookingPosition = "";
     public $bookingContent;
+    public $package;
 
     public function home()
     {
@@ -40,8 +41,14 @@ class RoutesController extends Controller
     public function booking()
     {
         $this->pageTitle = "Booking";
-
+        $this->package = "standard-package";
         
+        $post = filter_post();
+
+        if(isset($post["package-type"])) {
+            $this->package = $post["package-type"];
+        }
+
         switch($this->bookingPosition) {
             case "":
                 $this->bookingContent = $this->renderView($this->component("booking.select-package"), 
