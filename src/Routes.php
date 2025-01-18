@@ -21,6 +21,9 @@ class Routes {
             $r->addRoute('GET', '/contact', ['ScriptingThoughts\Controllers\RoutesController', 'contact']);
             $r->addRoute('GET', '/booking', ['ScriptingThoughts\Controllers\RoutesController', 'booking']);
 
+            $r->addRoute('GET', '/booking/package/{package}', ['ScriptingThoughts\Controllers\RoutesController', 'booking']);
+            $r->addRoute('GET', '/booking/position/{bookingPosition}', ['ScriptingThoughts\Controllers\RoutesController', 'booking']);
+
             $r->addRoute('GET', '/mobile-menu', ['ScriptingThoughts\Controllers\ComponentController', 'mobileMenu']);
 
             // Add route for /users/{id}, where {id} must be a number
@@ -53,7 +56,10 @@ class Routes {
             case \FastRoute\Dispatcher::FOUND:
                 // Call the handler with any route variables
                 $handler = $routeInfo[1];
-                $vars = $routeInfo[2];
+                $params = $routeInfo[2];
+
+                $params = array_map('trim', $params);
+                $params = array_map('htmlspecialchars', $params);
 
                 // If the handler is an array (i.e., a class and method)
                 if (is_array($handler)) {
@@ -61,23 +67,23 @@ class Routes {
            
                     // Create an instance of the class and call the method
                     $controller = new $handler[0]($session); // Instantiate the controller
-                    call_user_func_array([$controller, $handler[1]], $vars); // Call the method with vars
+                    call_user_func_array([$controller, $handler[1]], $params); // Call the method with params
                 } else {
                     // If the handler is a function
-                    call_user_func($handler, $vars);
+                    call_user_func($handler, $params);
                 }
                 break;
         }
     }
 
     // Define handler functions as class methods
-    // public function get_user_handler($vars) {
-    //     echo "User with ID: " . $vars['id'];
+    // public function get_user_handler($params) {
+    //     echo "User with ID: " . $params['id'];
     // }
 
-    // public function get_article_handler($vars) {
-    //     $articleId = $vars['id'];
-    //     $title = isset($vars['title']) ? $vars['title'] : 'No Title';
+    // public function get_article_handler($params) {
+    //     $articleId = $params['id'];
+    //     $title = isset($params['title']) ? $params['title'] : 'No Title';
     //     echo "Article with ID: $articleId, Title: $title";
     // }
 }

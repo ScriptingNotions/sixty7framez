@@ -48,8 +48,6 @@ abstract class Controller {
      */
     protected function filter_get()
     {
-        var_dump($_SERVER['REQUEST_URI']);
-        var_dump($_GET);
         $get = filter_input_array(INPUT_GET);
         
         $get = array_map('trim', $get);

@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     _$('body').onclick = (e) => {
         console.log(e.target);
+        // make click function file
         [...e.target.attributes].some(attr => {
-            if(attr.name.startsWith("few:")) {
+            if(attr.name.startsWith("data-few:")) {
                 let funcNames = attr.value.split(",");
                 
                 if(funcNames.length > 0) {

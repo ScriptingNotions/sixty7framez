@@ -11,7 +11,4 @@
         <li>Drop-off service</li>
         <li>3 hours</li>
     </ul>
-    <div class="button-container">
-        <button type="button">Start Booking</button>
-    </div>
 </div>

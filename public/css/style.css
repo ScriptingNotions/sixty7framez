@@ -36,6 +36,22 @@ button:hover {
   background-color: #424242;
 }
 
+.button-style {
+  background-color: #323232;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s;
+  margin-top: 30px;
+  font-size: 0.85rem;
+}
+.button-style:hover {
+  background-color: #424242;
+}
+
 label {
   font-weight: 500;
   margin-bottom: 10px;
@@ -132,7 +148,7 @@ nav .menu-container span {
 }
 .main-content .hero-section .hero-content h1 {
   font-family: "Lora", serif;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 500;
   margin-bottom: 10px;
   color: #fff;
@@ -167,7 +183,7 @@ nav .menu-container span {
 }
 .main-content .home-section-1 h2 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 20px;
   text-align: center;
@@ -186,7 +202,7 @@ nav .menu-container span {
 }
 .main-content .home-section-2 h2 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 40px;
   text-align: left;
@@ -219,7 +235,7 @@ nav .menu-container span {
 }
 .main-content .home-section-3 h2 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 40px;
   text-align: center;
@@ -243,7 +259,7 @@ nav .menu-container span {
 }
 .main-content .home-section-4 h2 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 40px;
   text-align: left;
@@ -315,7 +331,7 @@ nav .menu-container span {
 }
 .main-content .home-section-6 h2 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 20px;
 }
@@ -464,7 +480,7 @@ footer {
 }
 .process-wrapper h2 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 20px;
   text-align: left;
@@ -555,7 +571,7 @@ footer {
 .about-section-3 h2,
 .about-section-4 h2 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 20px;
   text-align: center;
@@ -585,7 +601,7 @@ footer {
 }
 .contact-section-1 h2 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 20px;
   text-align: center;
@@ -673,7 +689,7 @@ footer {
 }
 .booking-section-1 h2 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 20px;
   text-align: center;
@@ -702,12 +718,26 @@ footer {
   background-color: #CDCDCD;
 }
 .booking-section-1 .booking-progress-container .booking-progress-bar .booking-progress {
+  width: 56px;
   height: 5px;
   border-radius: 25px;
   background-color: #000;
 }
 .booking-section-1 .booking-progress-container p {
   text-align: center;
+}
+
+.page {
+  display: none;
+  padding: 20px;
+}
+
+.page.active {
+  display: block;
+}
+
+.back-button {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

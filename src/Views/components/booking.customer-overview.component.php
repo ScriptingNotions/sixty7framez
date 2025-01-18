@@ -1,35 +1,45 @@
-<section class="booking-section-2 booking-customer-overview">
-    <div class="customer-overview-container">
-        <form>
+<form>
             <div class="form-group">
-                <label for="eventType">Event type</label>
-                <select id="eventType" name="eventType">
-                    <option value="Wedding" selected>Wedding</option>
-                    <option value="Birthday">Birthday</option>
-                    <option value="Corporate">Corporate</option>
-                    <option value="Other">Other</option>
-                </select>
+                <label for="firstName">First Name</label>
+                <input 
+                    type="text" 
+                    id="firstName" 
+                    name="firstName" 
+                    placeholder="Enter your first name"
+                    required
+                >
             </div>
 
             <div class="form-group">
-                <label for="eventDate">Event date</label>
-                <input type="date" id="eventDate" name="eventDate" value="2025-01-08">
+                <label for="lastName">Last Name</label>
+                <input 
+                    type="text" 
+                    id="lastName" 
+                    name="lastName" 
+                    placeholder="Enter your last name"
+                    required
+                >
             </div>
 
             <div class="form-group">
-                <label for="venueName">Venue name</label>
-                <input type="text" id="venueName" name="venueName" value="Horton's">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Enter your email"
+                    required
+                >
             </div>
 
             <div class="form-group">
-                <label for="venueAddress">Venue address</label>
-                <input type="text" id="venueAddress" name="venueAddress" value="123 Main st, Charlotte, NC 28278">
+                <label for="phone">Phone</label>
+                <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    placeholder="Enter your phone number"
+                    required
+                >
             </div>
         </form>
-    </div>
-    <div class="selected-package-container"></div>
-    <div class="booking-navigation">
-        <button type="button" class="back-button">Back</button>
-        <button type="button" class="next-button">Next</button>
-    </div>
-</section>

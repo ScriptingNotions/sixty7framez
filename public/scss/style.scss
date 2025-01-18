@@ -43,6 +43,23 @@ button {
   }
 }
 
+.button-style {
+  background-color: #323232;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s;
+  margin-top: 30px;
+  font-size: .85rem;
+
+  &:hover {
+    background-color: #424242;
+  }
+}
+
 label {
   font-weight: 500;
   margin-bottom: 10px;
@@ -153,7 +170,7 @@ nav {
 
       h1 {
         font-family: $secondary-font;
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 500;
         margin-bottom: 10px;
         color: #fff;
@@ -195,7 +212,7 @@ nav {
 
     h2 {
       font-family: $secondary-font;
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 500;
       margin-bottom: 20px;
       text-align: center;
@@ -218,7 +235,7 @@ nav {
 
     h2 {
       font-family: $secondary-font;
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 500;
       margin-bottom: 40px;
       text-align: left;
@@ -259,7 +276,7 @@ nav {
 
     h2 {
       font-family: $secondary-font;
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 500;
       margin-bottom: 40px;
       text-align: center;
@@ -289,7 +306,7 @@ nav {
 
     h2 {
       font-family: $secondary-font;
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 500;
       margin-bottom: 40px;
       text-align: left;
@@ -377,7 +394,7 @@ nav {
 
     h2 {
       font-family: $secondary-font;
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 500;
       margin-bottom: 20px;
 
@@ -554,7 +571,7 @@ footer {
 
   h2 {
     font-family: $secondary-font;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: 20px;
     text-align: left;
@@ -626,7 +643,7 @@ footer {
 
   h2 {
     font-family: $secondary-font;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: 20px;
     text-align: center;
@@ -655,7 +672,7 @@ footer {
 
   h2 {
     font-family: $secondary-font;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: 20px;
     text-align: center;
@@ -757,7 +774,7 @@ footer {
 
   h2 {
     font-family: $secondary-font;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: 20px;
     text-align: center;
@@ -789,6 +806,7 @@ footer {
       background-color: #CDCDCD;
 
       .booking-progress {
+        width: 56px;
         height: 5px;
         border-radius: 25px;
         background-color: #000;
@@ -800,4 +818,17 @@ footer {
     }
   }
 
+}
+
+
+.page {
+  display: none;
+  padding: 20px;
+}
+.page.active {
+  display: block;
+}
+
+.back-button {
+  display: none;
 }
