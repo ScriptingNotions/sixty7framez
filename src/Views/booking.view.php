@@ -16,16 +16,81 @@
     <div class="booking-questionaire-container">
         <!-- < //$this->bookingContent; -->
         <div class="booking-item-1 page active" id="page1">
-            <div class="package-selection-container">
-                <select name="package-selection" id="package-selection" placeholder="Select a package" value="<?= $this->package ?>">
-                    <option value="standard-package">Standard</option>
-                    <option value="memory-maker-package">Memory maker</option>
-                    <option value="luxe-framez-package">Luxe framez</option>
-                    <option value="deluxe-memory-package">Deluxe Memory</option>
-                </select>
-            </div>
-            <div class="selected-package-container">
-                <?= $this->renderView($this->component($this->package), []) ?> 
+            <div class="booking-package-container">
+                <div class="package-item">
+                    <h3>Standard</h3>
+                    <p>$375</p>
+                    <ul>
+                        <li>Tap to Start screen</li>
+                        <li>Unlimited photo sessions</li>
+                        <li>Unlimited digital photos </li>
+                        <li>Live gallery with real-time photo access for guests</li>
+                        <li>Instant sharing via Text/Email/QR Code</li>
+                        <li>Setup/Breakdown</li>
+                        <li>Drop-off service</li>
+                        <li>3 hours</li>
+                    </ul>
+                </div>
+
+                <div class="package-item">
+                    <h3>Memory Maker</h3>
+                    <p>$550</p>
+                    <ul>
+                        <li>Open-air booth</li>
+                        <li>Customized Tap to Start screen</li>
+                        <li>Fun props (hats, glasses, signs, etc.)</li>
+                        <li>Unlimited photo sessions</li>
+                        <li>Unlimited digital photos</li>
+                        <li>Live gallery with real-time photo access for guests</li>
+                        <li>Instant sharing via Text/Email/QR Code</li>
+                        <li>Setup/Breakdown</li>
+                        <li>Optional drop-off service</li>
+                        <li>3 hours</li>
+                    </ul>
+                </div>
+
+                <div class="package-item">
+                    <h3>Luxe</h3>
+                    <p>$1,100</p>
+                    <ul>
+                        <li>Open-air booth</li>
+                        <li>Choice of premium backdrop</li>
+                        <li>Custom prop set tailored to your event (theme options available)</li>
+                        <li>Customized Tap to Start screen and LED Ring</li>
+                        <li>Photo/GIF/Boomerang/Video</li>
+                        <li>Select up to 2 each face effects & pose tips</li>
+                        <li>Filter options - Black/White & Instant</li>
+                        <li>Unlimited personalized photo templates (digital only)</li>
+                        <li>200 personalized photo templates 2x6 prints</li>
+                        <li>Live gallery with real-time photo access for guests</li>
+                        <li>Instant sharing via Text/Email/QR Code</li>
+                        <li>Social Sharing Station</li>
+                        <li>Setup/Breakdown</li>
+                        <li>On-site attendant</li>
+                        <li>5 hours</li>
+                    </ul>
+                </div>
+
+                <div class="package-item">
+                    <h3>Deluxe</h3>
+                    <p>$750</p>
+                    <ul>
+                        <li>Open-air booth</li>
+                        <li>Choice of premium backdrop</li>
+                        <li>Premium props</li>
+                        <li>Customized Tap to Start screen and LED Ring</li>
+                        <li>Photo/GIF/Boomerang/Video</li>
+                        <li>Select up to 2 each face effects & pose tips</li>
+                        <li>Unlimited personalized photo templates (digital only)</li>
+                        <li>100 personalized photo templates 2x6 prints</li>
+                        <li>Live gallery with real-time photo access for guests</li>
+                        <li>Instant sharing via Text/Email/QR Code</li>
+                        <li>Setup/Breakdown</li>
+                        <li>On-site attendant</li>
+                        <li>4 hours</li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
