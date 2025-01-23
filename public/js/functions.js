@@ -1,5 +1,6 @@
 import * as Utils from "./utils.js";
 
+const bookingDetails = new Object();
 
 export function toggleFAQ(e) {
     console.log(e);
@@ -72,3 +73,75 @@ let currentPage = 1;
         export function backBooking() {
             navigate('back');
         }
+
+        const carousel = _$("#carousel");
+        const scrollAmount = 296; // Card width (250px) + gap (16px)
+        const roundDownToTen = (num) => Math.floor(num / 10) * 10;
+
+        export function prevCarousel() {
+            carousel.scrollBy({
+                left: -scrollAmount,
+                behavior: "smooth"
+            });
+
+            // setTimeout(() => {
+            //     let packageIndex =  ((roundDownToTen(carousel.scrollLeft) + roundDownToTen(carousel.getBoundingClientRect().width)) / roundDownToTen(carousel.getBoundingClientRect().width)) - 1;
+            //     console.log(_$$(".package-item")[packageIndex]);
+            //     carousel.style.height = _$$(".package-item")[packageIndex].getBoundingClientRect().height + 10 + "px";
+            // }, 500);
+        }
+
+        export function nextCarousel() {
+            _$("#carousel").scrollBy({
+                left: scrollAmount,
+                behavior: "smooth"
+            });
+
+ 
+
+            // setTimeout(() => {
+            //     console.log(carousel.offsetWidth, carousel.scrollLeft, roundDownToTen(carousel.getBoundingClientRect().width), );
+            //     let packageIndex = ((roundDownToTen(carousel.scrollLeft) + roundDownToTen(carousel.getBoundingClientRect().width)) / roundDownToTen(carousel.getBoundingClientRect().width)) - 1;
+
+            //     console.log(_$$(".package-item")[packageIndex]);
+            //     carousel.style.height = _$$(".package-item")[packageIndex].getBoundingClientRect().height + 10 + "px";
+            // }, 500);
+        }
+        
+        export function selectCarouselPackage(e) {
+            _$$(".package-item").forEach(element => {
+                element.classList.remove("active-package");
+            });
+
+            e.target.parentElement.classList.add("active-package");
+
+            bookingDetails.packageType = e.target.dataset.packageType;
+
+            console.log(bookingDetails);
+        }
+  
+
+export function basicInputValidation(value) {
+    if (value.trim() === '') {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+export function emailValidation(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return false;
+    } else {
+        return true;
+    }
+}
+
+export function phoneValidation() {
+    if (!phone.match(/^\d+$/)) {
+        return false;
+    } else {
+        return true;
+    }
+}

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 body {
-  font-family: "Inter", serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, serif;
   font-optical-sizing: auto;
   color: #000;
 }
@@ -10,14 +10,20 @@ a {
   color: #000;
 }
 
-input {
-  height: 40px;
+form {
   width: 100%;
-  border-radius: 8px;
+}
+
+input,
+select {
   outline: none;
   border: none;
   background-color: #fff;
   padding: 0 0 2px 10px;
+  border-radius: 10px;
+  border: 1px solid #CDCDCD;
+  height: 40px;
+  width: 100%;
 }
 
 button {
@@ -30,7 +36,6 @@ button {
   border: none;
   outline: none;
   transition: background-color 0.3s;
-  margin-top: 30px;
 }
 button:hover {
   background-color: #424242;
@@ -69,9 +74,19 @@ footer {
 }
 
 nav {
+  height: 80px;
+}
+nav .nav-container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  position: fixed;
+  background-color: #fff;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  padding: 15px;
 }
 nav .nav-logo {
   width: 48px;
@@ -91,22 +106,25 @@ nav .menu-container span {
 }
 .main-content .mobile-menu-container {
   display: none;
-  width: 280px;
+  width: 310px;
   background: white;
   box-shadow: 0px 20px 60px -11px rgba(0, 0, 0, 0.5);
   border: 1px solid #E6E6E6;
   border-radius: 10px;
   padding: 15px;
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   left: 50%;
-  top: 70px;
+  top: 80px;
   transform: translateX(-50%);
+  border: 1px solid #e9e9e9;
+  position: fixed;
 }
 .main-content .mobile-menu-container li {
   margin-bottom: 20px;
   font-weight: 500;
   cursor: pointer;
+  font-size: 18px;
 }
 .main-content .mobile-menu-container div {
   display: flex;
@@ -117,7 +135,7 @@ nav .menu-container span {
 }
 .main-content .hero-section {
   border-radius: calc(0.5vw + 0.5rem);
-  height: 350px;
+  height: calc(300px + 15vw);
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -268,40 +286,6 @@ nav .menu-container span {
   font-weight: 700;
   color: #8473FC;
 }
-.main-content .home-section-4 .package-list {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-flow: wrap;
-}
-.main-content .home-section-4 .package-list .package-item {
-  position: relative;
-  width: 300px;
-  background-color: #fff;
-  border: 1px solid #E6E6E6;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.1);
-  height: min-content;
-}
-.main-content .home-section-4 .package-list h3 {
-  font-weight: 600;
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-.main-content .home-section-4 .package-list p {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-.main-content .home-section-4 .package-list ul {
-  list-style: initial;
-  margin-left: 25px;
-  font-size: 0.9rem;
-}
-.main-content .home-section-4 .package-list ul li {
-  margin-bottom: 10px;
-}
 .main-content .home-section-4 .button-container {
   display: flex;
   justify-content: center;
@@ -321,6 +305,9 @@ nav .menu-container span {
   font-weight: 600;
   font-size: 1.2rem;
   margin-bottom: 30px;
+}
+.main-content .home-section-5 .start-booking-container input {
+  border: none;
 }
 .main-content .home-section-5 .start-booking-container .button-container {
   display: flex;
@@ -629,16 +616,6 @@ footer {
 .contact-section-2 .contact-form .form-group {
   margin-bottom: 20px;
 }
-.contact-section-2 form {
-  width: 100%;
-}
-.contact-section-2 input {
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid #CDCDCD;
-  height: 30px;
-  width: 100%;
-}
 .contact-section-2 textarea {
   resize: none;
   border: 1px solid #CDCDCD;
@@ -687,6 +664,10 @@ footer {
 .booking-section-1 {
   margin-top: 70px;
 }
+.booking-section-1 .booking-questionaire-container {
+  width: 100%;
+  margin: 20px auto;
+}
 .booking-section-1 h2 {
   font-family: "Lora", serif;
   font-size: 1.5rem;
@@ -729,7 +710,7 @@ footer {
 
 .page {
   display: none;
-  padding: 20px;
+  justify-content: center;
 }
 
 .page.active {
@@ -738,6 +719,173 @@ footer {
 
 .back-button {
   display: none;
+}
+
+#carousel {
+  overflow-y: hidden;
+  padding: 10px 0;
+  margin-top: 40px;
+}
+
+.carousel-container {
+  max-width: 1200px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.carousel {
+  display: flex;
+}
+
+.controls {
+  margin-top: 16px;
+}
+
+.package-list {
+  position: relative;
+  width: 100%;
+}
+.package-list .package-item {
+  position: relative;
+  width: 300px;
+  background-color: #fff;
+  border: 1px solid #E6E6E6;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 0 5px;
+  box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.1);
+  height: min-content;
+  scroll-snap-align: center;
+}
+.package-list h3 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+.package-list p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.package-list ul {
+  list-style: initial;
+  margin-left: 25px;
+  font-size: 0.9rem;
+}
+.package-list ul li {
+  margin-bottom: 10px;
+}
+
+#carousel-next {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  margin: 0;
+  width: 20px;
+  padding: 0;
+  cursor: pointer;
+  padding: 5px;
+  background-color: #000;
+  border-radius: 180px;
+}
+
+#carosel-prev {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  margin: 0;
+  width: 20px;
+  padding: 0;
+  z-index: 1;
+  cursor: pointer;
+  padding: 5px;
+  background-color: #000;
+  border-radius: 180px;
+}
+
+.carousel-package {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.active-package {
+  border: 2px solid #938ecd !important;
+  scale: 1.02 !important;
+}
+
+/* SUMMARY */
+.field-group {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.field-label {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.field-value-summary-name,
+.field-value-summary-phone,
+.field-value-summary-email,
+.field-value-summary-start,
+.field-value-summary-hours,
+.field-value-summary-package,
+.field-value-summary-venue-name,
+.field-value-summary-venue-address {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.checkbox-group input[type=checkbox] {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.checkbox-group div {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-group label {
+  color: #000;
+  font-size: 16px;
+}
+
+.learn-more-terms {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.time-container {
+  display: flex;
+  flex-flow: inherit;
+  gap: 15px;
 }
 
 /*# sourceMappingURL=style.css.map */

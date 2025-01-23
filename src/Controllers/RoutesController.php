@@ -8,6 +8,7 @@ class RoutesController extends Controller
     public $bookingPosition = "";
     public $bookingContent;
     public $package;
+    public $customerDetails;
 
     public function home()
     {
@@ -41,28 +42,13 @@ class RoutesController extends Controller
     public function booking($package = "", $bookingPosition = "")
     {
 
-        $bookingSequence = ["booking.select-package", "booking.customer-overview", "booking.event-details", "booking.summary", "booking.payment"];
-
         $this->pageTitle = "Booking";
-        $this->package = "standard-package";
         
         $package === "" ? $this->package = "standard-package" : $this->package = $package;
         
-        switch($this->bookingPosition) {
-            case "":
-                $this->bookingContent = $this->renderView($this->component("booking.select-package"), 
-                [
-                    
-                ]);
-                break;
-
-            case "package":
-                echo $this->renderView($this->component($package), 
-                [
-                    
-                ]);
-                break;
-        }
+        $this->customerDetails = [
+            "package" => $this->package
+        ];
 
         $this->view("booking");
     }

@@ -3,7 +3,7 @@
 $primary-color: #000;
 $primary-font: "Geist", serif;
 $secondary-font: "Lora", serif;
-$tertiary-font: "Inter", serif;
+$tertiary-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, serif;
 
 body {
   font-family: $tertiary-font;
@@ -16,14 +16,20 @@ a {
   color: #000;
 }
 
-input {
-  height: 40px;
+form {
   width: 100%;
-  border-radius: 8px;
+}
+
+input,
+select {
   outline: none;
   border: none;
   background-color: #fff;
   padding: 0  0 2px 10px;
+  border-radius: 10px;
+  border: 1px solid #CDCDCD;
+  height: 40px;
+  width: 100%;
 }
 
 button {
@@ -36,7 +42,6 @@ button {
   border: none;
   outline: none;
   transition: background-color 0.3s;
-  margin-top: 30px;
 
   &:hover {
     background-color: #424242;
@@ -76,10 +81,21 @@ footer {
   margin-top: 70px;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+nav { 
+  height: 80px;
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    background-color: #fff;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    padding: 15px;
+  }
 
   .nav-logo {
     width: 48px;
@@ -104,22 +120,26 @@ nav {
 
   .mobile-menu-container {
     display: none;
-    width: 280px;
+    width: 310px;
     background: white;
-    box-shadow: 0px 20px 60px -11px rgba(0, 0, 0, .5);;
+    box-shadow: 0px 20px 60px -11px rgba(0, 0, 0, 0.5);
     border: 1px solid #E6E6E6;
     border-radius: 10px;
     padding: 15px;
     position: absolute;
-    z-index: 2;
+    z-index: 10;
     left: 50%;
-    top: 70px;
+    top: 80px;
     transform: translateX(-50%);
+    border: 1px solid #e9e9e9;
+    position: fixed;
+  
 
     li {
       margin-bottom: 20px;
       font-weight: 500;
       cursor: pointer;
+      font-size: 18px;
     }
 
     div {
@@ -136,7 +156,7 @@ nav {
 
   .hero-section {
     border-radius: calc(.5vw + .5rem);
-    height: 350px;
+    height: calc(300px + 15vw);
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -317,46 +337,7 @@ nav {
       }
     }
 
-    .package-list {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-flow: wrap;
-
-      .package-item {
-        position: relative;
-        width: 300px;
-        background-color: #fff;
-        border: 1px solid #E6E6E6;
-        border-radius: 20px;
-        padding: 20px;
-        box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.10);
-        height: min-content;
-      }
-
-      h3 {
-        font-weight: 600;
-        font-size: 1rem;
-        margin-bottom: 20px;
-      }
-
-      p {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 20px
-      }
-
-      ul {
-        list-style: initial;
-        margin-left: 25px;
-        font-size: .9rem;
-
-        li {
-          margin-bottom: 10px;
-        }
-      }
-    }
-
+    
     .button-container {
       display: flex;
       justify-content: center;
@@ -381,6 +362,10 @@ nav {
         margin-bottom: 30px;
       }
 
+      input {
+        border: none;
+      }
+      
       .button-container {
         display: flex;
         justify-content: center;
@@ -705,17 +690,9 @@ footer {
     }
   }
 
-  form {
-    width: 100%;
-  }
 
-  input {
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid #CDCDCD;
-    height: 30px;
-    width: 100%;
-  }
+
+
 
   textarea {
     resize: none;
@@ -772,6 +749,11 @@ footer {
 .booking-section-1 {
   margin-top: 70px;
 
+  .booking-questionaire-container {
+    width: 100%;
+    margin: 20px auto;
+  }
+
   h2 {
     font-family: $secondary-font;
     font-size: 1.5rem;
@@ -823,12 +805,194 @@ footer {
 
 .page {
   display: none;
-  padding: 20px;
+  justify-content: center;
 }
+
 .page.active {
   display: block;
 }
 
 .back-button {
   display: none;
+}
+
+// Carousel
+#carousel {
+  overflow-y: hidden;
+  padding: 10px 0;
+  margin-top: 40px;
+}
+
+.carousel-container {
+  max-width: 1200px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+
+
+.carousel {
+  display: flex;
+}
+
+.controls {
+  margin-top: 16px;
+}
+
+.package-list {
+  position: relative;
+  width: 100%;
+
+  .package-item {
+    position: relative;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #E6E6E6;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0 5px;
+    box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.10);
+    height: min-content;
+    scroll-snap-align: center;
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  ul {
+    list-style: initial;
+    margin-left: 25px;
+    font-size: .9rem;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+
+#carousel-next {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  margin: 0;
+  width: 20px;
+  padding: 0;
+  cursor: pointer;
+  padding: 5px;
+  background-color: #000;
+  border-radius: 180px;
+}
+
+#carosel-prev {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  margin: 0;
+  width: 20px;
+  padding: 0;
+  z-index: 1;
+  cursor: pointer;
+  padding: 5px;
+  background-color: #000;
+  border-radius: 180px;
+}
+
+.carousel-package {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.active-package {
+  border: 2px solid #938ecd !important;
+  scale: 1.02 !important;
+}
+
+
+/* SUMMARY */
+.booking-item-4 {
+}
+
+.field-group {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.field-label {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.field-value-summary-name,
+.field-value-summary-phone,
+.field-value-summary-email,
+.field-value-summary-start,
+.field-value-summary-hours,
+.field-value-summary-package,
+.field-value-summary-venue-name,
+.field-value-summary-venue-address {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.checkbox-group div {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-group label {
+  color: #000;
+  font-size: 16px;
+}
+
+.learn-more-terms {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.time-container {
+  display: flex;
+  flex-flow: inherit;
+  gap: 15px;
 }

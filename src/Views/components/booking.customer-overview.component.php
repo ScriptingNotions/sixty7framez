@@ -5,7 +5,6 @@
                     type="text" 
                     id="firstName" 
                     name="firstName" 
-                    placeholder="Enter your first name"
                     required
                 >
             </div>
@@ -16,7 +15,6 @@
                     type="text" 
                     id="lastName" 
                     name="lastName" 
-                    placeholder="Enter your last name"
                     required
                 >
             </div>
@@ -27,7 +25,6 @@
                     type="email" 
                     id="email" 
                     name="email" 
-                    placeholder="Enter your email"
                     required
                 >
             </div>
@@ -38,7 +35,6 @@
                     type="tel" 
                     id="phone" 
                     name="phone" 
-                    placeholder="Enter your phone number"
                     required
                 >
             </div>

@@ -16,81 +16,91 @@
     <div class="booking-questionaire-container">
         <!-- < //$this->bookingContent; -->
         <div class="booking-item-1 page active" id="page1">
-            <div class="booking-package-container">
-                <div class="package-item">
-                    <h3>Standard</h3>
-                    <p>$375</p>
-                    <ul>
-                        <li>Tap to Start screen</li>
-                        <li>Unlimited photo sessions</li>
-                        <li>Unlimited digital photos </li>
-                        <li>Live gallery with real-time photo access for guests</li>
-                        <li>Instant sharing via Text/Email/QR Code</li>
-                        <li>Setup/Breakdown</li>
-                        <li>Drop-off service</li>
-                        <li>3 hours</li>
-                    </ul>
-                </div>
+            <div class="package-list">
+                <img id="carosel-prev" data-few:="prevCarousel" src="<?= $this->getIcon("chevron-left.svg") ?>" alt="Left icon">
+                <div class="booking-package-container  carousel-container" id="carousel">
+                    <div class="carousel">
+                        <div class="package-item <?= $this->package === "standard" ? "active-package" : "" ?>">
+                            <h3>Standard</h3>
+                            <p>$375</p>
+                            <ul>
+                                <li>Tap to Start screen</li>
+                                <li>Unlimited photo sessions</li>
+                                <li>Unlimited digital photos </li>
+                                <li>Live gallery with real-time photo access for guests</li>
+                                <li>Instant sharing via Text/Email/QR Code</li>
+                                <li>Setup/Breakdown</li>
+                                <li>Drop-off service</li>
+                                <li>3 hours</li>
+                            </ul>
+                            <button class="carousel-package" data-few:="selectCarouselPackage" data-package-type="standard">Select package</button>
+                        </div>
 
-                <div class="package-item">
-                    <h3>Memory Maker</h3>
-                    <p>$550</p>
-                    <ul>
-                        <li>Open-air booth</li>
-                        <li>Customized Tap to Start screen</li>
-                        <li>Fun props (hats, glasses, signs, etc.)</li>
-                        <li>Unlimited photo sessions</li>
-                        <li>Unlimited digital photos</li>
-                        <li>Live gallery with real-time photo access for guests</li>
-                        <li>Instant sharing via Text/Email/QR Code</li>
-                        <li>Setup/Breakdown</li>
-                        <li>Optional drop-off service</li>
-                        <li>3 hours</li>
-                    </ul>
-                </div>
+                        <div class="package-item <?= $this->package === "memory-maker" ? "active-package" : "" ?>">
+                            <h3>Memory Maker</h3>
+                            <p>$550</p>
+                            <ul>
+                                <li>Open-air booth</li>
+                                <li>Customized Tap to Start screen</li>
+                                <li>Fun props (hats, glasses, signs, etc.)</li>
+                                <li>Unlimited photo sessions</li>
+                                <li>Unlimited digital photos</li>
+                                <li>Live gallery with real-time photo access for guests</li>
+                                <li>Instant sharing via Text/Email/QR Code</li>
+                                <li>Setup/Breakdown</li>
+                                <li>Optional drop-off service</li>
+                                <li>3 hours</li>
+                            </ul>
+                            <button class="carousel-package" data-few:="selectCarouselPackage"  data-package-type="memory-maker">Select package</button>
+                        </div>
 
-                <div class="package-item">
-                    <h3>Luxe</h3>
-                    <p>$1,100</p>
-                    <ul>
-                        <li>Open-air booth</li>
-                        <li>Choice of premium backdrop</li>
-                        <li>Custom prop set tailored to your event (theme options available)</li>
-                        <li>Customized Tap to Start screen and LED Ring</li>
-                        <li>Photo/GIF/Boomerang/Video</li>
-                        <li>Select up to 2 each face effects & pose tips</li>
-                        <li>Filter options - Black/White & Instant</li>
-                        <li>Unlimited personalized photo templates (digital only)</li>
-                        <li>200 personalized photo templates 2x6 prints</li>
-                        <li>Live gallery with real-time photo access for guests</li>
-                        <li>Instant sharing via Text/Email/QR Code</li>
-                        <li>Social Sharing Station</li>
-                        <li>Setup/Breakdown</li>
-                        <li>On-site attendant</li>
-                        <li>5 hours</li>
-                    </ul>
-                </div>
+                        <div class="package-item <?= $this->package === "deluxe" ? "active-package" : "" ?>">
+                            <h3>Deluxe</h3>
+                            <p>$750</p>
+                            <ul>
+                                <li>Open-air booth</li>
+                                <li>Choice of premium backdrop</li>
+                                <li>Premium props</li>
+                                <li>Customized Tap to Start screen and LED Ring</li>
+                                <li>Photo/GIF/Boomerang/Video</li>
+                                <li>Select up to 2 each face effects & pose tips</li>
+                                <li>Unlimited personalized photo templates (digital only)</li>
+                                <li>100 personalized photo templates 2x6 prints</li>
+                                <li>Live gallery with real-time photo access for guests</li>
+                                <li>Instant sharing via Text/Email/QR Code</li>
+                                <li>Setup/Breakdown</li>
+                                <li>On-site attendant</li>
+                                <li>4 hours</li>
+                            </ul>
+                            <button class="carousel-package" data-few:="selectCarouselPackage"  data-package-type="deluxe">Select package</button>
+                        </div>
 
-                <div class="package-item">
-                    <h3>Deluxe</h3>
-                    <p>$750</p>
-                    <ul>
-                        <li>Open-air booth</li>
-                        <li>Choice of premium backdrop</li>
-                        <li>Premium props</li>
-                        <li>Customized Tap to Start screen and LED Ring</li>
-                        <li>Photo/GIF/Boomerang/Video</li>
-                        <li>Select up to 2 each face effects & pose tips</li>
-                        <li>Unlimited personalized photo templates (digital only)</li>
-                        <li>100 personalized photo templates 2x6 prints</li>
-                        <li>Live gallery with real-time photo access for guests</li>
-                        <li>Instant sharing via Text/Email/QR Code</li>
-                        <li>Setup/Breakdown</li>
-                        <li>On-site attendant</li>
-                        <li>4 hours</li>
-                    </ul>
-                </div>
+                        <div class="package-item <?= $this->package === "luxe" ? "active-package" : "" ?>" >
+                            <h3>Luxe</h3>
+                            <p>$1,100</p>
+                            <ul>
+                                <li>Open-air booth</li>
+                                <li>Choice of premium backdrop</li>
+                                <li>Custom prop set tailored to your event (theme options available)</li>
+                                <li>Customized Tap to Start screen and LED Ring</li>
+                                <li>Photo/GIF/Boomerang/Video</li>
+                                <li>Select up to 2 each face effects & pose tips</li>
+                                <li>Filter options - Black/White & Instant</li>
+                                <li>Unlimited personalized photo templates (digital only)</li>
+                                <li>200 personalized photo templates 2x6 prints</li>
+                                <li>Live gallery with real-time photo access for guests</li>
+                                <li>Instant sharing via Text/Email/QR Code</li>
+                                <li>Social Sharing Station</li>
+                                <li>Setup/Breakdown</li>
+                                <li>On-site attendant</li>
+                                <li>5 hours</li>
+                            </ul>
+                            <button class="carousel-package" data-few:="selectCarouselPackage"  data-package-type="luxe">Select package</button>
+                        </div>
 
+                    </div>
+                </div>
+                <img id="carousel-next" data-few:="nextCarousel" src="<?= $this->getIcon("chevron-right.svg") ?>" alt="Right icon">
             </div>
         </div>
 
@@ -102,7 +112,6 @@
                         type="text" 
                         id="firstName" 
                         name="firstName" 
-                        placeholder="Enter your first name"
                         required
                     >
                 </div>
@@ -113,7 +122,6 @@
                         type="text" 
                         id="lastName" 
                         name="lastName" 
-                        placeholder="Enter your last name"
                         required
                     >
                 </div>
@@ -124,7 +132,6 @@
                         type="email" 
                         id="email" 
                         name="email" 
-                        placeholder="Enter your email"
                         required
                     >
                 </div>
@@ -135,7 +142,6 @@
                         type="tel" 
                         id="phone" 
                         name="phone" 
-                        placeholder="Enter your phone number"
                         required
                     >
                 </div>
@@ -156,17 +162,48 @@
 
                 <div class="form-group">
                     <label for="eventDate">Event date</label>
-                    <input type="date" id="eventDate" name="eventDate" value="2025-01-08">
+                    <input type="date" id="eventDate" name="eventDate" >
+                </div>
+
+                <div class="form-group time-container">
+                    <select name="hours" id="hours">
+                        <option value="">Hour</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+
+                    <select name="minutes" id="minutes">
+                        <option value="">Minute</option>
+                        <option value="00">00</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                    </select>
+
+                    <select name="period" id="period">
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for="venueName">Venue name</label>
-                    <input type="text" id="venueName" name="venueName" value="Horton's">
+                    <input type="text" id="venueName" name="venueName" >
                 </div>
 
                 <div class="form-group">
                     <label for="venueAddress">Venue address</label>
-                    <input type="text" id="venueAddress" name="venueAddress" value="123 Main st, Charlotte, NC 28278">
+                    <input type="text" id="venueAddress" name="venueAddress" >
                 </div>
             </form>
         </div>
