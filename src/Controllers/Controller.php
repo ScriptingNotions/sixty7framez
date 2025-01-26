@@ -105,7 +105,9 @@ abstract class Controller {
      */
     protected function getStylesheet($filename)
     {
-        $file = strtolower($filename);
+        if ($filename != "") {
+            $file = strtolower($filename);
+        }
         
         return PROTOCOL . $_SERVER['HTTP_HOST'] . '/css/' . $file . '.css';
     }

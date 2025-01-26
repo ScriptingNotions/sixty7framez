@@ -182,12 +182,11 @@
 <section class="home-section-5 start-booking">
     <div class="start-booking-container">
         <h2>Get started booking your next event</h2>
-        <form action="#" class="get-started-contact-form">
-            <div class="error-message"></div>
+        <form action="/booking" method="POST" class="get-started-contact-form">
             <fieldset>
                 <div class="form-group">
                     <label for="home-first-name">First name</label>
-                    <input type="text" id="home-name" name="home-name" required>
+                    <input type="text" id="home-first-name" name="home-first-name" required>
                 </div>
 
                 <div class="form-group">
@@ -205,7 +204,7 @@
                     <input type="tel" id="home-phone" name="home-phone" required>
                 </div>
                 <div class="button-container">
-                    <button type="button">Start Booking</button>
+                    <button type="submit" data-few:="startBookingContact">Start Booking</button>
                 </div>
             </fieldset>
         </form>

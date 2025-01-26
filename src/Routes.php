@@ -24,6 +24,8 @@ class Routes {
             $r->addRoute('GET', '/booking/package/{package}', ['ScriptingThoughts\Controllers\RoutesController', 'booking']);
             $r->addRoute('GET', '/booking/position/{bookingPosition}', ['ScriptingThoughts\Controllers\RoutesController', 'booking']);
 
+            $r->addRoute('POST', '/booking', ['ScriptingThoughts\Controllers\RoutesController', 'booking']);
+
             $r->addRoute('GET', '/mobile-menu', ['ScriptingThoughts\Controllers\ComponentController', 'mobileMenu']);
 
             // Add route for /users/{id}, where {id} must be a number

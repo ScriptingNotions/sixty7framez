@@ -102,16 +102,21 @@
                 </div>
                 <img id="carousel-next" data-few:="nextCarousel" src="<?= $this->getIcon("chevron-right.svg") ?>" alt="Right icon">
             </div>
+            <div class="booking-navigation">
+                <button type="button" class="next-button next-button-1" data-few:="nextBooking">Next</button>
+            </div>
         </div>
 
         <div class="booking-item-2 page" id="page2">
-            <form>
+            <form class="customer-booking-form">
                 <div class="form-group">
                     <label for="firstName">First Name</label>
                     <input 
                         type="text" 
                         id="firstName" 
                         name="firstName" 
+
+                        value="<?= $this->firstName ?>"
                         required
                     >
                 </div>
@@ -122,6 +127,8 @@
                         type="text" 
                         id="lastName" 
                         name="lastName" 
+
+                        value="<?= $this->lastName ?>"
                         required
                     >
                 </div>
@@ -132,6 +139,8 @@
                         type="email" 
                         id="email" 
                         name="email" 
+
+                        value="<?= $this->email ?>"
                         required
                     >
                 </div>
@@ -142,14 +151,20 @@
                         type="tel" 
                         id="phone" 
                         name="phone" 
+
+                        value="<?= $this->phone ?>"
                         required
                     >
                 </div>
             </form>
+            <div class="booking-navigation">
+                <button type="button" class="back-button back-button-2" data-few:="backBooking">Back</button>
+                <button type="button" class="next-button next-button-2" data-few:="nextBooking">Next</button>
+            </div>
         </div>
 
         <div class="booking-item-3 page" id="page3">
-            <form>
+            <form class="event-booking-form">
                 <div class="form-group">
                     <label for="eventType">Event type</label>
                     <select id="eventType" name="eventType">
@@ -166,6 +181,7 @@
                 </div>
 
                 <div class="form-group time-container">
+                    <label for="eventDate">Event time</label>
                     <select name="hours" id="hours">
                         <option value="">Hour</option>
                         <option value="1">1</option>
@@ -181,7 +197,8 @@
                         <option value="11">11</option>
                         <option value="12">12</option>
                     </select>
-
+                </div>
+                <div class="form-group time-container">
                     <select name="minutes" id="minutes">
                         <option value="">Minute</option>
                         <option value="00">00</option>
@@ -189,7 +206,9 @@
                         <option value="30">30</option>
                         <option value="45">45</option>
                     </select>
+                </div>
 
+                <div class="form-group time-container">
                     <select name="period" id="period">
                         <option value="AM">AM</option>
                         <option value="PM">PM</option>
@@ -206,67 +225,71 @@
                     <input type="text" id="venueAddress" name="venueAddress" >
                 </div>
             </form>
+            <div class="booking-navigation">
+                <button type="button" class="back-button back-button-3" data-few:="backBooking">Back</button>
+                <button type="button" class="next-button next-button-3" data-few:="nextBooking">Next</button>
+            </div>
         </div>
 
         <div class="booking-item-4 page" id="page4">
             <div class="field-group">
                 <div class="field-label">Name</div>
-                <div class="field-value-summary-name">Jane Doe</div>
+                <div class="field-value-summary-name"><?= $this->firstName . " " . $this->lastName ?></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Phone Number</div>
-                <div class="field-value-summary-phone">980 555-5555</div>
+                <div class="field-value-summary-phone"><?= $this->phone ?></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Email</div>
-                <div class="field-value-summary-email">janedoe@gmail.com</div>
+                <div class="field-value-summary-email"><?= $this->email ?></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Start</div>
-                <div class="field-value-summary-start">20 July 2024 at 2pm</div>
+                <div class="field-value-summary-start"><?= $this->eventTime ?></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Hours</div>
-                <div class="field-value-summary-hours">4:00</div>
+                <div class="field-value-summary-hours"><?= $this->eventTime ?></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Package</div>
-                <div class="field-value-summary-package">Basic</div>
+                <div class="field-value-summary-package"><?= $this->package ?></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Venue Name</div>
-                <div class="field-value-summary-venue-name">Horton's</div>
+                <div class="field-value-summary-venue-name"><?= $this->venueName ?></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Venue Address</div>
-                <div class="field-value-summary-venue-address">123 Main st, Charlotte, NC 28278</div>
+                <div class="field-value-summary-venue-address"><?= $this->venueAddress ?></div>
             </div>
 
             <div class="checkbox-group">
-                <input type="checkbox" id="terms" name="terms">
+                <input type="checkbox" id="booking-terms" name="booking-terms">
                 <div>
                     <label for="summary-terms">I agree to terms and service</label>
                     <a href="#" class="learn-more-terms">Learn more</a>
                 </div>
             </div>
+            <div class="booking-navigation">
+                <button type="button" class="back-button back-button-4" data-few:="backBooking">Back</button>
+                <button type="button" class="next-button next-button-4" data-few:="nextBooking">Next</button>
+            </div>
         </div>
 
         <div class="booking-item-5 page" id="page5">
-
+            <div class="booking-navigation">
+                <button type="button" class="back-button back-button-5" data-few:="backBooking">Back</button>
+            </div>
         </div>
-
-        <div class="booking-navigation">
-            <button type="button" class="back-button" data-few:="backBooking">Back</button>
-            <button type="button" class="next-button" data-few:="nextBooking">Next</button>
-        </div>
-
     </div>
 </section>
 
