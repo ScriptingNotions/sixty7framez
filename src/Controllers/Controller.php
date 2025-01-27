@@ -15,9 +15,9 @@ abstract class Controller {
     protected $errors = [];
     protected $errorList = [];
 
-    public function __construct($session)
+    public function __construct()
     {
-        $this->session = $session;
+        //$this->session = $session;
     }
 
     protected function renderView(string $filePath, array $variables = []): string
