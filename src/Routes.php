@@ -3,7 +3,10 @@ namespace ScriptingThoughts;
 
 use FastRoute\RouteCollector;
 use function FastRoute\simpleDispatcher;
-use ScriptingThoughts\Models\Session;
+use Dotenv;
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 
 class Routes {
 
@@ -65,10 +68,10 @@ class Routes {
 
                 // If the handler is an array (i.e., a class and method)
                 if (is_array($handler)) {
-                    $session = new Session();
+                   // $session = new Session();
            
                     // Create an instance of the class and call the method
-                    $controller = new $handler[0]($session); // Instantiate the controller
+                    $controller = new $handler[0](); // Instantiate the controller
                     call_user_func_array([$controller, $handler[1]], $params); // Call the method with params
                 } else {
                     // If the handler is a function
