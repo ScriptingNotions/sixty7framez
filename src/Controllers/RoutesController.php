@@ -1,5 +1,8 @@
 <?php
+
 namespace ScriptingThoughts\Controllers;
+
+use ScriptingThoughts\Services\GoogleCalendarService;
 
 class RoutesController extends Controller
 {
@@ -79,12 +82,48 @@ class RoutesController extends Controller
                 $bookingData->package = $bookingData->package;
 
                 return $this->returnJsonHttpResponse(200, $bookingData);
-            }            
+            }       
+            
+            $this->pageTitle = "Home";
+            $this->pageFile = "home";
+    
         }
 
         $package === "" ? $this->package = "standard-package" : $this->package = $package;
         
- 
+        $serviceAccountInfo = [
+            "private_key" =>  $_ENV["GOOGLE_SERVICE_ACCOUNT_PKEY"],
+            "client_email" => $_ENV["GOOGLE_SERVICE_ACCOUNT_EMAIL"]
+        ];
+
+        $calendarService = new GoogleCalendarService($serviceAccountInfo);
+        $calendarId = $_ENV["GOOGLE_CALENDAR_ID"];
+
+        echo '<pre>';
+        print_r($calendarService->getListOfEvents($calendarId));
+        echo '</pre>';
+
+        $eventData = [
+            'summary' => 'Project Meeting',
+            'location' => '123 Main Street, City, Country',
+            'description' => 'Discuss project updates and next steps.',
+            'start' => [
+                'dateTime' => '2025-01-30T10:00:00-07:00', // Specify the start time in ISO 8601 format
+                'timeZone' => 'America/New_York',
+            ],
+            'end' => [
+                'dateTime' => '2025-01-30T11:00:00-07:00', // Specify the end time in ISO 8601 format
+                'timeZone' => 'America/New_York',
+            ],
+            'reminders' => [
+                'useDefault' => false,
+                'overrides' => [
+                    ['method' => 'email', 'minutes' => 24 * 60], // Send email reminder 24 hours before
+                    ['method' => 'popup', 'minutes' => 10], // Popup reminder 10 minutes before
+                ],
+            ],
+        ];
+    
 
         $this->view("booking");
     }
