@@ -882,4 +882,77 @@ footer {
   margin-top: 4px;
 }
 
+.calendar {
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.calendar-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+}
+
+.calendar-day {
+  padding: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.grid__item::before,
+.grid__item::after {
+  content: "";
+  position: absolute;
+  background-color: red;
+  z-index: 1;
+}
+
+.calendar-day:hover {
+  background-color: #f0f0f0;
+}
+
+.calendar-day.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  background-color: #f9f9f9;
+}
+
+.selected {
+  background-color: blue;
+  color: white;
+}
+
+.time-selector {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.time-selector select {
+  padding: 5px 10px;
+}
+
+.time-selector select option:disabled {
+  color: #ccc;
+  background-color: #f9f9f9;
+}
+
+.current-day {
+  background-color: antiquewhite;
+}
+
+.booking-date-error-msg {
+  width: 100%;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -71,19 +71,17 @@ export function toggleMobileMenu(e) {
             }
         }
 
-        function validateBookingPage1() {
+        function bookingPage1() {
             if(bookingDetails.packageType != undefined) {
                 navigate('next');
             } 
         }
 
-        function validateBookingPage2() {
+        function bookingPage2() {
             const form = _$(".customer-booking-form");
             const inputs = form.querySelectorAll('input[required]');
             let isValid = true;
 
-            bookingDetails.customerOverview = [];
-        
             inputs.forEach((input, i) => {
                 let errorMsg = validateInput(input) ? validateInput(input) : ""; 
     
@@ -92,7 +90,9 @@ export function toggleMobileMenu(e) {
     
                     isValid = false;
                 } else {
-                    bookingDetails.customerOverview.push({"name": input.name, "value": input.value});
+                    let inputName = input.name;
+
+                    bookingDetails[inputName] = input.value;
                 }
             });
 
@@ -101,40 +101,34 @@ export function toggleMobileMenu(e) {
             }
         }
 
-        function validateBookingPage3() {
+        function bookingPage3() {
             const eventType = _$("#eventType");
-            const hrs = _$("#hours");
-            const mins = _$("#minutes");
-            const period = _$("#period");
+            const timeSelect = _$("#time-select");
             const venueName = _$("#venueName");
             const venueAddress = _$("#venueAddress");
-            const eventDate = _$("#eventDate");
 
             let isValid = true;
 
-            bookingDetails.eventDetails = [];
-        // do for input, too.
             [
-                eventType,
-                hrs,
-                mins,
-                period
+                timeSelect,
+                eventType
             ].forEach(element => {
                 console.log(element);
                 let errorMsg = validateSelect(element) ? validateSelect(element) : ""; 
-    console.log(errorMsg);
+  
                 if(errorMsg.outerHTML != undefined) {
                     console.log(element.closest(".form-group"));
                     element.closest(".form-group").insertAdjacentHTML("beforeend", errorMsg.outerHTML);
     
                     isValid = false;
                 } else {
-                    bookingDetails.eventDetails.push({"name": element.name, "value": element.value });
+                    let inputName = element.name;
+
+                    bookingDetails[inputName] = element.value;
                 }
             });
 
             [
-                eventDate,
                 venueAddress,
                 venueName
             ].forEach(element => {
@@ -146,76 +140,236 @@ export function toggleMobileMenu(e) {
 
                     isValid = false;
                 } else {
-                    bookingDetails.eventDetails.push({"name": element.name, "value": element.value});
+                    let inputName = element.name;
+
+                    bookingDetails[inputName] = element.value;
                 }
 
                 console.log(bookingDetails);
             });
 
-            let data = {
-                bookingData: JSON.stringify({
-                    firstName: bookingDetails.customerOverview[0].value,
-                    lastName: bookingDetails.customerOverview[1].value,
-                    email: bookingDetails.customerOverview[2].value,
-                    phone: bookingDetails.customerOverview[3].value,
-                    eventType: bookingDetails.eventDetails[0].value,
-                    eventTime: `${bookingDetails.eventDetails[1].value}:${bookingDetails.eventDetails[2].value} ${bookingDetails.eventDetails[3].value}`,
-                    eventDate: bookingDetails.eventDetails[4].value,
-                    venueAddress: bookingDetails.eventDetails[5].value,
-                    venueName: bookingDetails.eventDetails[6].value,
-                    package: bookingDetails.packageType
-                })
-            };
+            if(bookingDetails.eventDate === undefined || bookingDetails.eventTime === undefined) {
+                isValid = false;
+            }
 
-            Utils.initFetch("POST", "/booking", data)
-            .then(res => {
-                if(isValid) {
-                    navigate("next");
-                }
-                console.log(JSON.parse(res));
+            if(bookingDetails.eventDate === undefined) {
+                const errorElement = document.createElement('div');
+                errorElement.classList.add('error-text');
+                errorElement.textContent = "Please select a date.";
+                errorElement.style.color = 'red';
+                errorElement.style.fontSize = '0.8em';
+                errorElement.style.marginTop = '5px';
 
-                res = JSON.parse(res);
+                _$(".booking-date-error-msg").innerHTML = errorElement.outerHTML;
+            }
 
-                _$(".field-value-summary-name").innerText = res.firstName + " " + res.lastName;
-                _$(".field-value-summary-phone").innerText = res.phone;
-                _$(".field-value-summary-email").innerText = res.email;
-                _$(".field-value-summary-start").innerText = res.eventDate + " at " + res.eventTime;
+            console.log(isValid);
+
+            if(isValid) {
+                _$(".field-value-summary-name").innerText = bookingDetails.firstName;
+                _$(".field-value-summary-phone").innerText = bookingDetails.lastName;
+                _$(".field-value-summary-email").innerText = bookingDetails.email;
+                _$(".field-value-summary-start").innerText =  parseInt(bookingDetails.eventTime.split(':')[0]) - 12 + ":" + bookingDetails.eventTime.split(':')[1] + " pm";
                 _$(".field-value-summary-hours").innerText = 4;
-                _$(".field-value-summary-package").innerText = res.package;
-                _$(".field-value-summary-venue-name").innerText = res.venueName;
-                _$(".field-value-summary-venue-address").innerText = res.venueAddress;
-            })
+                _$(".field-value-summary-package").innerText = bookingDetails.packageType;
+                _$(".field-value-summary-venue-name").innerText = bookingDetails.venueName;
+                _$(".field-value-summary-venue-address").innerText = bookingDetails.venueAddress;
+                
+                navigate("next");
+
+                return;
+                Utils.initFetch("POST", "/booking", bookingDetails)
+                .then(res => {
+                    if(isValid) {
+                        navigate("next");
+                    }
+                    console.log(JSON.parse(res));
+
+                    res = JSON.parse(res);
+
+                    _$(".field-value-summary-name").innerText = res.firstName + " " + res.lastName;
+                    _$(".field-value-summary-phone").innerText = res.phone;
+                    _$(".field-value-summary-email").innerText = res.email;
+                    _$(".field-value-summary-start").innerText = res.eventDate + " at " + res.eventTime;
+                    _$(".field-value-summary-hours").innerText = 4;
+                    _$(".field-value-summary-package").innerText = res.package;
+                    _$(".field-value-summary-venue-name").innerText = res.venueName;
+                    _$(".field-value-summary-venue-address").innerText = res.venueAddress;
+                })
+            }
+
         }
 
-        function validateBookingPage4() {
+        async function bookingPage44() {
+            return;
             const terms = _$("#booking-terms");
 
             if(terms.checked) {
                 navigate("next");
+
+                    // Initialize Stripe.js
+                    const stripe = Stripe('pk_test_51QT8XgFQfS92WxX5eTYKdpaE17DJuRqyJRhDQwfNWvYl4JjnbHlHoj2tUAcVqzkEbwecFW3OH7BLGopClzLUjWXk002rlOCJA3');
+
+                    // Fetch Checkout Session and retrieve the client secret
+                    const fetchClientSecret = async () => {
+                        try {
+                            const response = await Utils.initFetch("POST", "/booking-payment");
+                            // Parse the response once
+                            console.log(JSON.parse(response));
+                            const data = JSON.parse(response);
+
+                            
+                            if (!data.clientSecret) {
+                                throw new Error('Client secret not found in response');
+                            }
+                            
+                            return data.clientSecret; // Return just the string, not the object
+                        } catch (error) {
+                            console.error('Error fetching client secret:', error);
+                            throw error;
+                        }
+                    }
+                    
+                    // Initialize Checkout
+                    const checkout = await stripe.initEmbeddedCheckout({
+                        clientSecret: await fetchClientSecret(),
+                        onComplete: async () => {
+                            try {
+                                // Get the checkout session ID
+                                const sessionId = checkout.checkoutSessionId;
+                                
+                                // Verify payment status with your server
+                                const verificationResponse = await Utils.initFetch("POST", "/verify-payment", {
+                                    session_id: sessionId
+                                });
+                                
+                                const verificationResult = JSON.parse(verificationResponse);
+                                
+                                if (verificationResult.success) {
+                                    // Payment successful
+                                } else {
+                                    // Payment failed or pending
+                                    console.error('Payment verification failed:', verificationResult.error);
+                                    navigate("/booking/error");
+                                }
+                                
+                                checkout.mount("#checkout");
+                                // Cleanup
+                                checkout.destroy();
+                            } catch (error) {
+                                console.error('Error in checkout completion:', error);
+                                navigate("/booking/error");
+                            }
+                        }
+                    });
+          
+                
             }
+        }
+
+        async function bookingPage4() {
+            const terms = _$("#booking-terms");
+
+            if(terms.checked) {
+                navigate("next");
+
+                    // Initialize Stripe.js
+                    const stripe = Stripe('pk_test_51QT8XgFQfS92WxX5eTYKdpaE17DJuRqyJRhDQwfNWvYl4JjnbHlHoj2tUAcVqzkEbwecFW3OH7BLGopClzLUjWXk002rlOCJA3');
+
+                    // Fetch Checkout Session and retrieve the client secret
+                    const fetchClientSecret = async () => {
+                        try {
+                            const response = await Utils.initFetch("POST", "/booking-payment");
+                            // Parse the response once
+                            console.log(JSON.parse(response));
+                            const data = JSON.parse(response);
+
+                            
+                            if (!data.clientSecret) {
+                                throw new Error('Client secret not found in response');
+                            }
+                            
+                            return data.clientSecret; // Return just the string, not the object
+                        } catch (error) {
+                            console.error('Error fetching client secret:', error);
+                            throw error;
+                        }
+                    }
+                    
+                    // Initialize Checkout
+                    const checkout = await stripe.initEmbeddedCheckout({
+                        clientSecret: await fetchClientSecret(), // Changed to directly await the function,
+                        onComplete: async () => {
+                            try {
+                                // Get the checkout session ID
+                                const sessionId = checkout.embeddedCheckout.checkoutSessionId;
+                                console.log(checkout.embeddedCheckout.checkoutSessionId);
+                                // Verify payment status with your server
+                                const verificationResponse = await Utils.initFetch("POST", "/verify-payment", {
+                                    session_id: sessionId
+                                });
+
+                                const verificationResult = JSON.parse(verificationResponse);
+                                console.log(verificationResult);
+                                if (verificationResult.success) {
+                                    // Payment successful book event
+                                    console.log(bookingDetails);
+                                    let data = JSON.stringify(bookingDetails);
+                                    const bookEvent = await Utils.initFetch("POST", "/book-event", {
+                                        data
+                                    });  
+
+                                    console.log(bookEvent);
+
+                                } else {
+                                    // Payment failed or pending
+                                    console.error('Payment verification failed:', verificationResult.error);
+                                   // navigate("/booking/error");
+                                }
+                                
+                                // Cleanup
+                            } catch (error) {
+                                console.error('Error in checkout completion:', error);
+                            }
+                        }
+                    });
+                    
+                    // Mount Checkout
+                    checkout.mount('#checkout');
+
+                    console.log("checkout: ", checkout);
+          
+                
+            }
+        }
+
+        function bookingPage5() {
+            Utils.initFetch("GET", "/booking-payment");
+
+
         }
 
         export function nextBooking() {
 
             switch(currentPage) {
                 case 1:
-                    validateBookingPage1();
+                    bookingPage1();
                 break;
 
                 case 2:
-                    validateBookingPage2();
+                    bookingPage2();
                 break;
 
                 case 3:
-                    validateBookingPage3(); 
+                    bookingPage3(); 
                 break;
 
                 case 4:
-                    validateBookingPage4();
+                    bookingPage4();
                 break;
 
                 case 5:
-
+                    bookingPage5();
                 break;
 
             }
@@ -382,3 +536,191 @@ export function startBookingContact(e) {
             e.preventDefault();
         }
 }
+
+
+
+
+
+
+
+const bookedEvents = [
+    {
+        start: {
+            dateTime: '2025-01-26T10:00:00-00:00',
+            timeZone: 'America/Los_Angeles'
+        },
+        end: {
+            dateTime: '2025-01-26T11:00:00-00:00',
+            timeZone: 'America/Los_Angeles'
+        }
+    },
+    {
+        start: {
+            dateTime: '2025-01-27T12:30:00-00:00',
+            timeZone: 'America/Los_Angeles'
+        },
+        end: {
+            dateTime: '2025-01-27T17:30:00-00:00',
+            timeZone: 'America/Los_Angeles'
+        }
+    }
+
+];
+
+const bookedDate = new Date(bookedEvents[0].start.dateTime);
+
+// Okay time blocks 7am - 8pm
+// Subtract one hour
+const oneHourBefore = new Date(bookedDate);
+oneHourBefore.setHours(bookedDate.getHours() - 1);
+
+const time1 = "16:00:00-00:00";
+const time2 = "17:00:00-00:00";
+
+// This works because the format is consistent and can be compared alphabetically
+const isLess = "18:00:00-00:00" < "17:00:00-00:00";  // returns true
+
+
+
+class Calendar {
+    constructor(options = {}) {
+        this.currentDate = new Date();
+        this.selectedDate = null;
+        this.bookedEvents = options.bookedEvents || [];
+
+        this.initElements();
+        this.initEventListeners();
+        this.renderCalendar();
+    }
+
+    initElements() {
+        this.monthYearEl = document.getElementById('monthYear');
+        this.calendarGridEl = document.getElementById('calendarGrid');
+        this.selectedDateDisplayEl = document.getElementById('selectedDateDisplay');
+    }
+
+    initEventListeners() {
+        document.getElementById('prevMonth').addEventListener('click', () => this.changeMonth(-1));
+        document.getElementById('nextMonth').addEventListener('click', () => this.changeMonth(1));
+        document.getElementById('todayButton').addEventListener('click', () => this.goToToday());
+    }
+
+    changeMonth(delta) {
+        this.currentDate.setMonth(this.currentDate.getMonth() + delta);
+        this.renderCalendar();
+    }
+
+    goToToday() {
+        this.currentDate = new Date();
+        this.renderCalendar();
+    }
+
+    renderCalendar() {
+        this.updateMonthYear();
+        this.generateCalendarDays();
+    }
+
+    updateMonthYear() {
+        const monthYear = this.currentDate.toLocaleString('default', { 
+            month: 'long', 
+            year: 'numeric' 
+        });
+        this.monthYearEl.textContent = monthYear;
+    }
+
+    generateCalendarDays() {
+        this.calendarGridEl.innerHTML = '';
+        const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+        weekdays.forEach(day => {
+            const dayEl = document.createElement('div');
+            dayEl.textContent = day;
+            dayEl.style.fontWeight = 'bold';
+            this.calendarGridEl.appendChild(dayEl);
+        });
+
+        const year = this.currentDate.getFullYear();
+        const month = this.currentDate.getMonth();
+        
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+
+        for (let i = 0; i < firstDay.getDay(); i++) {
+            this.calendarGridEl.appendChild(document.createElement('div'));
+        }
+
+        for (let day = 1; day <= lastDay.getDate(); day++) {
+            const dateContainer = document.createElement('div');
+            const dateEl = document.createElement('span');
+            const currentDate = new Date(year, month, day);
+
+            
+
+            dateEl.textContent = day;
+            dateContainer.classList.add('calendar-day');
+
+            dateContainer.addEventListener('click', () => this.selectDate(currentDate));
+
+            if (this.selectedDate && 
+                currentDate.toDateString() === this.selectedDate.toDateString()) {
+                dateEl.classList.add('selected');
+                bookingDetails.eventDate = new Date(currentDate).toISOString().slice(0, 10);
+                console.log(bookingDetails);
+            }
+
+            if(new Date().getDate() === currentDate.getDate()) {
+                dateEl.classList.add('current-day');
+            }
+
+            dateContainer.innerHTML = dateEl.outerHTML;
+
+            this.calendarGridEl.appendChild(dateContainer);
+        }
+    }
+
+    selectDate(date) {
+        const month = date.getMonth() + 1; // +1 because months are 0-indexed
+        const day = date.getDate();
+        const year = date.getFullYear();
+
+        let t = `${month}, ${day}, ${year}`; 
+
+        [..._$("#time-select").options].forEach(el => {
+            el.disabled = false;
+        });
+
+        bookedEvents.forEach((event, i) => {
+
+            let u = `${new Date(event.start.dateTime).getMonth() + 1}, ${new Date(event.start.dateTime).getDate()}, ${new Date(event.start.dateTime).getFullYear()}`;
+            // if user selects a date that has events, block the booked event times
+            if(t === u) {
+                [..._$("#time-select").options].forEach(el => {
+
+                    if(el.value >= bookedEvents[i].start.dateTime.split("T")[1] && el.value <= bookedEvents[i].end.dateTime.split("T")[1]) {
+                        console.log(el);
+                        
+                        el.previousElementSibling.disabled = true;
+                        el.previousElementSibling.previousElementSibling.disabled = true;
+                        el.disabled = true;
+                        el.nextElementSibling.disabled = true;
+                        el.nextElementSibling.nextElementSibling.disabled = true;
+                    }
+                });
+            }
+        });
+
+
+        bookingDetails.eventDate = date;
+        this.selectedDate = date;
+        this.renderCalendar();
+    }
+}
+
+
+
+const calendar = new Calendar({
+    bookedEvents: bookedEvents,
+    onDateTimeSelect: (dateTime) => {
+        console.log('Selected date and time:', dateTime);
+    }
+});

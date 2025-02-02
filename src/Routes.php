@@ -23,6 +23,10 @@ class Routes {
             $r->addRoute('GET', '/about', ['ScriptingThoughts\Controllers\RoutesController', 'about']);
             $r->addRoute('GET', '/contact', ['ScriptingThoughts\Controllers\RoutesController', 'contact']);
             $r->addRoute('GET', '/booking', ['ScriptingThoughts\Controllers\RoutesController', 'booking']);
+            $r->addRoute('POST', '/booking-payment', ['ScriptingThoughts\Controllers\RoutesController', 'bookingPayment']);
+            $r->addRoute('POST',  '/verify-payment', ['ScriptingThoughts\Controllers\RoutesController', 'verifyPayment']);
+            $r->addRoute('POST',  '/book-event', ['ScriptingThoughts\Controllers\RoutesController', 'bookEvent']);
+
 
             $r->addRoute('GET', '/booking/package/{package}', ['ScriptingThoughts\Controllers\RoutesController', 'booking']);
             $r->addRoute('GET', '/booking/position/{bookingPosition}', ['ScriptingThoughts\Controllers\RoutesController', 'booking']);

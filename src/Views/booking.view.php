@@ -175,44 +175,49 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="eventDate">Event date</label>
-                    <input type="date" id="eventDate" name="eventDate" >
-                </div>
+                <div id="calendar" class="form-group calendar">
 
-                <div class="form-group time-container">
-                    <label for="eventDate">Event time</label>
-                    <select name="hours" id="hours">
-                        <option value="">Hour</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select>
-                </div>
-                <div class="form-group time-container">
-                    <select name="minutes" id="minutes">
-                        <option value="">Minute</option>
-                        <option value="00">00</option>
-                        <option value="15">15</option>
-                        <option value="30">30</option>
-                        <option value="45">45</option>
-                    </select>
-                </div>
+                    <div class="calendar-header">
+                        <button id="prevMonth">←</button>
+                        <h2 id="monthYear"></h2>
+                        <button id="nextMonth">→</button>
+                        <button id="todayButton">Today</button>
+                    </div>
 
-                <div class="form-group time-container">
-                    <select name="period" id="period">
-                        <option value="AM">AM</option>
-                        <option value="PM">PM</option>
-                    </select>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                    <div class="booking-date-error-msg"></div>
+                    <div id="timeSelector" class="time-selector">
+                        <select name="eventTime" id="time-select">
+                            <option value="">Select a time</option>
+                            <option value="07:00:00-00:00">7:00 AM</option>
+                            <option value="07:30:00-00:00">7:30 AM</option>
+                            <option value="08:00:00-00:00">8:00 AM</option>
+                            <option value="08:30:00-00:00">8:30 AM</option>
+                            <option value="09:00:00-00:00">9:00 AM</option>
+                            <option value="09:30:00-00:00">9:30 AM</option>
+                            <option value="10:00:00-00:00">10:00 AM</option>
+                            <option value="10:30:00-00:00">10:30 AM</option>
+                            <option value="11:00:00-00:00">11:00 AM</option>
+                            <option value="11:30:00-00:00">11:30 AM</option>
+                            <option value="12:00:00-00:00">12:00 PM</option>
+                            <option value="12:30:00-00:00">12:30 PM</option>
+                            <option value="13:00:00-00:00">1:00 PM</option>
+                            <option value="13:30:00-00:00">1:30 PM</option>
+                            <option value="14:00:00-00:00">2:00 PM</option>
+                            <option value="14:30:00-00:00">2:30 PM</option>
+                            <option value="15:00:00-00:00">3:00 PM</option>
+                            <option value="15:30:00-00:00">3:30 PM</option>
+                            <option value="16:00:00-00:00">4:00 PM</option>
+                            <option value="16:30:00-00:00">4:30 PM</option>
+                            <option value="17:00:00-00:00">5:00 PM</option>
+                            <option value="17:30:00-00:00">5:30 PM</option>
+                            <option value="18:00:00-00:00">6:00 PM</option>
+                            <option value="18:30:00-00:00">6:30 PM</option>
+                            <option value="19:00:00-00:00">7:00 PM</option>
+                            <option value="19:30:00-00:00">7:30 PM</option>
+                            <option value="20:00:00-00:00">8:00 PM</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -286,6 +291,11 @@
         </div>
 
         <div class="booking-item-5 page" id="page5">
+
+        <div id="checkout">
+            <!-- Checkout will insert the payment form here -->
+        </div>
+
             <div class="booking-navigation">
                 <button type="button" class="back-button back-button-5" data-few:="backBooking">Back</button>
             </div>

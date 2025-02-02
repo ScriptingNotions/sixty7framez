@@ -8,11 +8,9 @@ use GuzzleHttp\Exception\RequestException;
 use Firebase\JWT\JWT;
 
 class GoogleCalendarService {
-    private $serviceAccountInfo;
     private $client;
 
-    public function __construct($serviceAccountInfo) {
-        $this->serviceAccountInfo = $serviceAccountInfo;
+    public function __construct() {
         $this->client = new Client();
     }
 
@@ -20,7 +18,7 @@ class GoogleCalendarService {
         $now = time();
 
         $claims = [
-            'iss' => $this->serviceAccountInfo['client_email'],
+            'iss' => $_ENV["GOOGLE_SERVICE_ACCOUNT_EMAIL"],
             'scope' => 'https://www.googleapis.com/auth/calendar',
             'aud' => 'https://oauth2.googleapis.com/token',
             'exp' => $now + 3600,
@@ -30,7 +28,7 @@ class GoogleCalendarService {
         try {
             $jwt = JWT::encode(
                 $claims, 
-                $this->serviceAccountInfo['private_key'], 
+                $_ENV["GOOGLE_SERVICE_ACCOUNT_PKEY"], 
                 'RS256'
             );
 
@@ -50,7 +48,7 @@ class GoogleCalendarService {
         }
     }
 
-    public function sendRequest($url, $data = [], $method = 'GET') {
+    public function sendRequest($url, $method = 'GET', $data = []) {
         try {
             $accessToken = $this->getGoogleAccessToken();
 
@@ -73,11 +71,11 @@ class GoogleCalendarService {
             throw $e;
         }
     }
-   // https://www.googleapis.com/calendar/v3/calendars/[CALENDARID]/events?key=[YOUR_API_KEY]
+
     public function getListOfEvents($calendarId) {
         try {
             $result = $this->sendRequest(
-                "https://www.googleapis.com/calendar/v3/calendars/{$calendarId}/events?key=AIzaSyC8cde_YCQxGoXus9ljZZA9sLmnvA7Gx2Y"
+                "https://www.googleapis.com/calendar/v3/calendars/{$calendarId}/events?key={$_ENV['GOOGLE_API_KEY']}"
             );
             
             error_log('Events retrieved successfully');
@@ -85,6 +83,22 @@ class GoogleCalendarService {
         } catch (Exception $e) {
             error_log('Failed to retrieve events: ' . $e->getMessage());
             return 'Failed to retrieve events: ' . $e->getMessage();
+        }
+    }
+
+    public function insertEvent($calendarId, $eventData) {
+        try {
+            $result = $this->sendRequest(
+                "https://www.googleapis.com/calendar/v3/calendars/{$calendarId}/events?key={$_ENV['GOOGLE_API_KEY']}",
+                "POST",
+                $eventData
+            );
+           
+            error_log('Event inserted successfully');
+            return $result;
+        } catch (Exception $e) {
+            error_log('Failed to insert event: ' . $e->getMessage());
+            return 'Failed to insert event: ' . $e->getMessage();
         }
     }
 }

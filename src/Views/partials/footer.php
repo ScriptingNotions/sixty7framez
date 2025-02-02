@@ -27,6 +27,7 @@
         const _$ = document.querySelector.bind(document);
         const _$$ = document.querySelectorAll.bind(document);
     </script>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="<?= $this->getScript("app"); ?>" type="module"></script>
 </body>
 </html>
