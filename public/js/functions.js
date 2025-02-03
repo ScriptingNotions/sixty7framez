@@ -413,7 +413,7 @@ export function toggleMobileMenu(e) {
             // }, 500);
         }
         
-        export function selectCarouselPackage(e) {
+        export function selectPackage(e) {
             _$$(".package-item").forEach(element => {
                 element.classList.remove("active-package");
             });
@@ -421,6 +421,7 @@ export function toggleMobileMenu(e) {
             e.target.parentElement.classList.add("active-package");
 
             bookingDetails.packageType = e.target.dataset.packageType;
+            bookingDetails.packageTime = e.target.dataset.packageTime;
 
             console.log(bookingDetails);
         }

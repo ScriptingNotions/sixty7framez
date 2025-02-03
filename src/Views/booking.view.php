@@ -33,7 +33,7 @@
                                 <li>Drop-off service</li>
                                 <li>3 hours</li>
                             </ul>
-                            <button class="carousel-package" data-few:="selectCarouselPackage" data-package-type="standard">Select package</button>
+                            <button class="carousel-package" data-few:="selectPackage" data-package-type="standard" data-package-time="3">Select package</button>
                         </div>
 
                         <div class="package-item <?= $this->package === "memory-maker" ? "active-package" : "" ?>">
@@ -51,7 +51,7 @@
                                 <li>Optional drop-off service</li>
                                 <li>3 hours</li>
                             </ul>
-                            <button class="carousel-package" data-few:="selectCarouselPackage"  data-package-type="memory-maker">Select package</button>
+                            <button class="carousel-package" data-few:="selectPackage"  data-package-type="memory-maker" data-package-time="3">Select package</button>
                         </div>
 
                         <div class="package-item <?= $this->package === "deluxe" ? "active-package" : "" ?>">
@@ -72,7 +72,7 @@
                                 <li>On-site attendant</li>
                                 <li>4 hours</li>
                             </ul>
-                            <button class="carousel-package" data-few:="selectCarouselPackage"  data-package-type="deluxe">Select package</button>
+                            <button class="carousel-package" data-few:="selectPackage"  data-package-type="deluxe" data-package-time="4">Select package</button>
                         </div>
 
                         <div class="package-item <?= $this->package === "luxe" ? "active-package" : "" ?>" >
@@ -95,7 +95,7 @@
                                 <li>On-site attendant</li>
                                 <li>5 hours</li>
                             </ul>
-                            <button class="carousel-package" data-few:="selectCarouselPackage"  data-package-type="luxe">Select package</button>
+                            <button class="carousel-package" data-few:="selectPackage"  data-package-type="luxe" data-package-time="5">Select package</button>
                         </div>
 
                     </div>
@@ -189,33 +189,33 @@
                     <div id="timeSelector" class="time-selector">
                         <select name="eventTime" id="time-select">
                             <option value="">Select a time</option>
-                            <option value="07:00:00-00:00">7:00 AM</option>
-                            <option value="07:30:00-00:00">7:30 AM</option>
-                            <option value="08:00:00-00:00">8:00 AM</option>
-                            <option value="08:30:00-00:00">8:30 AM</option>
-                            <option value="09:00:00-00:00">9:00 AM</option>
-                            <option value="09:30:00-00:00">9:30 AM</option>
-                            <option value="10:00:00-00:00">10:00 AM</option>
-                            <option value="10:30:00-00:00">10:30 AM</option>
-                            <option value="11:00:00-00:00">11:00 AM</option>
-                            <option value="11:30:00-00:00">11:30 AM</option>
-                            <option value="12:00:00-00:00">12:00 PM</option>
-                            <option value="12:30:00-00:00">12:30 PM</option>
-                            <option value="13:00:00-00:00">1:00 PM</option>
-                            <option value="13:30:00-00:00">1:30 PM</option>
-                            <option value="14:00:00-00:00">2:00 PM</option>
-                            <option value="14:30:00-00:00">2:30 PM</option>
-                            <option value="15:00:00-00:00">3:00 PM</option>
-                            <option value="15:30:00-00:00">3:30 PM</option>
-                            <option value="16:00:00-00:00">4:00 PM</option>
-                            <option value="16:30:00-00:00">4:30 PM</option>
-                            <option value="17:00:00-00:00">5:00 PM</option>
-                            <option value="17:30:00-00:00">5:30 PM</option>
-                            <option value="18:00:00-00:00">6:00 PM</option>
-                            <option value="18:30:00-00:00">6:30 PM</option>
-                            <option value="19:00:00-00:00">7:00 PM</option>
-                            <option value="19:30:00-00:00">7:30 PM</option>
-                            <option value="20:00:00-00:00">8:00 PM</option>
+                            <option value="07:00:00-08:00">7:00 AM</option>
+                            <option value="07:30:00-08:00">7:30 AM</option>
+                            <option value="08:00:00-08:00">8:00 AM</option>
+                            <option value="08:30:00-08:00">8:30 AM</option>
+                            <option value="09:00:00-08:00">9:00 AM</option>
+                            <option value="09:30:00-08:00">9:30 AM</option>
+                            <option value="10:00:00-08:00">10:00 AM</option>
+                            <option value="10:30:00-08:00">10:30 AM</option>
+                            <option value="11:00:00-08:00">11:00 AM</option>
+                            <option value="11:30:00-08:00">11:30 AM</option>
+                            <option value="12:00:00-08:00">12:00 PM</option>
+                            <option value="12:30:00-08:00">12:30 PM</option>
+                            <option value="13:00:00-08:00">1:00 PM</option>
+                            <option value="13:30:00-08:00">1:30 PM</option>
+                            <option value="14:00:00-08:00">2:00 PM</option>
+                            <option value="14:30:00-08:00">2:30 PM</option>
+                            <option value="15:00:00-08:00">3:00 PM</option>
+                            <option value="15:30:00-08:00">3:30 PM</option>
+                            <option value="16:00:00-08:00">4:00 PM</option>
+                            <option value="16:30:00-08:00">4:30 PM</option>
+                            <option value="17:00:00-08:00">5:00 PM</option>
+                            <option value="17:30:00-08:00">5:30 PM</option>
+                            <option value="18:00:00-08:00">6:00 PM</option>
+                            <option value="18:30:00-08:00">6:30 PM</option>
+                            <option value="19:00:00-08:00">7:00 PM</option>
+                            <option value="19:30:00-08:00">7:30 PM</option>
+                            <option value="20:00:00-08:00">8:00 PM</option>
                         </select>
                     </div>
                 </div>
@@ -228,6 +228,21 @@
                 <div class="form-group">
                     <label for="venueAddress">Venue address</label>
                     <input type="text" id="venueAddress" name="venueAddress" >
+                </div>
+
+                <div class="form-group">
+                    <label for="venueCity">Venue city</label>
+                    <input type="text" id="venueCity" name="venueCity" >
+                </div>
+
+                <div class="form-group">
+                    <label for="venueState">Venue state</label>
+                    <input type="text" id="venueState" name="venueState" >
+                </div>
+
+                <div class="form-group">
+                    <label for="venueZip">Venue zip</label>
+                    <input type="text" id="venueZip" name="venueZip" >
                 </div>
             </form>
             <div class="booking-navigation">

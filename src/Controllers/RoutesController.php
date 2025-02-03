@@ -132,6 +132,15 @@ class RoutesController extends Controller
 
         $bookingDetails = json_decode(html_entity_decode($post['data']), true);
 
+        $packageTime = $bookingDetails['packageTime'];
+        $time = explode(":", $bookingDetails['eventTime']);
+
+        $hour = $time[0];
+    
+        $time[0] = $hour + $packageTime;
+
+        var_dump(implode(":", $time));
+
         $eventData = [
             'summary' => 'Photo booth event',
             'location' => $bookingDetails['venueAddress'],
@@ -141,7 +150,7 @@ class RoutesController extends Controller
                 'timeZone' => 'America/New_York',
             ],
             'end' => [
-                'dateTime' => $bookingDetails['eventDate']."T".$bookingDetails['eventTime'], // Specify the end time in ISO 8601 format
+                'dateTime' => $bookingDetails['eventDate']."T".implode(":", $time), // Specify the end time in ISO 8601 format
                 'timeZone' => 'America/New_York',
             ],
             'reminders' => [
