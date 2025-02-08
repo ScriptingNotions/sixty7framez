@@ -86,6 +86,8 @@ class MailService {
             return $this->mailer->send();
         } catch (Exception $e) {
             throw new Exception("Failed to send email: " . $e->getMessage());
+
+            return false;
         }
     }
 
