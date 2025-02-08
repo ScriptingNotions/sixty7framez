@@ -67,16 +67,14 @@ return;
 
     }
 
-    function scrambleString(str, key) {
-        return btoa(str.split('').map((char, i) => 
-            String.fromCharCode(char.charCodeAt(0) ^ key[i % key.length].charCodeAt(0))
-        ).join(''));
+    function scrambleString(str) {
+        return btoa(encodeURIComponent(str).split('').reverse().join(''));
     }
     
     const originalString = "Hello, World!";
-    const key = "secret"; // Use the same key for encoding/decoding
-    const scrambled = scrambleString(originalString, key);
+    const scrambled = scrambleString(originalString);
     console.log(scrambled);
+    
     
 
 });
