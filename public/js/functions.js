@@ -314,6 +314,8 @@ export function toggleMobileMenu(e) {
                                 if (verificationResult.success) {
                                     // Payment successful book event
                                     console.log(bookingDetails);
+                                    bookingDetails.orderId = verificationResult.order_id;
+
                                     let data = JSON.stringify(bookingDetails);
                                     const bookEvent = await Utils.initFetch("POST", "/book-event", {
                                         data
@@ -541,187 +543,289 @@ export function startBookingContact(e) {
 
 
 
+// const bookedEvents = [
+//     {
+//         start: {
+//             dateTime: '2025-01-26T10:00:00-00:00',
+//             timeZone: 'America/Los_Angeles'
+//         },
+//         end: {
+//             dateTime: '2025-01-26T11:00:00-00:00',
+//             timeZone: 'America/Los_Angeles'
+//         }
+//     },
+//     {
+//         start: {
+//             dateTime: '2025-01-27T12:30:00-00:00',
+//             timeZone: 'America/Los_Angeles'
+//         },
+//         end: {
+//             dateTime: '2025-01-27T17:30:00-00:00',
+//             timeZone: 'America/Los_Angeles'
+//         }
+//     }
+
+// ];
 
 
+let currentDate = new Date();
+let selectedDate = null;
+let bookedEvents = {}.bookedEvents || [];
 
-const bookedEvents = [
-    {
-        start: {
-            dateTime: '2025-01-26T10:00:00-00:00',
-            timeZone: 'America/Los_Angeles'
-        },
-        end: {
-            dateTime: '2025-01-26T11:00:00-00:00',
-            timeZone: 'America/Los_Angeles'
-        }
-    },
-    {
-        start: {
-            dateTime: '2025-01-27T12:30:00-00:00',
-            timeZone: 'America/Los_Angeles'
-        },
-        end: {
-            dateTime: '2025-01-27T17:30:00-00:00',
-            timeZone: 'America/Los_Angeles'
-        }
+const monthYearEl = _$('#monthYear');
+const calendarGridEl = _$('#calendarGrid');
+const selectedDateDisplayEl = _$('#selectedDateDisplay');
+
+export function changeMonth(e) {
+    let delta = parseInt(e.target.dataset.direction);
+console.log(delta);
+    currentDate.setMonth(currentDate.getMonth() + delta);
+    renderCalendar();
+}
+
+export function goToToday() {
+    currentDate = new Date();
+    renderCalendar();
+}
+
+export function renderCalendar() {
+    updateMonthYear();
+    generateCalendarDays();
+}
+
+export function updateMonthYear() {
+    const monthYear = currentDate.toLocaleString('default', { 
+        month: 'long', 
+        year: 'numeric' 
+    });
+    monthYearEl.textContent = monthYear;
+}
+
+export function generateCalendarDays() {
+    calendarGridEl.innerHTML = '';
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    weekdays.forEach(day => {
+        const dayEl = document.createElement('div');
+        dayEl.textContent = day;
+        dayEl.style.fontWeight = 'bold';
+        calendarGridEl.appendChild(dayEl);
+    });
+
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+
+    for (let i = 0; i < firstDay.getDay(); i++) {
+        calendarGridEl.appendChild(document.createElement('div'));
     }
 
-];
+    for (let day = 1; day <= lastDay.getDate(); day++) {
+        const dateContainer = document.createElement('div');
+        const dateEl = document.createElement('span');
+        const currentDate = new Date(year, month, day);
 
-const bookedDate = new Date(bookedEvents[0].start.dateTime);
+        dateEl.textContent = day;
+        dateContainer.classList.add('calendar-day');
 
-// Okay time blocks 7am - 8pm
-// Subtract one hour
-const oneHourBefore = new Date(bookedDate);
-oneHourBefore.setHours(bookedDate.getHours() - 1);
+       // dateContainer.addEventListener('click', () => selectDate(currentDate));
+        dateContainer.dataset["few:"] = "selectDate";
+        dateContainer.dataset["date"] = currentDate;
 
-const time1 = "16:00:00-00:00";
-const time2 = "17:00:00-00:00";
-
-// This works because the format is consistent and can be compared alphabetically
-const isLess = "18:00:00-00:00" < "17:00:00-00:00";  // returns true
-
-
-
-class Calendar {
-    constructor(options = {}) {
-        this.currentDate = new Date();
-        this.selectedDate = null;
-        this.bookedEvents = options.bookedEvents || [];
-
-        this.initElements();
-        this.initEventListeners();
-        this.renderCalendar();
-    }
-
-    initElements() {
-        this.monthYearEl = document.getElementById('monthYear');
-        this.calendarGridEl = document.getElementById('calendarGrid');
-        this.selectedDateDisplayEl = document.getElementById('selectedDateDisplay');
-    }
-
-    initEventListeners() {
-        document.getElementById('prevMonth').addEventListener('click', () => this.changeMonth(-1));
-        document.getElementById('nextMonth').addEventListener('click', () => this.changeMonth(1));
-        document.getElementById('todayButton').addEventListener('click', () => this.goToToday());
-    }
-
-    changeMonth(delta) {
-        this.currentDate.setMonth(this.currentDate.getMonth() + delta);
-        this.renderCalendar();
-    }
-
-    goToToday() {
-        this.currentDate = new Date();
-        this.renderCalendar();
-    }
-
-    renderCalendar() {
-        this.updateMonthYear();
-        this.generateCalendarDays();
-    }
-
-    updateMonthYear() {
-        const monthYear = this.currentDate.toLocaleString('default', { 
-            month: 'long', 
-            year: 'numeric' 
-        });
-        this.monthYearEl.textContent = monthYear;
-    }
-
-    generateCalendarDays() {
-        this.calendarGridEl.innerHTML = '';
-        const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-        weekdays.forEach(day => {
-            const dayEl = document.createElement('div');
-            dayEl.textContent = day;
-            dayEl.style.fontWeight = 'bold';
-            this.calendarGridEl.appendChild(dayEl);
-        });
-
-        const year = this.currentDate.getFullYear();
-        const month = this.currentDate.getMonth();
-        
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0);
-
-        for (let i = 0; i < firstDay.getDay(); i++) {
-            this.calendarGridEl.appendChild(document.createElement('div'));
+        if (selectedDate && 
+            currentDate.toDateString() === selectedDate.toDateString()) {
+            dateEl.classList.add('selected');
+            bookingDetails.eventDate = new Date(currentDate).toISOString().slice(0, 10);
+            console.log(bookingDetails);
         }
 
-        for (let day = 1; day <= lastDay.getDate(); day++) {
-            const dateContainer = document.createElement('div');
-            const dateEl = document.createElement('span');
-            const currentDate = new Date(year, month, day);
-
-            
-
-            dateEl.textContent = day;
-            dateContainer.classList.add('calendar-day');
-
-            dateContainer.addEventListener('click', () => this.selectDate(currentDate));
-
-            if (this.selectedDate && 
-                currentDate.toDateString() === this.selectedDate.toDateString()) {
-                dateEl.classList.add('selected');
-                bookingDetails.eventDate = new Date(currentDate).toISOString().slice(0, 10);
-                console.log(bookingDetails);
-            }
-
-            if(new Date().getDate() === currentDate.getDate()) {
-                dateEl.classList.add('current-day');
-            }
-
-            dateContainer.innerHTML = dateEl.outerHTML;
-
-            this.calendarGridEl.appendChild(dateContainer);
+        if(new Date().getDate() === currentDate.getDate()) {
+            dateEl.classList.add('current-day');
         }
-    }
 
-    selectDate(date) {
-        const month = date.getMonth() + 1; // +1 because months are 0-indexed
-        const day = date.getDate();
-        const year = date.getFullYear();
+        dateContainer.innerHTML = dateEl.outerHTML;
 
-        let t = `${month}, ${day}, ${year}`; 
-
-        [..._$("#time-select").options].forEach(el => {
-            el.disabled = false;
-        });
-
-        bookedEvents.forEach((event, i) => {
-
-            let u = `${new Date(event.start.dateTime).getMonth() + 1}, ${new Date(event.start.dateTime).getDate()}, ${new Date(event.start.dateTime).getFullYear()}`;
-            // if user selects a date that has events, block the booked event times
-            if(t === u) {
-                [..._$("#time-select").options].forEach(el => {
-
-                    if(el.value >= bookedEvents[i].start.dateTime.split("T")[1] && el.value <= bookedEvents[i].end.dateTime.split("T")[1]) {
-                        console.log(el);
-                        
-                        el.previousElementSibling.disabled = true;
-                        el.previousElementSibling.previousElementSibling.disabled = true;
-                        el.disabled = true;
-                        el.nextElementSibling.disabled = true;
-                        el.nextElementSibling.nextElementSibling.disabled = true;
-                    }
-                });
-            }
-        });
-
-
-        bookingDetails.eventDate = date;
-        this.selectedDate = date;
-        this.renderCalendar();
+        calendarGridEl.appendChild(dateContainer);
     }
 }
 
+export function selectDate(e) {
+    let date = new Date(e.target.dataset.date);
+
+    [..._$("#time-select").options].forEach(el => {
+        el.disabled = false;
+    });
+
+    bookedEvents.forEach((event, i) => {
+
+        let u = `${new Date(event.start.dateTime).getMonth() + 1}, ${new Date(event.start.dateTime).getDate()}, ${new Date(event.start.dateTime).getFullYear()}`;
+        // if user selects a date that has events, block the booked event times
+        if(t === u) {
+            [..._$("#time-select").options].forEach(el => {
+
+                if(el.value >= bookedEvents[i].start.dateTime.split("T")[1] && el.value <= bookedEvents[i].end.dateTime.split("T")[1]) {
+                    console.log(el);
+                    
+                    el.previousElementSibling.disabled = true;
+                    el.previousElementSibling.previousElementSibling.disabled = true;
+                    el.disabled = true;
+                    el.nextElementSibling.disabled = true;
+                    el.nextElementSibling.nextElementSibling.disabled = true;
+                }
+            });
+        }
+    });
+
+    bookingDetails.eventDate = date;
+    selectedDate = date;
+    renderCalendar();
+}
+
+if(calendarGridEl != undefined) {
+    renderCalendar();
+}
+
+// class Calendar {
+//     constructor(options = {}) {
+//         this.currentDate = new Date();
+//         this.selectedDate = null;
+//         this.bookedEvents = options.bookedEvents || [];
+
+//         this.initElements();
+//         this.initEventListeners();
+//         this.renderCalendar();
+//     }
+
+//     initElements() {
+//         this.monthYearEl = document.getElementById('monthYear');
+//         this.calendarGridEl = document.getElementById('calendarGrid');
+//         this.selectedDateDisplayEl = document.getElementById('selectedDateDisplay');
+//     }
+
+//     initEventListeners() {
+//         document.getElementById('prevMonth').addEventListener('click', () => this.changeMonth(-1));
+//         document.getElementById('nextMonth').addEventListener('click', () => this.changeMonth(1));
+//         document.getElementById('todayButton').addEventListener('click', () => this.goToToday());
+//     }
+
+//     changeMonth(delta) {
+//         this.currentDate.setMonth(this.currentDate.getMonth() + delta);
+//         this.renderCalendar();
+//     }
+
+//     goToToday() {
+//         this.currentDate = new Date();
+//         this.renderCalendar();
+//     }
+
+//     renderCalendar() {
+//         this.updateMonthYear();
+//         this.generateCalendarDays();
+//     }
+
+//     updateMonthYear() {
+//         const monthYear = this.currentDate.toLocaleString('default', { 
+//             month: 'long', 
+//             year: 'numeric' 
+//         });
+//         this.monthYearEl.textContent = monthYear;
+//     }
+
+//     generateCalendarDays() {
+//         this.calendarGridEl.innerHTML = '';
+//         const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+//         weekdays.forEach(day => {
+//             const dayEl = document.createElement('div');
+//             dayEl.textContent = day;
+//             dayEl.style.fontWeight = 'bold';
+//             this.calendarGridEl.appendChild(dayEl);
+//         });
+
+//         const year = this.currentDate.getFullYear();
+//         const month = this.currentDate.getMonth();
+        
+//         const firstDay = new Date(year, month, 1);
+//         const lastDay = new Date(year, month + 1, 0);
+
+//         for (let i = 0; i < firstDay.getDay(); i++) {
+//             this.calendarGridEl.appendChild(document.createElement('div'));
+//         }
+
+//         for (let day = 1; day <= lastDay.getDate(); day++) {
+//             const dateContainer = document.createElement('div');
+//             const dateEl = document.createElement('span');
+//             const currentDate = new Date(year, month, day);
+
+            
+
+//             dateEl.textContent = day;
+//             dateContainer.classList.add('calendar-day');
+
+//             dateContainer.addEventListener('click', () => this.selectDate(currentDate));
+
+//             if (this.selectedDate && 
+//                 currentDate.toDateString() === this.selectedDate.toDateString()) {
+//                 dateEl.classList.add('selected');
+//                 bookingDetails.eventDate = new Date(currentDate).toISOString().slice(0, 10);
+//                 console.log(bookingDetails);
+//             }
+
+//             if(new Date().getDate() === currentDate.getDate()) {
+//                 dateEl.classList.add('current-day');
+//             }
+
+//             dateContainer.innerHTML = dateEl.outerHTML;
+
+//             this.calendarGridEl.appendChild(dateContainer);
+//         }
+//     }
+
+//     selectDate(date) {
+//         const month = date.getMonth() + 1; // +1 because months are 0-indexed
+//         const day = date.getDate();
+//         const year = date.getFullYear();
+
+//         let t = `${month}, ${day}, ${year}`; 
+
+//         [..._$("#time-select").options].forEach(el => {
+//             el.disabled = false;
+//         });
+
+//         bookedEvents.forEach((event, i) => {
+
+//             let u = `${new Date(event.start.dateTime).getMonth() + 1}, ${new Date(event.start.dateTime).getDate()}, ${new Date(event.start.dateTime).getFullYear()}`;
+//             // if user selects a date that has events, block the booked event times
+//             if(t === u) {
+//                 [..._$("#time-select").options].forEach(el => {
+
+//                     if(el.value >= bookedEvents[i].start.dateTime.split("T")[1] && el.value <= bookedEvents[i].end.dateTime.split("T")[1]) {
+//                         console.log(el);
+                        
+//                         el.previousElementSibling.disabled = true;
+//                         el.previousElementSibling.previousElementSibling.disabled = true;
+//                         el.disabled = true;
+//                         el.nextElementSibling.disabled = true;
+//                         el.nextElementSibling.nextElementSibling.disabled = true;
+//                     }
+//                 });
+//             }
+//         });
 
 
-const calendar = new Calendar({
-    bookedEvents: bookedEvents,
-    onDateTimeSelect: (dateTime) => {
-        console.log('Selected date and time:', dateTime);
-    }
-});
+//         bookingDetails.eventDate = date;
+//         this.selectedDate = date;
+//         this.renderCalendar();
+//     }
+// }
+
+
+
+// const calendar = new Calendar({
+//     bookedEvents: bookedEvents,
+//     onDateTimeSelect: (dateTime) => {
+//         console.log('Selected date and time:', dateTime);
+//     }
+// });
