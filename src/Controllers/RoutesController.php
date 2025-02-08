@@ -4,6 +4,8 @@ namespace ScriptingThoughts\Controllers;
 
 use ScriptingThoughts\Services\GoogleCalendarService;
 use ScriptingThoughts\Services\StripeService;
+use ScriptingThoughts\Services\MailService;
+
 class RoutesController extends Controller
 {
     public $pageTitle;
@@ -20,6 +22,7 @@ class RoutesController extends Controller
     public $eventDate; 
     public $venueAddress; 
     public $venueName;
+    public $bookingDetails;
 
     public function home()
     {
@@ -127,30 +130,31 @@ class RoutesController extends Controller
         $calendarService = new GoogleCalendarService();
         $calendarId = $_ENV["GOOGLE_CALENDAR_ID"];
 
-        var_dump(json_decode(html_entity_decode($post['data'])));
-        var_dump(json_encode($post['data']));
+        // var_dump(json_decode(html_entity_decode($post['data'])));
+        // var_dump(json_encode($post['data']));
 
-        $bookingDetails = json_decode(html_entity_decode($post['data']), true);
+        $this->bookingDetails = json_decode(html_entity_decode($post['data']), true);
 
-        $packageTime = $bookingDetails['packageTime'];
-        $time = explode(":", $bookingDetails['eventTime']);
+        $packageTime = $this->bookingDetails['packageTime'];
+        $time = explode(":", $this->bookingDetails['eventTime']);
 
         $hour = $time[0];
     
         $time[0] = $hour + $packageTime;
 
-        var_dump(implode(":", $time));
+        //var_dump(implode(":", $time));
 
         $eventData = [
             'summary' => 'Photo booth event',
-            'location' => $bookingDetails['venueAddress'],
-            'description' => 'Photo booth event with ' . $bookingDetails['firstName']." ".$bookingDetails['lastName'] . " at " . $bookingDetails['venueName'],
+            'location' => $this->bookingDetails['venueAddress'],
+            'description' => 'Photo booth event with: ' . $this->bookingDetails['firstName']." ".$this->bookingDetails['lastName'] . " at " . $this->bookingDetails['venueName']. " 
+            ID: ".$this->bookingDetails['orderId'],
             'start' => [
-                'dateTime' => $bookingDetails['eventDate']."T".$bookingDetails['eventTime'], // Specify the start time in ISO 8601 format
+                'dateTime' => $this->bookingDetails['eventDate']."T".$this->bookingDetails['eventTime'], // Specify the start time in ISO 8601 format
                 'timeZone' => 'America/New_York',
             ],
             'end' => [
-                'dateTime' => $bookingDetails['eventDate']."T".implode(":", $time), // Specify the end time in ISO 8601 format
+                'dateTime' => $this->bookingDetails['eventDate']."T".implode(":", $time), // Specify the end time in ISO 8601 format
                 'timeZone' => 'America/New_York',
             ],
             'reminders' => [
@@ -164,23 +168,49 @@ class RoutesController extends Controller
         
         echo '<pre>';
         foreach($calendarService->getListOfEvents($calendarId)["items"] as $event) {
-            //echo 'Start: '; 
-            // 
+           // echo 'Start: '; 
+            
             //print_r($event);
 
-           // echo 'End: ';
-            //print_r($event["end"]);
+          // echo 'End: ';
+           // print_r($event["end"]);
         }
         //print_r($calendarService->getListOfEvents($calendarId)[0]->end);
-       print_r($calendarService->insertEvent($calendarId, $eventData)["status"]);
+       //print_r($calendarService->insertEvent($calendarId, $eventData)["status"]);
         echo '</pre>';
 
-        $bookingStatus = $calendarService->insertEvent($calendarId, $eventData)["status"];
+       $booking = $calendarService->insertEvent($calendarId, $eventData);
 
-        if($bookingStatus === "confirmed") {
+       echo '<pre>';
+        print_r($booking);
+       echo '</pre>';
+
+       if($booking["status"] === "confirmed") { 
+            $this->bookingDetails["htmlLink"] = $booking["htmlLink"];
+
+            $startTime =  new \DateTime($booking["start"]["dateTime"]);
+            $endTime =  new \DateTime($booking["end"]["dateTime"]);
+            
+            $formatedStartTime = $startTime->format("l, F j, Y g:i A T");
+            $formatedEndTime = $endTime->format("l, F j, Y g:i A T");
+
+            $this->bookingDetails["startTime"] = $formatedStartTime;
+            $this->bookingDetails["endTime"] = $formatedEndTime;
+            
             // send emails
-        }
-        //$calendarService->insertEvent($calendarId, $eventData);
+            $mail = new MailService();
+            $mail = $mail->send(
+                "noviceone@outlook.com", 
+                "Booking complete!", 
+                $this->partial("bookingEmailConfirmation")
+                //"<h1>Your </h1>booking has been complete. Booking link: {$booking["htmlLink"]} Summary: {$booking["summary"]} Details: {$booking["description"]} Location: {$booking["location"]}" 
+            );
+            
+            if ($mail) {
+
+            }
+       }
+        
     }
 
     public function verifyPayment() {
