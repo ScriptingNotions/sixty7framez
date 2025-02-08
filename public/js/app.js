@@ -1,4 +1,5 @@
 import * as Func from './functions.js';
+import { initFetch } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -67,13 +68,8 @@ return;
 
     }
 
-    function scrambleString(str) {
-        return btoa(encodeURIComponent(str).split('').reverse().join(''));
-    }
-    
-    const originalString = "Hello, World!";
-    const scrambled = scrambleString(originalString);
-    console.log(scrambled);
+
+
     
     
 

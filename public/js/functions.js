@@ -12,7 +12,9 @@ export function toggleFAQ(e) {
         e.target.style.transform = "rotate(45deg) translateY(-50%)";
     }
 }
-
+    function scrambleString(str) {
+        return btoa(encodeURIComponent(str).split('').reverse().join(''));
+    }
 export function toggleMobileMenu(e) {
     console.log("fre");
     if(_$('.mobile-menu-container').style.display === "block") {
@@ -22,6 +24,15 @@ export function toggleMobileMenu(e) {
         _$('.mobile-menu-container').style.display = "block";
         _$('.mobile-menu-button').innerText = "Close";
     }
+
+
+    
+    const originalString = "Hello,World!";
+    const scrambled = scrambleString(originalString);
+    console.log(scrambled);
+    Utils.initFetch("GET", "/booking/"+scrambled).then(
+        res => console.log(res)
+    )
 }
 
 

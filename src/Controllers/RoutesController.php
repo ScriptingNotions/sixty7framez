@@ -54,7 +54,7 @@ class RoutesController extends Controller
         $this->view("contact");
     }
 
-    public function booking($package = "", $bookingPosition = "")
+    public function booking($package = "", $bookingPosition = "", $customerDetails = "")
     {
         $this->pageTitle = "Booking";
         $calendarService = new GoogleCalendarService();
@@ -117,10 +117,10 @@ class RoutesController extends Controller
         }
         
         $scrambled = "Your_Encoded_String_Here"; // Replace with the output from JS
-        $original = unscrambleString($scrambled);
-        echo $original;
+        $original = unscrambleString($customerDetails);
+        //echo $original;
         
-    
+    var_dump($original);
 
         $this->view("booking");
     }
