@@ -168,6 +168,7 @@
                 <div class="form-group">
                     <label for="eventType">Event type</label>
                     <select id="eventType" name="eventType">
+                        <option value="">Select an event time</option>
                         <option value="Wedding" selected>Wedding</option>
                         <option value="Birthday">Birthday</option>
                         <option value="Corporate">Corporate</option>
@@ -189,33 +190,33 @@
                     <div id="timeSelector" class="time-selector">
                         <select name="eventTime" id="time-select">
                             <option value="">Select a time</option>
-                            <option value="07:00:00-05:00">7:00 AM</option>
-                            <option value="07:30:00-05:00">7:30 AM</option>
-                            <option value="08:00:00-05:00">8:00 AM</option>
-                            <option value="08:30:00-05:00">8:30 AM</option>
-                            <option value="09:00:00-05:00">9:00 AM</option>
-                            <option value="09:30:00-05:00">9:30 AM</option>
-                            <option value="10:00:00-05:00">10:00 AM</option>
-                            <option value="10:30:00-05:00">10:30 AM</option>
-                            <option value="11:00:00-05:00">11:00 AM</option>
-                            <option value="11:30:00-05:00">11:30 AM</option>
-                            <option value="12:00:00-05:00">12:00 PM</option>
-                            <option value="12:30:00-05:00">12:30 PM</option>
-                            <option value="13:00:00-05:00">1:00 PM</option>
-                            <option value="13:30:00-05:00">1:30 PM</option>
-                            <option value="14:00:00-05:00">2:00 PM</option>
-                            <option value="14:30:00-05:00">2:30 PM</option>
-                            <option value="15:00:00-05:00">3:00 PM</option>
-                            <option value="15:30:00-05:00">3:30 PM</option>
-                            <option value="16:00:00-05:00">4:00 PM</option>
-                            <option value="16:30:00-05:00">4:30 PM</option>
-                            <option value="17:00:00-05:00">5:00 PM</option>
-                            <option value="17:30:00-05:00">5:30 PM</option>
-                            <option value="18:00:00-05:00">6:00 PM</option>
-                            <option value="18:30:00-05:00">6:30 PM</option>
-                            <option value="19:00:00-05:00">7:00 PM</option>
-                            <option value="19:30:00-05:00">7:30 PM</option>
-                            <option value="20:00:00-05:00">8:00 PM</option>
+                            <option value="07:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">7:00 AM</option>
+                            <option value="07:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">7:30 AM</option>
+                            <option value="08:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">8:00 AM</option>
+                            <option value="08:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">8:30 AM</option>
+                            <option value="09:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">9:00 AM</option>
+                            <option value="09:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">9:30 AM</option>
+                            <option value="10:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">10:00 AM</option>
+                            <option value="10:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">10:30 AM</option>
+                            <option value="11:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">11:00 AM</option>
+                            <option value="11:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">11:30 AM</option>
+                            <option value="12:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">12:00 PM</option>
+                            <option value="12:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">12:30 PM</option>
+                            <option value="13:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">1:00 PM</option>
+                            <option value="13:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">1:30 PM</option>
+                            <option value="14:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">2:00 PM</option>
+                            <option value="14:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">2:30 PM</option>
+                            <option value="15:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">3:00 PM</option>
+                            <option value="15:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">3:30 PM</option>
+                            <option value="16:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">4:00 PM</option>
+                            <option value="16:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">4:30 PM</option>
+                            <option value="17:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">5:00 PM</option>
+                            <option value="17:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">5:30 PM</option>
+                            <option value="18:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">6:00 PM</option>
+                            <option value="18:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">6:30 PM</option>
+                            <option value="19:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">7:00 PM</option>
+                            <option value="19:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">7:30 PM</option>
+                            <option value="20:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">8:00 PM</option>
                         </select>
                     </div>
                 </div>
@@ -237,7 +238,60 @@
 
                 <div class="form-group">
                     <label for="venueState">Venue state</label>
-                    <input type="text" id="venueState" name="venueState" >
+                    <select id="venueState" name="venueState">
+                        <option value="">Select a state</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="DC">District Of Columbia</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
