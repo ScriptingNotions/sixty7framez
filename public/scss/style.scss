@@ -48,6 +48,10 @@ button {
   }
 }
 
+[data-few] { 
+  cursor: pointer; 
+}
+
 .button-style {
   background-color: #323232;
   color: white;
@@ -1053,4 +1057,7 @@ footer {
 .booking-date-error-msg {
   width: 100%;
 }
+
+
+
 

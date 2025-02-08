@@ -41,6 +41,10 @@ button:hover {
   background-color: #424242;
 }
 
+[data-few] {
+  cursor: pointer;
+}
+
 .button-style {
   background-color: #323232;
   color: white;
