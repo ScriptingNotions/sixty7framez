@@ -23,6 +23,7 @@ class RoutesController extends Controller
     public $venueAddress; 
     public $venueName;
     public $bookingDetails;
+    public $isDST;
 
     public function home()
     {
@@ -61,7 +62,8 @@ class RoutesController extends Controller
 
         $post = count($_POST) > 0 ? $this->filter_post() : false;
 
-    
+        $date = new \DateTime('now', new \DateTimeZone('America/New_York'));
+        $this->isDST = (bool)$date->format('I');
         
 
            // var_dump(json_decode(html_entity_decode($post["bookingData"])));
@@ -146,9 +148,8 @@ class RoutesController extends Controller
 
         $eventData = [
             'summary' => 'Photo booth event',
-            'location' => $this->bookingDetails['venueAddress'],
-            'description' => 'Photo booth event with: ' . $this->bookingDetails['firstName']." ".$this->bookingDetails['lastName'] . " at " . $this->bookingDetails['venueName']. " 
-            ID: ".$this->bookingDetails['orderId'],
+            'location' => $this->bookingDetails['venueAddress']  . " " . $this->bookingDetails['venueCity'] . ", " . $this->bookingDetails['venueState'] . " " . $this->bookingDetails['venueZip'] ,
+            'description' => 'Photo booth event with: ' . $this->bookingDetails['firstName']." ".$this->bookingDetails['lastName'] . " at " . $this->bookingDetails['venueName']. " ID: ".$this->bookingDetails['orderId'],
             'start' => [
                 'dateTime' => $this->bookingDetails['eventDate']."T".$this->bookingDetails['eventTime'], // Specify the start time in ISO 8601 format
                 'timeZone' => 'America/New_York',
@@ -213,12 +214,28 @@ class RoutesController extends Controller
         
     }
 
+    public function getEvents() {
+        $calendarService = new GoogleCalendarService();
+        $calendarId = $_ENV["GOOGLE_CALENDAR_ID"];
+        
+        $bookedEventDateTime = [];
+
+        foreach($calendarService->getListOfEvents($calendarId)["items"] as $event) {
+            array_push($bookedEventDateTime, ["start" => $event["start"], "end" => $event["end"]]);
+        }
+
+        $this->returnJsonHttpResponse(200, $bookedEventDateTime);
+    }
+
     public function verifyPayment() {
         $stripeService = new StripeService();
         $post = $this->filter_post();
 
         $sessionId = $post["session_id"];
 
+
         $this->returnJsonHttpResponse(200, $stripeService->verifyPayment($sessionId));
     }
+
+
 }

@@ -92,7 +92,7 @@ export function toggleMobileMenu(e) {
                 } else {
                     let inputName = input.name;
 
-                    bookingDetails[inputName] = input.value;
+                    bookingDetails[inputName] = input.value.replace(/^\w/, c => c.toUpperCase());
                 }
             });
 
@@ -106,10 +106,14 @@ export function toggleMobileMenu(e) {
             const timeSelect = _$("#time-select");
             const venueName = _$("#venueName");
             const venueAddress = _$("#venueAddress");
+            const venueCity = _$("#venueCity");
+            const venueState = _$("#venueState");
+            const venueZip = _$("#venueZip");
 
             let isValid = true;
 
             [
+                venueState,
                 timeSelect,
                 eventType
             ].forEach(element => {
@@ -129,6 +133,8 @@ export function toggleMobileMenu(e) {
             });
 
             [
+                venueZip,
+                venueCity,
                 venueAddress,
                 venueName
             ].forEach(element => {
@@ -142,7 +148,7 @@ export function toggleMobileMenu(e) {
                 } else {
                     let inputName = element.name;
 
-                    bookingDetails[inputName] = element.value;
+                    bookingDetails[inputName] = element.value.replace(/^\w/, c => c.toUpperCase()) ;
                 }
 
                 console.log(bookingDetails);
@@ -169,11 +175,17 @@ export function toggleMobileMenu(e) {
                 _$(".field-value-summary-name").innerText = bookingDetails.firstName;
                 _$(".field-value-summary-phone").innerText = bookingDetails.lastName;
                 _$(".field-value-summary-email").innerText = bookingDetails.email;
-                _$(".field-value-summary-start").innerText =  parseInt(bookingDetails.eventTime.split(':')[0]) - 12 + ":" + bookingDetails.eventTime.split(':')[1] + " pm";
-                _$(".field-value-summary-hours").innerText = 4;
+                _$(".field-value-summary-start").innerText = _$(".field-value-summary-start").innerText = parseInt(bookingDetails.eventTime.split(':')[0]) == 12 
+                ? 12 + ":" + bookingDetails.eventTime.split(':')[1] + " pm"
+                : parseInt(bookingDetails.eventTime.split(':')[0]) > 12 
+                ? (parseInt(bookingDetails.eventTime.split(':')[0]) - 12) + ":" + bookingDetails.eventTime.split(':')[1] + " pm"
+                : parseInt(bookingDetails.eventTime.split(':')[0]) == 0
+                ? 12 + ":" + bookingDetails.eventTime.split(':')[1] + " am"
+                : parseInt(bookingDetails.eventTime.split(':')[0]) + ":" + bookingDetails.eventTime.split(':')[1] + " am";
+                _$(".field-value-summary-hours").innerText = bookingDetails.packageTime;
                 _$(".field-value-summary-package").innerText = bookingDetails.packageType;
                 _$(".field-value-summary-venue-name").innerText = bookingDetails.venueName;
-                _$(".field-value-summary-venue-address").innerText = bookingDetails.venueAddress;
+                _$(".field-value-summary-venue-address").innerText = bookingDetails.venueAddress + " " + bookingDetails.venueCity + ", " + bookingDetails.venueState + " " + bookingDetails.venueZip;
                 
                 navigate("next");
 
@@ -570,7 +582,7 @@ export function startBookingContact(e) {
 
 let currentDate = new Date();
 let selectedDate = null;
-let bookedEvents = {}.bookedEvents || [];
+let bookedEvents = [];
 
 const monthYearEl = _$('#monthYear');
 const calendarGridEl = _$('#calendarGrid');
@@ -599,6 +611,13 @@ export function goToToday() {
 }
 
 export function renderCalendar() {
+    if(bookedEvents.length === 0) {
+        Utils.initFetch("GET", "/events").then(res => {
+            console.log(JSON.parse(res));
+            bookedEvents = JSON.parse(res);
+        });
+    }
+
     updateMonthYear();
     generateCalendarDays();
 }
@@ -667,8 +686,14 @@ export function generateCalendarDays() {
     }
 }
 
-export function selectDate(e) {
-    let date = new Date(e.target.dataset.date);
+export function selectDate(e) {  
+    let date = new Date(e.target.dataset.date);  
+    const month = date.getMonth() + 1; // +1 because months are 0-indexed
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    let t = `${month}, ${day}, ${year}`; 
+    
 
     [..._$("#time-select").options].forEach(el => {
         el.disabled = false;
@@ -682,13 +707,13 @@ export function selectDate(e) {
             [..._$("#time-select").options].forEach(el => {
 
                 if(el.value >= bookedEvents[i].start.dateTime.split("T")[1] && el.value <= bookedEvents[i].end.dateTime.split("T")[1]) {
-                    console.log(el);
+                    //console.log(el);
                     
-                    el.previousElementSibling.disabled = true;
-                    el.previousElementSibling.previousElementSibling.disabled = true;
+                    el?.previousElementSibling ? el.previousElementSibling.disabled = true : "";
+                    el?.previousElementSibling?.previousElementSibling ? el.previousElementSibling.previousElementSibling.disabled = true : "";
                     el.disabled = true;
-                    el.nextElementSibling.disabled = true;
-                    el.nextElementSibling.nextElementSibling.disabled = true;
+                    el?.nextElementSibling ? el.nextElementSibling.disabled = true : "";
+                    el?.nextElementSibling?.nextElementSibling ? el.nextElementSibling.nextElementSibling.disabled = true : "";
                 }
             });
         }
