@@ -17,7 +17,7 @@
         <!-- < //$this->bookingContent; -->
         <div class="booking-item-1 page active" id="page1">
             <div class="package-list">
-                <img id="carosel-prev" data-few:="prevCarousel" src="<?= $this->getIcon("chevron-left.svg") ?>" alt="Left icon">
+                <img id="carosel-prev" data-few="prevCarousel" src="<?= $this->getIcon("chevron-left.svg") ?>" alt="Left icon">
                 <div class="booking-package-container  carousel-container" id="carousel">
                     <div class="carousel">
                         <div class="package-item <?= $this->package === "standard" ? "active-package" : "" ?>">
@@ -33,7 +33,7 @@
                                 <li>Drop-off service</li>
                                 <li>3 hours</li>
                             </ul>
-                            <button class="carousel-package" data-few:="selectPackage" data-package-type="standard" data-package-time="3">Select package</button>
+                            <button class="carousel-package" data-few="selectPackage" data-package-type="standard" data-package-time="3">Select package</button>
                         </div>
 
                         <div class="package-item <?= $this->package === "memory-maker" ? "active-package" : "" ?>">
@@ -51,7 +51,7 @@
                                 <li>Optional drop-off service</li>
                                 <li>3 hours</li>
                             </ul>
-                            <button class="carousel-package" data-few:="selectPackage"  data-package-type="memory-maker" data-package-time="3">Select package</button>
+                            <button class="carousel-package" data-few="selectPackage"  data-package-type="memory-maker" data-package-time="3">Select package</button>
                         </div>
 
                         <div class="package-item <?= $this->package === "deluxe" ? "active-package" : "" ?>">
@@ -72,7 +72,7 @@
                                 <li>On-site attendant</li>
                                 <li>4 hours</li>
                             </ul>
-                            <button class="carousel-package" data-few:="selectPackage"  data-package-type="deluxe" data-package-time="4">Select package</button>
+                            <button class="carousel-package" data-few="selectPackage"  data-package-type="deluxe" data-package-time="4">Select package</button>
                         </div>
 
                         <div class="package-item <?= $this->package === "luxe" ? "active-package" : "" ?>" >
@@ -95,15 +95,15 @@
                                 <li>On-site attendant</li>
                                 <li>5 hours</li>
                             </ul>
-                            <button class="carousel-package" data-few:="selectPackage"  data-package-type="luxe" data-package-time="5">Select package</button>
+                            <button class="carousel-package" data-few="selectPackage"  data-package-type="luxe" data-package-time="5">Select package</button>
                         </div>
 
                     </div>
                 </div>
-                <img id="carousel-next" data-few:="nextCarousel" src="<?= $this->getIcon("chevron-right.svg") ?>" alt="Right icon">
+                <img id="carousel-next" data-few="nextCarousel" src="<?= $this->getIcon("chevron-right.svg") ?>" alt="Right icon">
             </div>
             <div class="booking-navigation">
-                <button type="button" class="next-button next-button-1" data-few:="nextBooking">Next</button>
+                <button type="button" class="next-button next-button-1" data-few="nextBooking">Next</button>
             </div>
         </div>
 
@@ -158,8 +158,8 @@
                 </div>
             </form>
             <div class="booking-navigation">
-                <button type="button" class="back-button back-button-2" data-few:="backBooking">Back</button>
-                <button type="button" class="next-button next-button-2" data-few:="nextBooking">Next</button>
+                <button type="button" class="back-button back-button-2" data-few="backBooking">Back</button>
+                <button type="button" class="next-button next-button-2" data-few="nextBooking">Next</button>
             </div>
         </div>
 
@@ -178,10 +178,10 @@
                 <div id="calendar" class="form-group calendar">
 
                     <div class="calendar-header">
-                        <span id="prevMonth" data-direction="-1" data-few:="changeMonth">←</span>
+                        <span id="prevMonth" data-direction="-1" data-few="changeMonth">←</span>
                         <h2 id="monthYear"></h2>
-                        <span id="nextMonth" data-direction="1" data-few:="changeMonth">→</span>
-                        <span id="todayButton" data-few:="goToToday">Today</span>
+                        <span id="nextMonth" data-direction="1" data-few="changeMonth">→</span>
+                        <span id="todayButton" data-few="goToToday">Today</span>
                     </div>
 
                     <div class="calendar-grid" id="calendarGrid"></div>
@@ -246,8 +246,8 @@
                 </div>
             </form>
             <div class="booking-navigation">
-                <button type="button" class="back-button back-button-3" data-few:="backBooking">Back</button>
-                <button type="button" class="next-button next-button-3" data-few:="nextBooking">Next</button>
+                <button type="button" class="back-button back-button-3" data-few="backBooking">Back</button>
+                <button type="button" class="next-button next-button-3" data-few="nextBooking">Next</button>
             </div>
         </div>
 
@@ -300,8 +300,8 @@
                 </div>
             </div>
             <div class="booking-navigation">
-                <button type="button" class="back-button back-button-4" data-few:="backBooking">Back</button>
-                <button type="button" class="next-button next-button-4" data-few:="nextBooking">Next</button>
+                <button type="button" class="back-button back-button-4" data-few="backBooking">Back</button>
+                <button type="button" class="next-button next-button-4" data-few="nextBooking">Next</button>
             </div>
         </div>
 
@@ -312,7 +312,7 @@
         </div>
 
             <div class="booking-navigation">
-                <button type="button" class="back-button back-button-5" data-few:="backBooking">Back</button>
+                <button type="button" class="back-button back-button-5" data-few="backBooking">Back</button>
             </div>
         </div>
     </div>

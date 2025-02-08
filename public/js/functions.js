@@ -578,9 +578,19 @@ const selectedDateDisplayEl = _$('#selectedDateDisplay');
 
 export function changeMonth(e) {
     let delta = parseInt(e.target.dataset.direction);
-console.log(delta);
-    currentDate.setMonth(currentDate.getMonth() + delta);
-    renderCalendar();
+    let date = new Date();
+
+    console.log(date.getMonth());
+    console.log(currentDate.getMonth());
+    console.log(delta);
+
+    if(date.getMonth() < currentDate.getMonth()) {
+        currentDate.setMonth(currentDate.getMonth() + delta);
+        renderCalendar();
+    } else if(delta > 0) {
+        currentDate.setMonth(currentDate.getMonth() + delta);
+        renderCalendar();
+    }
 }
 
 export function goToToday() {
@@ -630,9 +640,12 @@ export function generateCalendarDays() {
         dateEl.textContent = day;
         dateContainer.classList.add('calendar-day');
 
-       // dateContainer.addEventListener('click', () => selectDate(currentDate));
-        dateContainer.dataset["few:"] = "selectDate";
-        dateContainer.dataset["date"] = currentDate;
+        if(currentDate > new Date()) {
+            dateContainer.dataset["few"] = "selectDate";
+            dateContainer.dataset["date"] = currentDate;
+        } else {
+            dateContainer.style.backgroundColor = "lightgrey";
+        }
 
         if (selectedDate && 
             currentDate.toDateString() === selectedDate.toDateString()) {
@@ -641,7 +654,10 @@ export function generateCalendarDays() {
             console.log(bookingDetails);
         }
 
-        if(new Date().getDate() === currentDate.getDate()) {
+        // console.log(currentDate.toDateString());
+        // console.log(new Date().toDateString());
+
+        if(new Date().toDateString() === currentDate.toDateString()) {
             dateEl.classList.add('current-day');
         }
 

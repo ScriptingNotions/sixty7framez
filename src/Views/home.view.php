@@ -86,7 +86,7 @@
 <section id="packages" class="home-section-4 packages">
     <h2>Packages <span>:</span></h2>
     <div class="package-list">
-        <img id="carosel-prev" data-few:="prevCarousel" src="<?= $this->getIcon("chevron-left.svg") ?>" alt="Left icon">
+        <img id="carosel-prev" data-few="prevCarousel" src="<?= $this->getIcon("chevron-left.svg") ?>" alt="Left icon">
         <div class="carousel-container" id="carousel">
             <div class="carousel">
                 <div class="package-item standard">
@@ -174,7 +174,7 @@
                 </div>
             </div>
         </div>
-        <img id="carousel-next" data-few:="nextCarousel" src="<?= $this->getIcon("chevron-right.svg") ?>" alt="Right icon">
+        <img id="carousel-next" data-few="nextCarousel" src="<?= $this->getIcon("chevron-right.svg") ?>" alt="Right icon">
     </div>
 
 </section>
@@ -204,7 +204,7 @@
                     <input type="tel" id="home-phone" name="home-phone" required>
                 </div>
                 <div class="button-container">
-                    <button type="submit" data-few:="startBookingContact">Start Booking</button>
+                    <button type="submit" data-few="startBookingContact">Start Booking</button>
                 </div>
             </fieldset>
         </form>
@@ -217,27 +217,27 @@
         <li>
             <h3>What types of photo booths do you offer?</h3>
             <p>We have a variety of photo booth options to suit different event styles and preferences. Our selection includes modern open air photo booths that are interactive with touch screen technology.  Our 360-degree photo booths offer a unique twist to your event. Each type of booth comes with a range of backdrops and props to choose from, ensuring a fun personalized experience for your guests.</p>
-            <div class="faq-toggle-container" data-few:="toggleFAQ">+</div>
+            <div class="faq-toggle-container" data-few="toggleFAQ">+</div>
         </li>
         <li>
             <h3>How does the rental process work?</h3>
             <p>Renting a photo booth is easy! Simply visit our website to browse our photo booth options and select the one that best fits your event. You can book directly online or give us a call to discuss your needs. We will ask for details about your event, such as the date, location, and duration of rental. A deposit is required to secure your booking, with the balance due before the event. We handle the delivery, setup, and removal of the booth, so everything is ready to go when your event starts.</p>
-            <div class="faq-toggle-container" data-few:="toggleFAQ">+</div>
+            <div class="faq-toggle-container" data-few="toggleFAQ">+</div>
         </li>
         <li>
             <h3>How much space do we need?</h3>
             <p>While venue specifics can vary, we generally recommend allocating a 10' x 10' area for each booth to ensure optimal setup and operation.</p>
-            <div class="faq-toggle-container" data-few:="toggleFAQ">+</div>
+            <div class="faq-toggle-container" data-few="toggleFAQ">+</div>
         </li>
         <li>
             <h3>Can I customize the photos?</h3>
             <p>Absolutely! We offer a variety of customization options to make your photo booth experience truly unique. You can choose from a selection of templates for your photos or work with our design team to create custom graphics that match your event’s theme. Customization can include text, logos, and colors. Additionally, our booths can be equipped with a selection of filters, and digital props, and some models offer green screen technology for virtually limitless backdrop possibilities. Every guest can share pictures by text, email, or QR code. In addition, a custom live gallery can be viewed and downloaded in real time with every guest’s photo.</p>
-            <div class="faq-toggle-container" data-few:="toggleFAQ">+</div>
+            <div class="faq-toggle-container" data-few="toggleFAQ">+</div>
         </li>
         <li>
             <h3>Do you provide services outside of Charlotte?</h3>
             <p>We offer a 35 mile complimentary delivery zone for all of our clients. Let us know if your event location is outside the Charlotte perimeter and we will calculate your mileage fee for you.</p>
-            <div class="faq-toggle-container" data-few:="toggleFAQ">+</div>
+            <div class="faq-toggle-container" data-few="toggleFAQ">+</div>
         </li>
     </ul>
 </section>

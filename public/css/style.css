@@ -910,7 +910,6 @@ footer {
 .calendar-day {
   padding: 10px;
   border: 1px solid #ddd;
-  cursor: pointer;
 }
 
 .grid__item::before,

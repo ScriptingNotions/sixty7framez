@@ -11,6 +11,6 @@
         <?= $this->renderView($this->component($this->package), []) ?> 
     </div>
     <div class="booking-navigation">
-        <button type="button" class="next-button" data-few:="nextForm" data-position="select-package">Next</button>
+        <button type="button" class="next-button" data-few="nextForm" data-position="select-package">Next</button>
     </div>
 </section>
