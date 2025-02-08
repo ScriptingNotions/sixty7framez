@@ -4,6 +4,7 @@ namespace ScriptingThoughts\Services;
 
 use Exception;
 use Stripe\StripeClient;
+use ScriptingThoughts\Utils\StringUtils;
 
 class StripeService {
     private $client;
@@ -14,6 +15,8 @@ class StripeService {
     }
 
     public function stripeCheckoutSession() {
+        $uuid = StringUtils::generateUuid();
+
         try {
             $checkout_session = $this->client->checkout->sessions->create([
                 'payment_method_types' => ['card'],
@@ -25,7 +28,7 @@ class StripeService {
                 'mode' => 'payment',
                 'ui_mode' => 'embedded',
                 'redirect_on_completion' => 'never',              
-                'metadata' => ['order_id' => '6735'],
+                'metadata' => ['order_id' => $uuid],
                 //'return_url' => 'http://localhost:3000/booking/complete?session_id={CHECKOUT_SESSION_ID}',
                 //'customer_email' => 'noviceone@outlook.com'// Replace with actual customer email
             ]);
