@@ -110,7 +110,7 @@ nav {
   .menu-container {
     span {
       font-size: 1rem;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
     }
   }
@@ -124,9 +124,10 @@ nav {
 
   .mobile-menu-container {
     display: none;
-    width: 310px;
+    width: 85%;
     background: white;
-    box-shadow: 0px 20px 60px -11px rgba(0, 0, 0, 0.5);
+    // box-shadow: 0px 20px 60px -11px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 32px 64px 0 rgba(0,0,0,.2),inset 0 1px 0 0 #fff,inset 0 -1px 0 0 rgba(0,0,0,.1);
     border: 1px solid #E6E6E6;
     border-radius: 10px;
     padding: 15px;
@@ -141,9 +142,9 @@ nav {
 
     li {
       margin-bottom: 20px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     div {
@@ -160,7 +161,7 @@ nav {
 
   .hero-section {
     border-radius: calc(.5vw + .5rem);
-    height: calc(300px + 15vw);
+    height: calc(246px + 15vw);
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -189,12 +190,12 @@ nav {
 
     .hero-content {
       position: absolute;
-      top: 50%;
       padding: 0 3vw;
+      transform: translateY(-100%);
 
       h1 {
         font-family: $secondary-font;
-        font-size: 2rem;
+        font-size: calc(.5vw + 1.5rem);
         font-weight: 500;
         margin-bottom: 10px;
         color: #fff;
@@ -202,7 +203,7 @@ nav {
 
       p {
         color: #fff;
-        font-size: 1rem;
+        font-size: calc(1vw + .7rem);
         line-height: 1.2;
         margin-bottom: 10px;
       }
@@ -210,6 +211,7 @@ nav {
       .button-container {
         display: flex;
         align-items: center;
+        margin: 20px 0;
 
         a {
           color: #fff;
@@ -232,13 +234,13 @@ nav {
   }
 
   .home-section-1 {
-    margin-top: 70px;
+    margin-top: calc(1vw + 4rem);
 
     h2 {
       font-family: $secondary-font;
-      font-size: 1.5rem;
+      font-size: calc(1vw + 1.2rem);
       font-weight: 500;
-      margin-bottom: 20px;
+      margin-bottom: calc(1vw + 2rem);
       text-align: center;
 
       span {
@@ -255,13 +257,13 @@ nav {
   }
 
   .home-section-2 {
-    margin-top: 70px;
+    margin-top: calc(1vw + 4rem);
 
     h2 {
       font-family: $secondary-font;
-      font-size: 1.5rem;
+      font-size: calc(1vw + 1.2rem);
       font-weight: 500;
-      margin-bottom: 40px;
+      margin-bottom: calc(1vw + 2rem);
       text-align: left;
 
       span {
@@ -281,7 +283,7 @@ nav {
         align-items: center;
 
         h4 {
-          font-weight: 500;
+          font-weight: 600;
         }
 
         img {
@@ -296,13 +298,13 @@ nav {
   }
 
   .home-section-3 {
-    margin-top: 70px;
+    margin-top: calc(1vw + 4rem);
 
     h2 {
       font-family: $secondary-font;
-      font-size: 1.5rem;
+      font-size: calc(1vw + 1.2rem);
       font-weight: 500;
-      margin-bottom: 40px;
+      margin-bottom: calc(1vw + 2rem);
       text-align: center;
 
       span {
@@ -326,13 +328,13 @@ nav {
   }
 
   .home-section-4 {
-    margin-top: 70px;
+    margin-top: calc(1vw + 4rem);
 
     h2 {
       font-family: $secondary-font;
-      font-size: 1.5rem;
+      font-size: calc(1vw + 1.2rem);
       font-weight: 500;
-      margin-bottom: 40px;
+      margin-bottom: calc(1vw + 2rem);
       text-align: left;
 
       span {
@@ -350,7 +352,7 @@ nav {
   }
 
   .home-section-5 {
-    margin-top: 70px;
+    margin-top: calc(1vw + 4rem);
 
     .start-booking-container {
       width: 85%;
@@ -362,8 +364,8 @@ nav {
       h2 {
         text-align: center;
         font-weight: 600;
-        font-size: 1.2rem;
-        margin-bottom: 30px;
+        font-size: calc(1vw + 1rem);
+        margin-bottom: calc(1vw + 2rem);
       }
 
       input {
@@ -379,13 +381,13 @@ nav {
   }
 
   .home-section-6 {
-    margin-top: 70px;
+    margin-top: calc(1vw + 4rem);
 
     h2 {
       font-family: $secondary-font;
       font-size: 1.5rem;
       font-weight: 500;
-      margin-bottom: 20px;
+      margin-bottom: calc(1vw + 2rem);
 
       span {
         font-weight: 700;
@@ -857,15 +859,23 @@ footer {
 
   .package-item {
     position: relative;
-    width: 300px;
+    max-width: 300px;
     background-color: #fff;
     border: 1px solid #E6E6E6;
     border-radius: 20px;
     padding: 20px;
-    margin: 0 5px;
+    margin: 25px auto;
     box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.10);
     height: min-content;
     scroll-snap-align: center;
+
+    .button-container {
+      a {
+        background-color: #3767ea;
+      }
+    }
+
+
   }
 
   h3 {
@@ -1057,6 +1067,6 @@ footer {
   width: 100%;
 }
 
-
-
-
+.button-container .start-booking-button:hover {
+  background-color: red; /* hover state */
+}

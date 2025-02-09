@@ -112,15 +112,17 @@ class RoutesController extends Controller
        // print_r($calendarService->insertEvent($calendarId, $eventData));
         echo '</pre>';
 
-        function unscrambleString($scrambled) {
-            return urldecode(strrev(base64_decode($scrambled)));
+    
+        if($customerDetails) {
+            $customerDetails = urldecode(strrev(base64_decode($customerDetails)));
+            $customerDetails = explode("-", $customerDetails);
+            //explode("-", $customerDetails);
+            $this->bookingDetails["firstName"] =  $customerDetails[0];
+            $this->bookingDetails["lastName"] = $customerDetails[1];
+            $this->bookingDetails["email"] = $customerDetails[2];
+            $this->bookingDetails["phone"] = $customerDetails[3];
         }
-        
-        $scrambled = "Your_Encoded_String_Here"; // Replace with the output from JS
-        $original = unscrambleString($customerDetails);
-        //echo $original;
-        
-    var_dump($original);
+
 
         $this->view("booking");
     }

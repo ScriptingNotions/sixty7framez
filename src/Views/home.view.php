@@ -78,105 +78,109 @@
 </section>
 
 <section class="home-section-3 open-air-booth">
-    <h2>Our Open-Air Booth <span>.</span></h2>
-    <img src="<?= $this->getImage("open-air.jpg") ?>" alt="Group of women taking a photo in a photo booth">
-    <p>Capture the crowd with our open-air booth! This setup allows for larger group photos and works well in any setting. Equipped with custom backdrops and a full selection of props, it’s a hit for parties, corporate events, and festivals.</p>
+    <div class="open-air-booth">
+        <h2>Our Open-Air Booth <span>.</span></h2>
+        <img src="<?= $this->getImage("open-air.jpg") ?>" alt="Group of women taking a photo in a photo booth">
+        <p>Capture the crowd with our open-air booth! This setup allows for larger group photos and works well in any setting. Equipped with custom backdrops and a full selection of props, it’s a hit for parties, corporate events, and festivals.</p>
+    </div>
+    <div class="booth-360">
+        <h2>Our 360 Booth <span>.</span></h2>
+        <img src="<?= $this->getImage("open-air.jpg") ?>" alt="Group of women taking a photo in a photo booth">
+        <p>Capture the crowd with our open-air booth! This setup allows for larger group photos and works well in any setting. Equipped with custom backdrops and a full selection of props, it’s a hit for parties, corporate events, and festivals.</p>
+    </div>
+</section>
+
+<section class="home-section-3 360-booth">
+    
 </section>
 
 <section id="packages" class="home-section-4 packages">
     <h2>Packages <span>:</span></h2>
     <div class="package-list">
-        <img id="carosel-prev" data-few="prevCarousel" src="<?= $this->getIcon("chevron-left.svg") ?>" alt="Left icon">
-        <div class="carousel-container" id="carousel">
-            <div class="carousel">
-                <div class="package-item standard">
-                    <h3>Standard</h3>
-                    <p>$375</p>
-                    <ul>
-                        <li>Tap to Start screen</li>
-                        <li>Unlimited photo sessions</li>
-                        <li>Unlimited digital photos </li>
-                        <li>Live gallery with real-time photo access for guests</li>
-                        <li>Instant sharing via Text/Email/QR Code</li>
-                        <li>Setup/Breakdown</li>
-                        <li>Drop-off service</li>
-                        <li>3 hours</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="/booking/package/standard" class="button-style">Start Booking</a>
-                    </div>
-                </div>
-                <div class="package-item memory-maker">
-                    <h3>Memory Maker</h3>
-                    <p>$550</p>
-                    <ul>
-                        <li>Open-air booth</li>
-                        <li>Customized Tap to Start screen</li>
-                        <li>Fun props (hats, glasses, signs, etc.)</li>
-                        <li>Unlimited photo sessions</li>
-                        <li>Unlimited digital photos</li>
-                        <li>Live gallery with real-time photo access for guests</li>
-                        <li>Instant sharing via Text/Email/QR Code</li>
-                        <li>Setup/Breakdown</li>
-                        <li>Optional drop-off service</li>
-                        <li>3 hours</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="/booking/package/memory-maker" class="button-style">Start Booking</a>
-                    </div>
-                </div>
-                <div class="package-item deluxe">
-                <h3>Deluxe</h3>
-                    <p>$750</p>
-                    <ul>
-                        <li>Open-air booth</li>
-                        <li>Choice of premium backdrop</li>
-                        <li>Premium props</li>
-                        <li>Customized Tap to Start screen and LED Ring</li>
-                        <li>Photo/GIF/Boomerang/Video</li>
-                        <li>Select up to 2 each face effects & pose tips</li>
-                        <li>Unlimited personalized photo templates (digital only)</li>
-                        <li>100 personalized photo templates 2x6 prints</li>
-                        <li>Live gallery with real-time photo access for guests</li>
-                        <li>Instant sharing via Text/Email/QR Code</li>
-                        <li>Setup/Breakdown</li>
-                        <li>On-site attendant</li>
-                        <li>4 hours</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="/booking/package/deluxe" class="button-style">Start Booking</a>
-                    </div>
-                </div>
-                <div class="package-item luxe">
-                    <h3>Luxe</h3>
-                    <p>$1,100</p>
-                    <ul>
-                        <li>Open-air booth</li>
-                        <li>Choice of premium backdrop</li>
-                        <li>Custom prop set tailored to your event (theme options available)</li>
-                        <li>Customized Tap to Start screen and LED Ring</li>
-                        <li>Photo/GIF/Boomerang/Video</li>
-                        <li>Select up to 2 each face effects & pose tips</li>
-                        <li>Filter options - Black/White & Instant</li>
-                        <li>Unlimited personalized photo templates (digital only)</li>
-                        <li>200 personalized photo templates 2x6 prints</li>
-                        <li>Live gallery with real-time photo access for guests</li>
-                        <li>Instant sharing via Text/Email/QR Code</li>
-                        <li>Social Sharing Station</li>
-                        <li>Setup/Breakdown</li>
-                        <li>On-site attendant</li>
-                        <li>5 hours</li>
-                    </ul>
-
-                    <div class="button-container">
-                        <a href="/booking/package/luxe" class="button-style">Start Booking</a>
-                    </div>
-                </div>
+        <div class="package-item standard">
+            <h3>Standard</h3>
+            <p>$375</p>
+            <ul>
+                <li>Tap to Start screen</li>
+                <li>Unlimited photo sessions</li>
+                <li>Unlimited digital photos </li>
+                <li>Live gallery with real-time photo access for guests</li>
+                <li>Instant sharing via Text/Email/QR Code</li>
+                <li>Setup/Breakdown</li>
+                <li>Drop-off service</li>
+                <li>3 hours</li>
+            </ul>
+            <div class="button-container">
+                <a href="/booking/package/standard" class="button-style">Start Booking</a>
             </div>
         </div>
-        <img id="carousel-next" data-few="nextCarousel" src="<?= $this->getIcon("chevron-right.svg") ?>" alt="Right icon">
-    </div>
+        <div class="package-item memory-maker">
+            <h3>Memory Maker</h3>
+            <p>$550</p>
+            <ul>
+                <li>Open-air booth</li>
+                <li>Customized Tap to Start screen</li>
+                <li>Fun props (hats, glasses, signs, etc.)</li>
+                <li>Unlimited photo sessions</li>
+                <li>Unlimited digital photos</li>
+                <li>Live gallery with real-time photo access for guests</li>
+                <li>Instant sharing via Text/Email/QR Code</li>
+                <li>Setup/Breakdown</li>
+                <li>Optional drop-off service</li>
+                <li>3 hours</li>
+            </ul>
+            <div class="button-container">
+                <a href="/booking/package/memory-maker" class="button-style">Start Booking</a>
+            </div>
+        </div>
+        <div class="package-item deluxe">
+            <h3>Deluxe</h3>
+            <p>$750</p>
+            <ul>
+                <li>Open-air booth</li>
+                <li>Choice of premium backdrop</li>
+                <li>Premium props</li>
+                <li>Customized Tap to Start screen and LED Ring</li>
+                <li>Photo/GIF/Boomerang/Video</li>
+                <li>Select up to 2 each face effects & pose tips</li>
+                <li>Unlimited personalized photo templates (digital only)</li>
+                <li>100 personalized photo templates 2x6 prints</li>
+                <li>Live gallery with real-time photo access for guests</li>
+                <li>Instant sharing via Text/Email/QR Code</li>
+                <li>Setup/Breakdown</li>
+                <li>On-site attendant</li>
+                <li>4 hours</li>
+            </ul>
+            <div class="button-container">
+                <a href="/booking/package/deluxe" class="button-style start-booking-button">Start Booking</a>
+            </div>
+        </div>
+        <div class="package-item luxe">
+            <h3>Luxe</h3>
+            <p>$1,100</p>
+            <ul>
+                <li>Open-air booth</li>
+                <li>Choice of premium backdrop</li>
+                <li>Custom prop set tailored to your event (theme options available)</li>
+                <li>Customized Tap to Start screen and LED Ring</li>
+                <li>Photo/GIF/Boomerang/Video</li>
+                <li>Select up to 2 each face effects & pose tips</li>
+                <li>Filter options - Black/White & Instant</li>
+                <li>Unlimited personalized photo templates (digital only)</li>
+                <li>200 personalized photo templates 2x6 prints</li>
+                <li>Live gallery with real-time photo access for guests</li>
+                <li>Instant sharing via Text/Email/QR Code</li>
+                <li>Social Sharing Station</li>
+                <li>Setup/Breakdown</li>
+                <li>On-site attendant</li>
+                <li>5 hours</li>
+            </ul>
 
+            <div class="button-container">
+                <a href="/booking/package/luxe" class="button-style">Start Booking</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="home-section-5 start-booking">
@@ -186,25 +190,25 @@
             <fieldset>
                 <div class="form-group">
                     <label for="home-first-name">First name</label>
-                    <input type="text" id="home-first-name" name="home-first-name" required>
+                    <input type="text" id="home-first-name" name="firstName" required>
                 </div>
 
                 <div class="form-group">
                     <label for="home-last-name">Last name</label>
-                    <input type="text" id="home-last-name" name="home-last-name" required>
+                    <input type="text" id="home-last-name" name="lastName" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="home-email">Email</label>
-                    <input type="email" id="home-email" name="home-email"  required>
+                    <input type="email" id="home-email" name="email"  required>
                 </div>
                 
                 <div class="form-group">
                     <label for="home-phone">Phone Number</label>
-                    <input type="tel" id="home-phone" name="home-phone" required>
+                    <input type="tel" id="home-phone" name="phone" required>
                 </div>
                 <div class="button-container">
-                    <button type="submit" data-few="startBookingContact">Start Booking</button>
+                    <button type="button" data-few="startBookingContact">Start Booking</button>
                 </div>
             </fieldset>
         </form>

@@ -74,7 +74,7 @@ label {
 }
 
 footer {
-  margin-top: 70px;
+  margin-top: calc(2vw + 30px);
 }
 
 nav {
@@ -99,7 +99,7 @@ nav .nav-logo {
 }
 nav .menu-container span {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -110,9 +110,10 @@ nav .menu-container span {
 }
 .main-content .mobile-menu-container {
   display: none;
-  width: 310px;
+  width: 85%;
+  max-width: 450px;
   background: white;
-  box-shadow: 0px 20px 60px -11px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 32px 64px 0 rgba(0, 0, 0, 0.2), inset 0 1px 0 0 #fff, inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
   border: 1px solid #E6E6E6;
   border-radius: 10px;
   padding: 15px;
@@ -126,9 +127,9 @@ nav .menu-container span {
 }
 .main-content .mobile-menu-container li {
   margin-bottom: 20px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
 }
 .main-content .mobile-menu-container div {
   display: flex;
@@ -139,7 +140,7 @@ nav .menu-container span {
 }
 .main-content .hero-section {
   border-radius: calc(0.5vw + 0.5rem);
-  height: calc(300px + 15vw);
+  height: calc(246px + 15vw);
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -165,25 +166,26 @@ nav .menu-container span {
 }
 .main-content .hero-section .hero-content {
   position: absolute;
-  top: 50%;
   padding: 0 3vw;
+  transform: translateY(-100%);
 }
 .main-content .hero-section .hero-content h1 {
   font-family: "Lora", serif;
-  font-size: 2rem;
+  font-size: calc(0.5vw + 1.5rem);
   font-weight: 500;
   margin-bottom: 10px;
   color: #fff;
 }
 .main-content .hero-section .hero-content p {
   color: #fff;
-  font-size: 1rem;
+  font-size: calc(1vw + 0.7rem);
   line-height: 1.2;
   margin-bottom: 10px;
 }
 .main-content .hero-section .hero-content .button-container {
   display: flex;
   align-items: center;
+  margin: 20px 0;
 }
 .main-content .hero-section .hero-content .button-container a {
   color: #fff;
@@ -201,13 +203,13 @@ nav .menu-container span {
   margin-right: 15px;
 }
 .main-content .home-section-1 {
-  margin-top: 70px;
+  margin-top: calc(1vw + 4rem);
 }
 .main-content .home-section-1 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: calc(1vw + 1.2rem);
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: calc(1vw + 2rem);
   text-align: center;
 }
 .main-content .home-section-1 h2 span {
@@ -215,18 +217,18 @@ nav .menu-container span {
   color: #8473FC;
 }
 .main-content .home-section-1 p {
-  font-size: 1rem;
+  font-size: calc(1vw + 0.7rem);
   line-height: 1.5;
   text-align: center;
 }
 .main-content .home-section-2 {
-  margin-top: 70px;
+  margin-top: calc(2.5vw + 4rem);
 }
 .main-content .home-section-2 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: calc(1vw + 1.2rem);
   font-weight: 500;
-  margin-bottom: 40px;
+  margin-bottom: calc(1vw + 2rem);
   text-align: left;
 }
 .main-content .home-section-2 h2 span {
@@ -244,7 +246,7 @@ nav .menu-container span {
   align-items: center;
 }
 .main-content .home-section-2 .feature-item .feature-details-container h4 {
-  font-weight: 500;
+  font-weight: 600;
 }
 .main-content .home-section-2 .feature-item .feature-details-container img {
   margin-right: 10px;
@@ -253,13 +255,13 @@ nav .menu-container span {
   margin-top: 15px;
 }
 .main-content .home-section-3 {
-  margin-top: 70px;
+  margin-top: calc(1vw + 4rem);
 }
 .main-content .home-section-3 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: calc(1vw + 1.2rem);
   font-weight: 500;
-  margin-bottom: 40px;
+  margin-bottom: calc(1vw + 2rem);
   text-align: center;
 }
 .main-content .home-section-3 h2 span {
@@ -276,14 +278,18 @@ nav .menu-container span {
   text-align: left;
   margin-top: 15px;
 }
+.main-content .home-section-3 .booth-360 {
+  margin-top: 50px;
+}
+
 .main-content .home-section-4 {
-  margin-top: 70px;
+  margin-top: calc(1vw + 4rem);
 }
 .main-content .home-section-4 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: calc(1vw + 1.2rem);
   font-weight: 500;
-  margin-bottom: 40px;
+  margin-bottom: calc(1vw + 2rem);
   text-align: left;
 }
 .main-content .home-section-4 h2 span {
@@ -295,7 +301,7 @@ nav .menu-container span {
   justify-content: center;
 }
 .main-content .home-section-5 {
-  margin-top: 70px;
+  margin-top: calc(1vw + 4rem);
 }
 .main-content .home-section-5 .start-booking-container {
   width: 85%;
@@ -307,8 +313,8 @@ nav .menu-container span {
 .main-content .home-section-5 .start-booking-container h2 {
   text-align: center;
   font-weight: 600;
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+  font-size: calc(1vw + 1rem);
+  margin-bottom: calc(1vw + 2rem);
 }
 .main-content .home-section-5 .start-booking-container input {
   border: none;
@@ -318,13 +324,13 @@ nav .menu-container span {
   justify-content: center;
 }
 .main-content .home-section-6 {
-  margin-top: 70px;
+  margin-top: calc(1vw + 4rem);
 }
 .main-content .home-section-6 h2 {
   font-family: "Lora", serif;
   font-size: 1.5rem;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: calc(1vw + 2rem);
 }
 .main-content .home-section-6 h2 span {
   font-weight: 700;
@@ -467,11 +473,11 @@ footer {
 
 /* THE PROCESS */
 .process-wrapper {
-  margin-top: 70px;
+  margin-top: calc(2vw + 30px);
 }
 .process-wrapper h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: calc(2vw + 1rem);
   font-weight: 500;
   margin-bottom: 20px;
   text-align: left;
@@ -555,14 +561,14 @@ footer {
 .about-section-2,
 .about-section-3,
 .about-section-4 {
-  margin-top: 70px;
+  margin-top: calc(2vw + 30px);
 }
 .about-section-1 h2,
 .about-section-2 h2,
 .about-section-3 h2,
 .about-section-4 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: calc(2vw + 1rem);
   font-weight: 500;
   margin-bottom: 20px;
   text-align: center;
@@ -578,7 +584,7 @@ footer {
 .about-section-2 p,
 .about-section-3 p,
 .about-section-4 p {
-  font-size: 1rem;
+  font-size: calc(1vw + 0.7rem);
   line-height: 1.5;
   text-align: left;
   margin-top: 15px;
@@ -588,11 +594,11 @@ footer {
 /* ABOUT END */
 /* CONTACT */
 .contact-section-1 {
-  margin-top: 70px;
+  margin-top: calc(2vw + 30px);
 }
 .contact-section-1 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: calc(2vw + 1rem);
   font-weight: 500;
   margin-bottom: 20px;
   text-align: center;
@@ -602,7 +608,7 @@ footer {
   color: #8473FC;
 }
 .contact-section-1 p {
-  font-size: 1rem;
+  font-size: calc(1vw + 0.7rem);
   line-height: 1.5;
   text-align: left;
   margin-top: 15px;
@@ -635,7 +641,7 @@ footer {
 }
 
 .contact-section-3 {
-  margin-top: 70px;
+  margin-top: calc(2vw + 30px);
   padding: 15px;
   border-radius: 10px;
   background-color: #F5F1ED;
@@ -658,7 +664,7 @@ footer {
 }
 .contact-section-3 p {
   line-height: 1.2;
-  font-size: 1rem;
+  font-size: calc(1vw + 0.7rem);
   margin-bottom: 15px;
   color: #323232;
 }
@@ -666,7 +672,7 @@ footer {
 /* CONTACT END */
 /* BOOKING */
 .booking-section-1 {
-  margin-top: 70px;
+  margin-top: calc(2vw + 30px);
 }
 .booking-section-1 .booking-questionaire-container {
   width: 100%;
@@ -674,7 +680,7 @@ footer {
 }
 .booking-section-1 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: calc(2vw + 1rem);
   font-weight: 500;
   margin-bottom: 20px;
   text-align: center;
@@ -684,7 +690,7 @@ footer {
   color: #8473FC;
 }
 .booking-section-1 p {
-  font-size: 1rem;
+  font-size: calc(1vw + 0.7rem);
   line-height: 1.5;
   text-align: center;
   margin-top: 15px;
@@ -758,15 +764,21 @@ footer {
 }
 .package-list .package-item {
   position: relative;
-  width: 300px;
+  max-width: 300px;
   background-color: #fff;
   border: 1px solid #E6E6E6;
   border-radius: 20px;
   padding: 20px;
-  margin: 0 5px;
+  margin: 25px auto;
   box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.1);
   height: min-content;
   scroll-snap-align: center;
+}
+.package-list .package-item .button-container a {
+  background-color: #3767ea;
+}
+.package-list .package-item .button-container a:hover {
+  background-color: #5781f5;
 }
 .package-list h3 {
   font-weight: 600;

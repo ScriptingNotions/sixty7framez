@@ -17,90 +17,83 @@
         <!-- < //$this->bookingContent; -->
         <div class="booking-item-1 page active" id="page1">
             <div class="package-list">
-                <img id="carosel-prev" data-few="prevCarousel" src="<?= $this->getIcon("chevron-left.svg") ?>" alt="Left icon">
-                <div class="booking-package-container  carousel-container" id="carousel">
-                    <div class="carousel">
-                        <div class="package-item <?= $this->package === "standard" ? "active-package" : "" ?>">
-                            <h3>Standard</h3>
-                            <p>$375</p>
-                            <ul>
-                                <li>Tap to Start screen</li>
-                                <li>Unlimited photo sessions</li>
-                                <li>Unlimited digital photos </li>
-                                <li>Live gallery with real-time photo access for guests</li>
-                                <li>Instant sharing via Text/Email/QR Code</li>
-                                <li>Setup/Breakdown</li>
-                                <li>Drop-off service</li>
-                                <li>3 hours</li>
-                            </ul>
-                            <button class="carousel-package" data-few="selectPackage" data-package-type="standard" data-package-time="3">Select package</button>
-                        </div>
-
-                        <div class="package-item <?= $this->package === "memory-maker" ? "active-package" : "" ?>">
-                            <h3>Memory Maker</h3>
-                            <p>$550</p>
-                            <ul>
-                                <li>Open-air booth</li>
-                                <li>Customized Tap to Start screen</li>
-                                <li>Fun props (hats, glasses, signs, etc.)</li>
-                                <li>Unlimited photo sessions</li>
-                                <li>Unlimited digital photos</li>
-                                <li>Live gallery with real-time photo access for guests</li>
-                                <li>Instant sharing via Text/Email/QR Code</li>
-                                <li>Setup/Breakdown</li>
-                                <li>Optional drop-off service</li>
-                                <li>3 hours</li>
-                            </ul>
-                            <button class="carousel-package" data-few="selectPackage"  data-package-type="memory-maker" data-package-time="3">Select package</button>
-                        </div>
-
-                        <div class="package-item <?= $this->package === "deluxe" ? "active-package" : "" ?>">
-                            <h3>Deluxe</h3>
-                            <p>$750</p>
-                            <ul>
-                                <li>Open-air booth</li>
-                                <li>Choice of premium backdrop</li>
-                                <li>Premium props</li>
-                                <li>Customized Tap to Start screen and LED Ring</li>
-                                <li>Photo/GIF/Boomerang/Video</li>
-                                <li>Select up to 2 each face effects & pose tips</li>
-                                <li>Unlimited personalized photo templates (digital only)</li>
-                                <li>100 personalized photo templates 2x6 prints</li>
-                                <li>Live gallery with real-time photo access for guests</li>
-                                <li>Instant sharing via Text/Email/QR Code</li>
-                                <li>Setup/Breakdown</li>
-                                <li>On-site attendant</li>
-                                <li>4 hours</li>
-                            </ul>
-                            <button class="carousel-package" data-few="selectPackage"  data-package-type="deluxe" data-package-time="4">Select package</button>
-                        </div>
-
-                        <div class="package-item <?= $this->package === "luxe" ? "active-package" : "" ?>" >
-                            <h3>Luxe</h3>
-                            <p>$1,100</p>
-                            <ul>
-                                <li>Open-air booth</li>
-                                <li>Choice of premium backdrop</li>
-                                <li>Custom prop set tailored to your event (theme options available)</li>
-                                <li>Customized Tap to Start screen and LED Ring</li>
-                                <li>Photo/GIF/Boomerang/Video</li>
-                                <li>Select up to 2 each face effects & pose tips</li>
-                                <li>Filter options - Black/White & Instant</li>
-                                <li>Unlimited personalized photo templates (digital only)</li>
-                                <li>200 personalized photo templates 2x6 prints</li>
-                                <li>Live gallery with real-time photo access for guests</li>
-                                <li>Instant sharing via Text/Email/QR Code</li>
-                                <li>Social Sharing Station</li>
-                                <li>Setup/Breakdown</li>
-                                <li>On-site attendant</li>
-                                <li>5 hours</li>
-                            </ul>
-                            <button class="carousel-package" data-few="selectPackage"  data-package-type="luxe" data-package-time="5">Select package</button>
-                        </div>
-
-                    </div>
+                <div class="package-item <?= $this->package === "standard" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
+                    <h3>Standard</h3>
+                    <p>$375</p>
+                    <ul>
+                        <li>Tap to Start screen</li>
+                        <li>Unlimited photo sessions</li>
+                        <li>Unlimited digital photos </li>
+                        <li>Live gallery with real-time photo access for guests</li>
+                        <li>Instant sharing via Text/Email/QR Code</li>
+                        <li>Setup/Breakdown</li>
+                        <li>Drop-off service</li>
+                        <li>3 hours</li>
+                    </ul>
+                    <button class="carousel-package" data-few="selectPackage" data-package-type="standard" data-package-time="3">Select package</button>
                 </div>
-                <img id="carousel-next" data-few="nextCarousel" src="<?= $this->getIcon("chevron-right.svg") ?>" alt="Right icon">
+
+                <div class="package-item <?= $this->package === "memory-maker" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
+                    <h3>Memory Maker</h3>
+                    <p>$550</p>
+                    <ul>
+                        <li>Open-air booth</li>
+                        <li>Customized Tap to Start screen</li>
+                        <li>Fun props (hats, glasses, signs, etc.)</li>
+                        <li>Unlimited photo sessions</li>
+                        <li>Unlimited digital photos</li>
+                        <li>Live gallery with real-time photo access for guests</li>
+                        <li>Instant sharing via Text/Email/QR Code</li>
+                        <li>Setup/Breakdown</li>
+                        <li>Optional drop-off service</li>
+                        <li>3 hours</li>
+                    </ul>
+                    <button class="carousel-package" data-few="selectPackage"  data-package-type="memory-maker" data-package-time="3">Select package</button>
+                </div>
+
+                <div class="package-item <?= $this->package === "deluxe" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
+                    <h3>Deluxe</h3>
+                    <p>$750</p>
+                    <ul>
+                        <li>Open-air booth</li>
+                        <li>Choice of premium backdrop</li>
+                        <li>Premium props</li>
+                        <li>Customized Tap to Start screen and LED Ring</li>
+                        <li>Photo/GIF/Boomerang/Video</li>
+                        <li>Select up to 2 each face effects & pose tips</li>
+                        <li>Unlimited personalized photo templates (digital only)</li>
+                        <li>100 personalized photo templates 2x6 prints</li>
+                        <li>Live gallery with real-time photo access for guests</li>
+                        <li>Instant sharing via Text/Email/QR Code</li>
+                        <li>Setup/Breakdown</li>
+                        <li>On-site attendant</li>
+                        <li>4 hours</li>
+                    </ul>
+                    <button class="carousel-package" data-few="selectPackage"  data-package-type="deluxe" data-package-time="4">Select package</button>
+                </div>
+
+                <div class="package-item <?= $this->package === "luxe" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
+                    <h3>Luxe</h3>
+                    <p>$1,100</p>
+                    <ul>
+                        <li>Open-air booth</li>
+                        <li>Choice of premium backdrop</li>
+                        <li>Custom prop set tailored to your event (theme options available)</li>
+                        <li>Customized Tap to Start screen and LED Ring</li>
+                        <li>Photo/GIF/Boomerang/Video</li>
+                        <li>Select up to 2 each face effects & pose tips</li>
+                        <li>Filter options - Black/White & Instant</li>
+                        <li>Unlimited personalized photo templates (digital only)</li>
+                        <li>200 personalized photo templates 2x6 prints</li>
+                        <li>Live gallery with real-time photo access for guests</li>
+                        <li>Instant sharing via Text/Email/QR Code</li>
+                        <li>Social Sharing Station</li>
+                        <li>Setup/Breakdown</li>
+                        <li>On-site attendant</li>
+                        <li>5 hours</li>
+                    </ul>
+                    <button class="carousel-package" data-few="selectPackage"  data-package-type="luxe" data-package-time="5">Select package</button>
+                </div>
             </div>
             <div class="booking-navigation">
                 <button type="button" class="next-button next-button-1" data-few="nextBooking">Next</button>
@@ -116,7 +109,7 @@
                         id="firstName" 
                         name="firstName" 
 
-                        value="<?= $this->firstName ?>"
+                        value="<?= isset($this->bookingDetails["firstName"]) ? $this->bookingDetails["firstName"] : "" ?>"
                         required
                     >
                 </div>
@@ -128,7 +121,7 @@
                         id="lastName" 
                         name="lastName" 
 
-                        value="<?= $this->lastName ?>"
+                        value="<?= isset($this->bookingDetails["lastName"]) ? $this->bookingDetails["lastName"] : "" ?>"
                         required
                     >
                 </div>
@@ -140,7 +133,7 @@
                         id="email" 
                         name="email" 
 
-                        value="<?= $this->email ?>"
+                        value="<?= isset($this->bookingDetails["email"]) ? $this->bookingDetails["email"] : "" ?>"
                         required
                     >
                 </div>
@@ -152,7 +145,7 @@
                         id="phone" 
                         name="phone" 
 
-                        value="<?= $this->phone ?>"
+                        value="<?= isset($this->bookingDetails["phone"]) ? $this->bookingDetails["phone"] : "" ?>"
                         required
                     >
                 </div>

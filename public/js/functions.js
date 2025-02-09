@@ -12,9 +12,11 @@ export function toggleFAQ(e) {
         e.target.style.transform = "rotate(45deg) translateY(-50%)";
     }
 }
-    function scrambleString(str) {
-        return btoa(encodeURIComponent(str).split('').reverse().join(''));
-    }
+
+export function scrambleString(str) {
+    return btoa(encodeURIComponent(str).split('').reverse().join(''));
+}
+
 export function toggleMobileMenu(e) {
     console.log("fre");
     if(_$('.mobile-menu-container').style.display === "block") {
@@ -26,13 +28,6 @@ export function toggleMobileMenu(e) {
     }
 
 
-    
-    const originalString = "Hello,World!";
-    const scrambled = scrambleString(originalString);
-    console.log(scrambled);
-    Utils.initFetch("GET", "/booking/"+scrambled).then(
-        res => console.log(res)
-    )
 }
 
 
@@ -83,6 +78,12 @@ export function toggleMobileMenu(e) {
         }
 
         function bookingPage1() {
+            _$$(".package-item").forEach(el => {
+                if(el.classList.contains("active-package")){
+                    bookingDetails.packageType = el.dataset.package;
+                }
+            });
+
             if(bookingDetails.packageType != undefined) {
                 navigate('next');
             } 
@@ -556,11 +557,21 @@ export function startBookingContact(e) {
 
                 isValid = false;
             }
+
+            let inputName = input.name;
+
+            bookingDetails[inputName] = input.value.replace(/^\w/, c => c.toUpperCase()) ;
+
         });
 
-        if(!isValid) {
-            e.preventDefault();
+        if(isValid) {
+            let str = bookingDetails.firstName + "-" + bookingDetails.lastName + "-" + bookingDetails.email + "-" + bookingDetails.phone;
+
+            str = scrambleString(str);
+
+            window.location.href = `/booking/${str}`;
         }
+
 }
 
 
