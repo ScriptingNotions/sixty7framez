@@ -110,7 +110,7 @@
                 <li>Drop-off service</li>
                 <li>3 hours</li>
             </ul>
-            <div class="button-container">
+            <div class="package-button-container">
                 <a href="/booking/package/standard" class="button-style">Start Booking</a>
             </div>
         </div>
@@ -129,7 +129,7 @@
                 <li>Optional drop-off service</li>
                 <li>3 hours</li>
             </ul>
-            <div class="button-container">
+            <div class="package-button-container">
                 <a href="/booking/package/memory-maker" class="button-style">Start Booking</a>
             </div>
         </div>
@@ -151,7 +151,7 @@
                 <li>On-site attendant</li>
                 <li>4 hours</li>
             </ul>
-            <div class="button-container">
+            <div class="package-button-container">
                 <a href="/booking/package/deluxe" class="button-style start-booking-button">Start Booking</a>
             </div>
         </div>
@@ -176,7 +176,7 @@
                 <li>5 hours</li>
             </ul>
 
-            <div class="button-container">
+            <div class="package-button-container">
                 <a href="/booking/package/luxe" class="button-style">Start Booking</a>
             </div>
         </div>

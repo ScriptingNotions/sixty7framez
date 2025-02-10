@@ -15,7 +15,7 @@
 
     <div class="booking-questionaire-container">
         <!-- < //$this->bookingContent; -->
-        <div class="booking-item-1 page active" id="page1">
+        <div class="booking-item-1 booking-item page active" id="page1">
             <div class="package-list">
                 <div class="package-item <?= $this->package === "standard" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
                     <h3>Standard</h3>
@@ -30,7 +30,9 @@
                         <li>Drop-off service</li>
                         <li>3 hours</li>
                     </ul>
-                    <button class="carousel-package" data-few="selectPackage" data-package-type="standard" data-package-time="3">Select package</button>
+                    <div class="package-button-container">
+                        <a class="booking-package-button button-style" data-few="selectPackage" data-package-type="standard" data-package-time="3">Select package</a>
+                    </div>
                 </div>
 
                 <div class="package-item <?= $this->package === "memory-maker" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
@@ -48,7 +50,9 @@
                         <li>Optional drop-off service</li>
                         <li>3 hours</li>
                     </ul>
-                    <button class="carousel-package" data-few="selectPackage"  data-package-type="memory-maker" data-package-time="3">Select package</button>
+                    <div class="package-button-container">
+                        <a class="booking-package-button button-style" data-few="selectPackage"  data-package-type="memory-maker" data-package-time="3">Select package</a>
+                    </div>
                 </div>
 
                 <div class="package-item <?= $this->package === "deluxe" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
@@ -69,7 +73,9 @@
                         <li>On-site attendant</li>
                         <li>4 hours</li>
                     </ul>
-                    <button class="carousel-package" data-few="selectPackage"  data-package-type="deluxe" data-package-time="4">Select package</button>
+                    <div class="package-button-container">
+                        <a class="booking-package-button button-style" data-few="selectPackage"  data-package-type="deluxe" data-package-time="4">Select package</a>
+                    </div>
                 </div>
 
                 <div class="package-item <?= $this->package === "luxe" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
@@ -92,7 +98,9 @@
                         <li>On-site attendant</li>
                         <li>5 hours</li>
                     </ul>
-                    <button class="carousel-package" data-few="selectPackage"  data-package-type="luxe" data-package-time="5">Select package</button>
+                    <div class="package-button-container">
+                        <a class="booking-package-button button-style" data-few="selectPackage"  data-package-type="luxe" data-package-time="5">Select package</a>
+                    </div>
                 </div>
             </div>
             <div class="booking-navigation">
@@ -100,7 +108,7 @@
             </div>
         </div>
 
-        <div class="booking-item-2 page" id="page2">
+        <div class="booking-item-2 booking-item page" id="page2">
             <form class="customer-booking-form">
                 <div class="form-group">
                     <label for="firstName">First Name</label>
@@ -156,7 +164,7 @@
             </div>
         </div>
 
-        <div class="booking-item-3 page" id="page3">
+        <div class="booking-item-3 booking-item page" id="page3">
             <form class="event-booking-form">
                 <div class="form-group">
                     <label for="eventType">Event type</label>
@@ -174,7 +182,7 @@
                     <div class="calendar-header">
                         <span id="prevMonth" data-direction="-1" data-few="changeMonth">←</span>
                         <h2 id="monthYear"></h2>
-                        <span id="nextMonth" data-direction="1" data-few="changeMonth">→</span>
+                        <span id="nextMonth" data-direction="1" data-few="changeMonth"><img src="<?= $this->getIcon("arrow-right.svg") ?>" alt="arrow right icon"></span>
                         <span id="todayButton" data-few="goToToday">Today</span>
                     </div>
 
@@ -298,7 +306,7 @@
             </div>
         </div>
 
-        <div class="booking-item-4 page" id="page4">
+        <div class="booking-item-4 booking-item page" id="page4">
             <div class="field-group">
                 <div class="field-label">Name</div>
                 <div class="field-value-summary-name"><?= $this->firstName . " " . $this->lastName ?></div>
@@ -343,7 +351,7 @@
                 <input type="checkbox" id="booking-terms" name="booking-terms">
                 <div>
                     <label for="summary-terms">I agree to terms and service</label>
-                    <a href="#" class="learn-more-terms">Learn more</a>
+                    <a class="learn-more-terms">Learn more</a>
                 </div>
             </div>
             <div class="booking-navigation">
@@ -352,7 +360,7 @@
             </div>
         </div>
 
-        <div class="booking-item-5 page" id="page5">
+        <div class="booking-item-5 booking-item page" id="page5">
 
         <div id="checkout">
             <!-- Checkout will insert the payment form here -->

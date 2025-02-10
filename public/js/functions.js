@@ -444,7 +444,7 @@ export function toggleMobileMenu(e) {
                 element.classList.remove("active-package");
             });
 
-            e.target.parentElement.classList.add("active-package");
+            e.target.parentElement.parentElement.classList.add("active-package");
 
             bookingDetails.packageType = e.target.dataset.packageType;
             bookingDetails.packageTime = e.target.dataset.packageTime;
@@ -658,8 +658,8 @@ export function generateCalendarDays() {
 
     weekdays.forEach(day => {
         const dayEl = document.createElement('div');
+        dayEl.classList.add("day-of-week");
         dayEl.textContent = day;
-        dayEl.style.fontWeight = 'bold';
         calendarGridEl.appendChild(dayEl);
     });
 
@@ -679,7 +679,11 @@ export function generateCalendarDays() {
         const currentDate = new Date(year, month, day);
 
         dateEl.textContent = day;
+        dateEl.style.position = "absolute";
+        dateEl.style.top = "5px";
+        dateEl.style.right = "5px";
         dateContainer.classList.add('calendar-day');
+        dateContainer.style.position = "relative";
 
         if(currentDate > new Date()) {
             dateContainer.dataset["few"] = "selectDate";

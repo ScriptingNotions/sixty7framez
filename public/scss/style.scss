@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
+// <!-- public/scss/style.scss public/css/style.css --watch -->
+
+
 $primary-color: #000;
 $primary-font: "Geist", serif;
 $secondary-font: "Lora", serif;
@@ -14,6 +17,11 @@ body {
 a {
   text-decoration: none;
   color: #000;
+}
+
+button:hover,
+a:hover {
+  opacity: .9;
 }
 
 form {
@@ -43,9 +51,6 @@ button {
   outline: none;
   transition: background-color 0.3s;
 
-  &:hover {
-    background-color: #424242;
-  }
 }
 
 [data-few] { 
@@ -55,7 +60,7 @@ button {
 .button-style {
   background-color: #323232;
   color: white;
-  padding: 10px 20px;
+  padding: 13px 20px;
   border-radius: 10px;
   cursor: pointer;
   border: none;
@@ -856,6 +861,7 @@ footer {
 .package-list {
   position: relative;
   width: 100%;
+  margin-top: 40px;
 
   .package-item {
     position: relative;
@@ -868,6 +874,15 @@ footer {
     box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.10);
     height: min-content;
     scroll-snap-align: center;
+
+    .package-button-container {
+      display: flex;
+      justify-content: center;
+
+      a {
+        background-color: #3767ea;
+      }
+    }
 
     .button-container {
       a {
@@ -939,13 +954,23 @@ footer {
 }
 
 .active-package {
-  border: 2px solid #938ecd !important;
+  border: 2px solid #5781f5 !important;
   scale: 1.02 !important;
 }
 
 
 /* SUMMARY */
 .booking-item-4 {
+}
+
+.booking-item {
+  .booking-navigation {
+      display: flex;
+      justify-content: end;
+      margin-top: 50px;
+
+
+  }
 }
 
 .field-group {
@@ -1007,7 +1032,8 @@ footer {
 
 .calendar {
   max-width: 500px;
-  margin: 20px auto;
+  margin: 40px auto;
+
 }
 
 .calendar-header {
@@ -1015,7 +1041,11 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  
+  h2 {
+    margin: 0;
+  }
 }
 .calendar-grid {
   width: 100%;
@@ -1062,11 +1092,33 @@ footer {
 .current-day {
   background-color: antiquewhite;
 }
+#todayButton {
+  padding: 5px 10px;
+  border: 1px solid #000;
+  border-radius: 50px;
+  font-size: 14px;
+}
 
 .booking-date-error-msg {
   width: 100%;
 }
 
-.button-container .start-booking-button:hover {
-  background-color: red; /* hover state */
+.next-button-1,
+.next-button-2,
+.next-button-3,
+.next-button-4,
+.next-button-5 {
+  // opacity: 0.9;
+  // pointer-events: none;
+}
+
+.back-button-1,
+.back-button-2,
+.back-button-3,
+.back-button-4,
+.back-button-5 {
+  background-color: transparent;
+  border: 1px solid #000;
+  color: #000;
+  margin-right: 25px;
 }

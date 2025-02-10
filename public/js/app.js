@@ -35,21 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if(element.classList.contains("active-package")) {
                 console.log(element); 
                 element.scrollIntoView(true);
-            } else {
-                return;
-                _$("#carousel").scrollTo({
-                    left: 0,
-                    behavior: "smooth"
-                });
-            }
+            } 
         });
 
 
 
 
-
-        if(carousel.getBoundingClientRect().width === 310) {
 return;
+        if(carousel.getBoundingClientRect().width === 310) {
+
             carousel.style.height = _$$(".package-item")[0].getBoundingClientRect().height + 10 + "px";
 
             const roundDownToTen = (num) => Math.floor(num / 10) * 10;
