@@ -682,6 +682,7 @@ export function generateCalendarDays() {
         dateEl.style.position = "absolute";
         dateEl.style.top = "5px";
         dateEl.style.right = "5px";
+        dateEl.style.fontSize = "14px";
         dateContainer.classList.add('calendar-day');
         dateContainer.style.position = "relative";
 
