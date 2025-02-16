@@ -19,4 +19,3 @@
 <noscript>You need to enable JavaScript to run this app.</noscript>
     <main id="root">
         <section  class="main-content">
-        <?= $this->partial("mobile-nav-menu"); ?>

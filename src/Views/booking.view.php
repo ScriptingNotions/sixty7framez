@@ -180,12 +180,13 @@
                 <div id="calendar" class="form-group calendar">
 
                     <div class="calendar-header">
-                        <span id="prevMonth" data-direction="-1" data-few="changeMonth">←</span>
+                        <span id="prevMonth"><img src="<?= $this->getIcon("chevron-left.svg") ?>" data-direction="-1" data-few="changeMonth" alt="arrow right icon"></span>
                         <h2 id="monthYear"></h2>
-                        <span id="nextMonth" data-direction="1" data-few="changeMonth"><img src="<?= $this->getIcon("arrow-right.svg") ?>" alt="arrow right icon"></span>
+                        <span id="nextMonth"><img src="<?= $this->getIcon("chevron-right.svg") ?>"  data-direction="1" data-few="changeMonth" alt="arrow right icon"></span>
                         <span id="todayButton" data-few="goToToday">Today</span>
                     </div>
 
+                    <div class="days-of-week"></div>
                     <div class="calendar-grid" id="calendarGrid"></div>
                     <div class="booking-date-error-msg"></div>
                     <div id="timeSelector" class="time-selector">
@@ -350,7 +351,7 @@
             <div class="checkbox-group">
                 <input type="checkbox" id="booking-terms" name="booking-terms">
                 <div>
-                    <label for="summary-terms">I agree to terms and service</label>
+                    <span for="summary-terms">I agree to terms and service</span>
                     <a class="learn-more-terms">Learn more</a>
                 </div>
             </div>
@@ -366,9 +367,6 @@
             <!-- Checkout will insert the payment form here -->
         </div>
 
-            <div class="booking-navigation">
-                <button type="button" class="back-button back-button-5" data-few="backBooking">Back</button>
-            </div>
         </div>
     </div>
 </section>

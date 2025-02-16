@@ -184,8 +184,8 @@ export function toggleMobileMenu(e) {
             console.log(isValid);
 
             if(isValid) {
-                _$(".field-value-summary-name").innerText = bookingDetails.firstName;
-                _$(".field-value-summary-phone").innerText = bookingDetails.lastName;
+                _$(".field-value-summary-name").innerText = `${bookingDetails.firstName} ${bookingDetails.lastName}`;
+                _$(".field-value-summary-phone").innerText = bookingDetails.phone;
                 _$(".field-value-summary-email").innerText = bookingDetails.email;
                 _$(".field-value-summary-start").innerText = _$(".field-value-summary-start").innerText = parseInt(bookingDetails.eventTime.split(':')[0]) == 12 
                 ? 12 + ":" + bookingDetails.eventTime.split(':')[1] + " pm"
@@ -294,6 +294,9 @@ export function toggleMobileMenu(e) {
         async function bookingPage4() {
             const terms = _$("#booking-terms");
 
+            _$("#checkout").innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
+
+
             if(terms.checked) {
                 navigate("next");
 
@@ -360,6 +363,8 @@ export function toggleMobileMenu(e) {
                         }
                     });
                     
+                    _$("#checkout").innerHTML = "";
+                    
                     // Mount Checkout
                     checkout.mount('#checkout');
 
@@ -371,8 +376,6 @@ export function toggleMobileMenu(e) {
 
         function bookingPage5() {
             Utils.initFetch("GET", "/booking-payment");
-
-
         }
 
         export function nextBooking() {
@@ -498,6 +501,12 @@ export function toggleMobileMenu(e) {
                     }
                     break;
             }
+
+            if (input.tagName.toLowerCase() === "textarea") {
+                if (input.value.length === 0) {
+                    errorMessage = 'This field should not be empty.';
+                } 
+            }
     
             // Add error message if validation fails
             if (errorMessage) {
@@ -611,6 +620,7 @@ const calendarGridEl = _$('#calendarGrid');
 const selectedDateDisplayEl = _$('#selectedDateDisplay');
 
 export function changeMonth(e) {
+    console.log("ff");
     let delta = parseInt(e.target.dataset.direction);
     let date = new Date();
 
@@ -654,14 +664,18 @@ export function updateMonthYear() {
 
 export function generateCalendarDays() {
     calendarGridEl.innerHTML = '';
+    _$(".days-of-week").innerHTML = "";
+
     const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     weekdays.forEach(day => {
         const dayEl = document.createElement('div');
         dayEl.classList.add("day-of-week");
         dayEl.textContent = day;
-        calendarGridEl.appendChild(dayEl);
+        _$(".days-of-week").appendChild(dayEl);
     });
+
+    //calendarGridEl.appendChild(dayOfWeek);
 
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
@@ -689,7 +703,7 @@ export function generateCalendarDays() {
             dateContainer.dataset["few"] = "selectDate";
             dateContainer.dataset["date"] = currentDate;
         } else {
-            dateContainer.style.backgroundColor = "lightgrey";
+            dateContainer.style.backgroundColor = "#f6f6f6";
         }
 
         if (selectedDate && 
@@ -746,13 +760,54 @@ export function selectDate(e) {
     });
 
     bookingDetails.eventDate = date;
+    _$("#time-select").value = "";
     selectedDate = date;
     renderCalendar();
+}
+
+export function submitContactMsg() {
+    let contactName = _$("#contact-full-name");
+    let contactEmail = _$("#contact-email");
+    let contactMsg = _$("#contact-message");
+    let contactPhone = _$("#contact-phone");
+
+    let isValid = true;
+
+    [
+        contactName,
+        contactEmail,
+        contactMsg,
+        contactPhone
+    ].forEach(input => { 
+        let errorMsg = validateInput(input) ? validateInput(input) : ""; 
+
+        if(errorMsg.outerHTML != undefined) {
+            input.closest(".form-group").insertAdjacentHTML("beforeend", errorMsg.outerHTML);
+
+            isValid = false;
+        }
+    });
+
+    let data = {
+        name: contactName.value,
+        email: contactEmail.value,
+        phone: contactPhone.value,
+        message: contactMsg.value
+    };
+
+    if(isValid) {   
+        Utils.initFetch("POST", "/contact", data).then(res => {
+            console.log(res);
+        });
+    }
+
 }
 
 if(calendarGridEl != undefined) {
     renderCalendar();
 }
+
+
 
 // class Calendar {
 //     constructor(options = {}) {

@@ -68,11 +68,6 @@ class RoutesController extends Controller
 
            // var_dump(json_decode(html_entity_decode($post["bookingData"])));
 
-         
-            
-            $this->pageTitle = "Home";
-            $this->pageFile = "home";
-    
 
         $package === "" ? $this->package = "standard-package" : $this->package = $package;
         
@@ -246,5 +241,20 @@ class RoutesController extends Controller
         $this->returnJsonHttpResponse(200, $stripeService->verifyPayment($sessionId));
     }
 
+    public function postContactMsg() {
+        $post = $this->filter_post();
 
+        
+
+        $mail = new MailService();
+        $mail = $mail->send($post["email"], "Contact message", "Name: {$post["name"]} Email: {$post["email"]} Phone: {$post["phone"]} Message: {$post["message"]}");
+
+        var_dump($mail);
+
+        if($mail) {
+            $this->returnJsonHttpResponse(200, ["message" => "Message sent"]);
+        } else {
+            $this->returnJsonHttpResponse(500, ["message" => "Message not sent"]);
+        }
+    }
 }
