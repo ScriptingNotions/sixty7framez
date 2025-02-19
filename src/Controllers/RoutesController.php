@@ -62,8 +62,7 @@ class RoutesController extends Controller
 
         $post = count($_POST) > 0 ? $this->filter_post() : false;
 
-        $date = new \DateTime('now', new \DateTimeZone('America/New_York'));
-        $this->isDST = (bool)$date->format('I');
+
         
 
            // var_dump(json_decode(html_entity_decode($post["bookingData"])));
@@ -141,6 +140,10 @@ class RoutesController extends Controller
 
         $this->bookingDetails = json_decode(html_entity_decode($post['data']), true);
 
+        $date = new \DateTime($this->bookingDetails['eventDate'], new \DateTimeZone('America/New_York'));
+        $this->isDST = (bool)$date->format('I');
+        $DSTTime = $this->isDST ? "04:00" : "05:00";
+
         $packageTime = $this->bookingDetails['packageTime'];
         $time = explode(":", $this->bookingDetails['eventTime']);
 
@@ -148,14 +151,20 @@ class RoutesController extends Controller
     
         $time[0] = $hour + $packageTime;
 
-        //var_dump(implode(":", $time));
-
+        var_dump('Photo booth event with: ' . $this->bookingDetails['firstName']." ".$this->bookingDetails['lastName'] . " at " . $this->bookingDetails['venueName']. " Event Type: " . $this->bookingDetails['eventType'] . $this->bookingDetails['eventTypeOther'] != "" ? $this->bookingDetails['eventTypeOther'] : " " . " Phone: " . $this->bookingDetails['phone'] . " Email: " . $this->bookingDetails['email'] . " Package: " . $this->bookingDetails['package'] . " ID: ".$this->bookingDetails['orderId']);
         $eventData = [
             'summary' => 'Photo booth event',
             'location' => $this->bookingDetails['venueAddress']  . " " . $this->bookingDetails['venueCity'] . ", " . $this->bookingDetails['venueState'] . " " . $this->bookingDetails['venueZip'] ,
-            'description' => 'Photo booth event with: ' . $this->bookingDetails['firstName']." ".$this->bookingDetails['lastName'] . " at " . $this->bookingDetails['venueName']. " ID: ".$this->bookingDetails['orderId'],
+            'description' => 'Photo booth event with: ' . 
+                $this->bookingDetails['firstName'] . " " . $this->bookingDetails['lastName'] . " at " . $this->bookingDetails['venueName'] . 
+                " Event Type: " . $this->bookingDetails['eventType'] . 
+                ($this->bookingDetails['eventTypeOther'] != "" ? $this->bookingDetails['eventTypeOther'] : " ") . 
+                " Phone: " . $this->bookingDetails['phone'] . 
+                " Email: " . $this->bookingDetails['email'] . 
+                " Package: " . $this->bookingDetails['packageType'] . 
+                " ID: " . $this->bookingDetails['orderId'],
             'start' => [
-                'dateTime' => $this->bookingDetails['eventDate']."T".$this->bookingDetails['eventTime'], // Specify the start time in ISO 8601 format
+                'dateTime' => $this->bookingDetails['eventDate']."T".$this->bookingDetails['eventTime'] . "-" . $DSTTime, // Specify the start time in ISO 8601 format
                 'timeZone' => 'America/New_York',
             ],
             'end' => [
@@ -249,12 +258,10 @@ class RoutesController extends Controller
         $mail = new MailService();
         $mail = $mail->send($post["email"], "Contact message", "Name: {$post["name"]} Email: {$post["email"]} Phone: {$post["phone"]} Message: {$post["message"]}");
 
-        var_dump($mail);
-
         if($mail) {
-            $this->returnJsonHttpResponse(200, ["message" => "Message sent"]);
+            $this->returnJsonHttpResponse(200, ["message_sent" => true, "message_HTML" => $this->renderView($this->component("thank-you-message")) ]);
         } else {
-            $this->returnJsonHttpResponse(500, ["message" => "Message not sent"]);
+            $this->returnJsonHttpResponse(500, ["message_sent" => false]);
         }
     }
 }

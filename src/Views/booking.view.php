@@ -1,7 +1,5 @@
 <?= $this->partial("header"); ?>
 
-<?= $this->partial("nav"); ?>
-
 <section class="booking-section-1">
     <h2>Booking <span>.</span></h2>
     <p>Ready to make your event unforgettable? Fill out the form below, and we’ll be in touch soon!</p>
@@ -177,6 +175,11 @@
                     </select>
                 </div>
 
+                <div class="form-group eventTypeOther" style="display: none;">
+                    <label for="eventTypeOther">Other</label>
+                    <input name="eventTypeOther" id="eventTypeOther"></input>
+                </div>
+
                 <div id="calendar" class="form-group calendar">
 
                     <div class="calendar-header">
@@ -192,33 +195,33 @@
                     <div id="timeSelector" class="time-selector">
                         <select name="eventTime" id="time-select">
                             <option value="">Select a time</option>
-                            <option value="07:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">7:00 AM</option>
-                            <option value="07:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">7:30 AM</option>
-                            <option value="08:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">8:00 AM</option>
-                            <option value="08:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">8:30 AM</option>
-                            <option value="09:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">9:00 AM</option>
-                            <option value="09:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">9:30 AM</option>
-                            <option value="10:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">10:00 AM</option>
-                            <option value="10:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">10:30 AM</option>
-                            <option value="11:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">11:00 AM</option>
-                            <option value="11:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">11:30 AM</option>
-                            <option value="12:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">12:00 PM</option>
-                            <option value="12:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">12:30 PM</option>
-                            <option value="13:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">1:00 PM</option>
-                            <option value="13:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">1:30 PM</option>
-                            <option value="14:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">2:00 PM</option>
-                            <option value="14:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">2:30 PM</option>
-                            <option value="15:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">3:00 PM</option>
-                            <option value="15:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">3:30 PM</option>
-                            <option value="16:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">4:00 PM</option>
-                            <option value="16:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">4:30 PM</option>
-                            <option value="17:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">5:00 PM</option>
-                            <option value="17:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">5:30 PM</option>
-                            <option value="18:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">6:00 PM</option>
-                            <option value="18:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">6:30 PM</option>
-                            <option value="19:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">7:00 PM</option>
-                            <option value="19:30:00-<?= $this->isDST ? "04:00" : "05:00" ?>">7:30 PM</option>
-                            <option value="20:00:00-<?= $this->isDST ? "04:00" : "05:00" ?>">8:00 PM</option>
+                            <option value="07:00:00">7:00 AM</option>
+                            <option value="07:30:00">7:30 AM</option>
+                            <option value="08:00:00">8:00 AM</option>
+                            <option value="08:30:00">8:30 AM</option>
+                            <option value="09:00:00">9:00 AM</option>
+                            <option value="09:30:00">9:30 AM</option>
+                            <option value="10:00:00">10:00 AM</option>
+                            <option value="10:30:00">10:30 AM</option>
+                            <option value="11:00:00">11:00 AM</option>
+                            <option value="11:30:00">11:30 AM</option>
+                            <option value="12:00:00">12:00 PM</option>
+                            <option value="12:30:00">12:30 PM</option>
+                            <option value="13:00:00">1:00 PM</option>
+                            <option value="13:30:00">1:30 PM</option>
+                            <option value="14:00:00">2:00 PM</option>
+                            <option value="14:30:00">2:30 PM</option>
+                            <option value="15:00:00">3:00 PM</option>
+                            <option value="15:30:00">3:30 PM</option>
+                            <option value="16:00:00">4:00 PM</option>
+                            <option value="16:30:00">4:30 PM</option>
+                            <option value="17:00:00">5:00 PM</option>
+                            <option value="17:30:00">5:30 PM</option>
+                            <option value="18:00:00">6:00 PM</option>
+                            <option value="18:30:00">6:30 PM</option>
+                            <option value="19:00:00">7:00 PM</option>
+                            <option value="19:30:00">7:30 PM</option>
+                            <option value="20:00:00">8:00 PM</option>
                         </select>
                     </div>
                 </div>
@@ -320,32 +323,37 @@
 
             <div class="field-group">
                 <div class="field-label">Email</div>
-                <div class="field-value-summary-email"><?= $this->email ?></div>
+                <div class="field-value-summary-email"></div>
+            </div>
+
+            <div class="field-group">
+                <div class="field-label">Date</div>
+                <div class="field-value-summary-date"></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Start</div>
-                <div class="field-value-summary-start"><?= $this->eventTime ?></div>
+                <div class="field-value-summary-start"></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Hours</div>
-                <div class="field-value-summary-hours"><?= $this->eventTime ?></div>
+                <div class="field-value-summary-hours"></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Package</div>
-                <div class="field-value-summary-package"><?= $this->package ?></div>
+                <div class="field-value-summary-package"></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Venue Name</div>
-                <div class="field-value-summary-venue-name"><?= $this->venueName ?></div>
+                <div class="field-value-summary-venue-name"></div>
             </div>
 
             <div class="field-group">
                 <div class="field-label">Venue Address</div>
-                <div class="field-value-summary-venue-address"><?= $this->venueAddress ?></div>
+                <div class="field-value-summary-venue-address"></div>
             </div>
 
             <div class="checkbox-group">

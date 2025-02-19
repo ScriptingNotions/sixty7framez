@@ -1,5 +1,4 @@
 <nav>
-<?= $this->pageTitle ?>
     <div class="nav-container">
         <a href="/">
             <img class="nav-logo" src="<?= $this->getImage("logo-small.svg") ?>" alt="brand logo">

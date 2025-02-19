@@ -1,7 +1,5 @@
 <?= $this->partial("header"); ?>
 
-<?= $this->partial("nav"); ?>
-
 <div class="process-wrapper">
     <h2>The Process <span>:</span></h2>
 

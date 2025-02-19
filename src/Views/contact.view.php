@@ -1,7 +1,5 @@
 <?= $this->partial("header"); ?>
 
-<?= $this->partial("nav"); ?>
-
 <div class="contact-container">
     <section class="contact-section-1">
         <h2>Contact <span>.</span></h2>

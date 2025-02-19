@@ -1,7 +1,5 @@
 <?= $this->partial("header"); ?>
 
-<?= $this->partial("nav"); ?>
-
 <div class="about-content">
 
     <section class="about-section-1">

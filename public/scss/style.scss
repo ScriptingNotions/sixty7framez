@@ -123,7 +123,7 @@ nav {
 
 .main-content {
   padding: 15px;
-  max-width: 1475px;;
+  //max-width: 1475px;;
   margin: 0 auto;
 
 
@@ -587,6 +587,7 @@ footer {
 
 .process-wrapper {
   margin-top: clamp(60px, 12vw, 50px);
+  max-width: 1024px;
 
   h2 {
     font-family: $secondary-font;
@@ -730,6 +731,8 @@ footer {
 .contact-section-2 {
   margin-top: 50px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
 
   .contact-form {
@@ -740,9 +743,38 @@ footer {
     }
   }
 
+  .thank-you-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
 
+    .thank-you-message-container {
+      display: flex;
+      justify-content: center;
 
+      h1 {
+        font-weight: 600;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin: 30px 0;
+      }
 
+      p {
+        text-align: center;
+        font-size: clamp(1rem, 3vw, 1.5rem);
+        line-height: 1.5;
+      }
+
+      a {
+        color: #fff;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin-top: 40px;
+        background-color: #000;
+      }
+    }
+  }
 
   textarea {
     resize: none;
@@ -1291,9 +1323,16 @@ footer {
   }
 }
 
+@media (min-width: 1024px) {
+  .hero-section {
+    height: calc(100vh - 110px) !important;
+  } 
+}
+
+
 @media (min-width: 1250px) {
   .nav-container {
-    padding: 15px 35px;
+    padding: 15px 45px;
   }
 
   .content { 
@@ -1343,3 +1382,4 @@ footer {
 .active-page {
   font-weight: 600;
 }
+

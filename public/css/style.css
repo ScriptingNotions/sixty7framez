@@ -107,7 +107,6 @@ nav .menu-container span {
 
 .main-content {
   padding: 15px;
-  max-width: 1475px;
   margin: 0 auto;
 }
 .main-content .mobile-menu-container {
@@ -493,6 +492,7 @@ footer {
 /* THE PROCESS */
 .process-wrapper {
   margin-top: clamp(60px, 12vw, 50px);
+  max-width: 1024px;
 }
 .process-wrapper h2 {
   font-family: "Lora", serif;
@@ -646,6 +646,8 @@ footer {
 .contact-section-2 {
   margin-top: 50px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 .contact-section-2 .contact-form {
@@ -653,6 +655,34 @@ footer {
 }
 .contact-section-2 .contact-form .form-group {
   margin-bottom: 20px;
+}
+.contact-section-2 .thank-you-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.contact-section-2 .thank-you-container .thank-you-message-container {
+  display: flex;
+  justify-content: center;
+}
+.contact-section-2 .thank-you-container .thank-you-message-container h1 {
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 30px 0;
+}
+.contact-section-2 .thank-you-container .thank-you-message-container p {
+  text-align: center;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1.5;
+}
+.contact-section-2 .thank-you-container .thank-you-message-container a {
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-top: 40px;
+  background-color: #000;
 }
 .contact-section-2 textarea {
   resize: none;
@@ -1157,9 +1187,14 @@ footer {
     margin-top: 0 !important;
   }
 }
+@media (min-width: 1024px) {
+  .hero-section {
+    height: calc(100vh - 110px) !important;
+  }
+}
 @media (min-width: 1250px) {
   .nav-container {
-    padding: 15px 35px;
+    padding: 15px 45px;
   }
   .content {
     padding: 0 70px;
