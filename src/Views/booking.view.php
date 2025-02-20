@@ -37,7 +37,7 @@
                     <h3>Memory Maker</h3>
                     <p>$550</p>
                     <ul>
-                        <li>Open-air booth</li>
+                        <li>Open-air booth and 360 booth</li>
                         <li>Customized Tap to Start screen</li>
                         <li>Fun props (hats, glasses, signs, etc.)</li>
                         <li>Unlimited photo sessions</li>
@@ -57,7 +57,7 @@
                     <h3>Deluxe</h3>
                     <p>$750</p>
                     <ul>
-                        <li>Open-air booth</li>
+                        <li>Open-air booth and 360 booth</li>
                         <li>Choice of premium backdrop</li>
                         <li>Premium props</li>
                         <li>Customized Tap to Start screen and LED Ring</li>
@@ -80,7 +80,7 @@
                     <h3>Luxe</h3>
                     <p>$1,100</p>
                     <ul>
-                        <li>Open-air booth</li>
+                        <li>Open-air booth and 360 booth</li>
                         <li>Choice of premium backdrop</li>
                         <li>Custom prop set tailored to your event (theme options available)</li>
                         <li>Customized Tap to Start screen and LED Ring</li>
