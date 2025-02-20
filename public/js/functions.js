@@ -78,6 +78,22 @@ export function toggleMobileMenu(e) {
         }
 
         function bookingPage1() {
+            _$("#eventType").addEventListener('change', (e) => {
+                console.log(e.target.value);
+                if (e.target.value === "Other") {
+                    _$(".eventTypeOther").style.display = "flex";
+                } 
+                // If using a standard select element
+                else if (e.target.value === "Other") {
+                    _$(".eventTypeOther").style.display = "flex";
+                }
+                else {
+                    _$(".eventTypeOther").style.display = "none";
+                    _$("#eventTypeOther").value = "";
+
+                }
+            });
+
             _$$(".package-item").forEach(el => {
                 if(el.classList.contains("active-package")){
                     bookingDetails.packageType = el.dataset.package;
@@ -115,6 +131,7 @@ export function toggleMobileMenu(e) {
 
         function bookingPage3() {
             const eventType = _$("#eventType");
+            const eventTypeOther = _$("#eventTypeOther");
             const timeSelect = _$("#time-select");
             const venueName = _$("#venueName");
             const venueAddress = _$("#venueAddress");
@@ -145,6 +162,7 @@ export function toggleMobileMenu(e) {
             });
 
             [
+                eventTypeOther,
                 venueZip,
                 venueCity,
                 venueAddress,
@@ -184,8 +202,20 @@ export function toggleMobileMenu(e) {
             console.log(isValid);
 
             if(isValid) {
-                _$(".field-value-summary-name").innerText = bookingDetails.firstName;
-                _$(".field-value-summary-phone").innerText = bookingDetails.lastName;
+                const dateString = bookingDetails.eventDate;
+                const date = new Date(dateString);
+
+                // Format: Wednesday, February 26, 2025
+                const readableDate = date.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+                });
+
+                _$(".field-value-summary-date").innerText = readableDate;
+                _$(".field-value-summary-name").innerText = `${bookingDetails.firstName} ${bookingDetails.lastName}`;
+                _$(".field-value-summary-phone").innerText = bookingDetails.phone;
                 _$(".field-value-summary-email").innerText = bookingDetails.email;
                 _$(".field-value-summary-start").innerText = _$(".field-value-summary-start").innerText = parseInt(bookingDetails.eventTime.split(':')[0]) == 12 
                 ? 12 + ":" + bookingDetails.eventTime.split(':')[1] + " pm"
@@ -294,6 +324,9 @@ export function toggleMobileMenu(e) {
         async function bookingPage4() {
             const terms = _$("#booking-terms");
 
+            _$("#checkout").innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
+
+
             if(terms.checked) {
                 navigate("next");
 
@@ -360,6 +393,8 @@ export function toggleMobileMenu(e) {
                         }
                     });
                     
+                    _$("#checkout").innerHTML = "";
+                    
                     // Mount Checkout
                     checkout.mount('#checkout');
 
@@ -371,8 +406,6 @@ export function toggleMobileMenu(e) {
 
         function bookingPage5() {
             Utils.initFetch("GET", "/booking-payment");
-
-
         }
 
         export function nextBooking() {
@@ -457,60 +490,73 @@ export function toggleMobileMenu(e) {
             const formGroup = input.closest('.form-group');
             let errorMessage = '';
     
-            // Remove any existing error messages
-            const existingError = formGroup.querySelector('.error-text');
-            if (existingError) {
-                existingError.remove();
-            }
-    
-            // Trim the input value
-            const value = input.value.trim();
-    
-            // Validation based on input type
-            switch(input.type) {
-                case 'text':
-                    // Name validation (only letters and spaces)
-                    if (value.length === 0) {
+            console.log("Display: ", input.style.display);
+
+            if(formGroup.style.display != "none") {
+        
+                // Remove any existing error messages
+                const existingError = formGroup.querySelector('.error-text');
+                if (existingError) {
+                    existingError.remove();
+                }
+        
+                // Trim the input value
+                const value = input.value.trim();
+        
+                // Validation based on input type
+                switch(input.type) {
+                    case 'text':
+                        // Name validation (only letters and spaces)
+                        if (value.length === 0) {
+                            errorMessage = 'This field should not be empty.';
+                        } 
+                        break;
+                    
+                    case 'date':
+                        // Name validation (only letters and spaces)
+                        if (value.length === 0) {
+                            errorMessage = 'This field should not be empty.';
+                        } 
+                        break;
+        
+                    case 'email':
+                        // Email validation with regex
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(value)) {
+                            errorMessage = 'Please enter a valid email address.';
+                        }
+                        break;
+        
+                    case 'tel':
+                        // Phone number validation (allows different formats)
+                        const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+                        if (!phoneRegex.test(value)) {
+                            errorMessage = 'Please enter a valid phone number.';
+                        }
+                        break;
+                }
+
+                if (input.tagName.toLowerCase() === "textarea") {
+                    if (input.value.length === 0) {
                         errorMessage = 'This field should not be empty.';
                     } 
-                    break;
-                
-                case 'date':
-                    // Name validation (only letters and spaces)
-                    if (value.length === 0) {
-                        errorMessage = 'This field should not be empty.';
-                    } 
-                    break;
-    
-                case 'email':
-                    // Email validation with regex
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(value)) {
-                        errorMessage = 'Please enter a valid email address.';
-                    }
-                    break;
-    
-                case 'tel':
-                    // Phone number validation (allows different formats)
-                    const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-                    if (!phoneRegex.test(value)) {
-                        errorMessage = 'Please enter a valid phone number.';
-                    }
-                    break;
+                }
+        
+                // Add error message if validation fails
+                if (errorMessage) {
+                    const errorElement = document.createElement('div');
+                    errorElement.classList.add('error-text');
+                    errorElement.textContent = errorMessage;
+                    errorElement.style.color = 'red';
+                    errorElement.style.fontSize = '0.8em';
+                    errorElement.style.marginTop = '5px';
+                    //formGroup.appendChild(errorElement);
+                    return errorElement;
+                }
+
+
             }
-    
-            // Add error message if validation fails
-            if (errorMessage) {
-                const errorElement = document.createElement('div');
-                errorElement.classList.add('error-text');
-                errorElement.textContent = errorMessage;
-                errorElement.style.color = 'red';
-                errorElement.style.fontSize = '0.8em';
-                errorElement.style.marginTop = '5px';
-                //formGroup.appendChild(errorElement);
-                return errorElement;
-            }
-    
+        
             return true;
         }
 
@@ -611,6 +657,7 @@ const calendarGridEl = _$('#calendarGrid');
 const selectedDateDisplayEl = _$('#selectedDateDisplay');
 
 export function changeMonth(e) {
+    console.log("ff");
     let delta = parseInt(e.target.dataset.direction);
     let date = new Date();
 
@@ -654,14 +701,18 @@ export function updateMonthYear() {
 
 export function generateCalendarDays() {
     calendarGridEl.innerHTML = '';
+    _$(".days-of-week").innerHTML = "";
+
     const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     weekdays.forEach(day => {
         const dayEl = document.createElement('div');
         dayEl.classList.add("day-of-week");
         dayEl.textContent = day;
-        calendarGridEl.appendChild(dayEl);
+        _$(".days-of-week").appendChild(dayEl);
     });
+
+    //calendarGridEl.appendChild(dayOfWeek);
 
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
@@ -690,7 +741,7 @@ export function generateCalendarDays() {
             dateContainer.dataset["few"] = "selectDate";
             dateContainer.dataset["date"] = currentDate;
         } else {
-            dateContainer.style.backgroundColor = "lightgrey";
+            dateContainer.style.backgroundColor = "#f6f6f6";
         }
 
         if (selectedDate && 
@@ -738,22 +789,76 @@ export function selectDate(e) {
                     
                     el?.previousElementSibling ? el.previousElementSibling.disabled = true : "";
                     el?.previousElementSibling?.previousElementSibling ? el.previousElementSibling.previousElementSibling.disabled = true : "";
+                    el?.previousElementSibling?.previousElementSibling?.previousElementSibling ? el.previousElementSibling.previousElementSibling.previousElementSibling.disabled = true : "";
+                    el?.previousElementSibling?.previousElementSibling?.previousElementSibling?.previousElementSibling ? el.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.disabled = true : "";
                     el.disabled = true;
                     el?.nextElementSibling ? el.nextElementSibling.disabled = true : "";
                     el?.nextElementSibling?.nextElementSibling ? el.nextElementSibling.nextElementSibling.disabled = true : "";
+                    el?.nextElementSibling?.nextElementSibling?.nextElementSibling ? el.nextElementSibling.nextElementSibling.nextElementSibling.disabled = true : "";
+                    el?.nextElementSibling?.nextElementSibling?.nextElementSibling?.nextElementSibling ? el.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.disabled = true : "";
+                    
                 }
             });
         }
     });
 
     bookingDetails.eventDate = date;
+    _$("#time-select").value = "";
     selectedDate = date;
     renderCalendar();
+}
+
+export function submitContactMsg() {
+    let contactName = _$("#contact-full-name");
+    let contactEmail = _$("#contact-email");
+    let contactMsg = _$("#contact-message");
+    let contactPhone = _$("#contact-phone");
+
+    let isValid = true;
+
+    [
+        contactName,
+        contactEmail,
+        contactMsg,
+        contactPhone
+    ].forEach(input => { 
+        let errorMsg = validateInput(input) ? validateInput(input) : ""; 
+
+        if(errorMsg.outerHTML != undefined) {
+            input.closest(".form-group").insertAdjacentHTML("beforeend", errorMsg.outerHTML);
+
+            isValid = false;
+        }
+    });
+
+    let data = {
+        name: contactName.value,
+        email: contactEmail.value,
+        phone: contactPhone.value,
+        message: contactMsg.value
+    };
+
+    if(isValid) {   
+        _$(".contact-section-2").innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
+
+        Utils.initFetch("POST", "/contact", data).then(res => {
+            console.log(res);
+            res = JSON.parse(res);
+
+            if(res.message_sent) {
+               
+                _$(".contact-section-2").innerHTML = res.message_HTML;
+            }
+        });
+    }
+
 }
 
 if(calendarGridEl != undefined) {
     renderCalendar();
 }
+
+
 
 // class Calendar {
 //     constructor(options = {}) {

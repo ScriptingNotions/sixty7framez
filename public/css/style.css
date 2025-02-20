@@ -12,7 +12,7 @@ a {
 
 button:hover,
 a:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 form {
@@ -95,8 +95,8 @@ nav .nav-container {
   padding: 15px;
 }
 nav .nav-logo {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   cursor: pointer;
 }
 nav .menu-container span {
@@ -105,14 +105,9 @@ nav .menu-container span {
   cursor: pointer;
 }
 
-.main-content {
-  padding: 15px;
-  max-width: 1024px;
-  margin: 0 auto;
-}
-.main-content .mobile-menu-container {
+.mobile-menu-container {
   display: none;
-  width: 85%;
+  width: 300px;
   background: white;
   box-shadow: 0 32px 64px 0 rgba(0, 0, 0, 0.2), inset 0 1px 0 0 #fff, inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
   border: 1px solid #E6E6E6;
@@ -121,27 +116,35 @@ nav .menu-container span {
   position: absolute;
   z-index: 10;
   left: 50%;
-  top: 80px;
+  top: 100px;
   transform: translateX(-50%);
   border: 1px solid #e9e9e9;
   position: fixed;
 }
-.main-content .mobile-menu-container li {
-  margin-bottom: 20px;
-  font-weight: 600;
+.mobile-menu-container li {
   cursor: pointer;
   font-size: 16px;
-}
-.main-content .mobile-menu-container div {
   display: flex;
   justify-content: center;
 }
-.main-content .mobile-menu-container div button a {
+.mobile-menu-container li:not(:last-child) {
+  margin-bottom: 20px;
+}
+.mobile-menu-container div {
+  display: flex;
+  justify-content: center;
+}
+.mobile-menu-container div button a {
   color: #fff;
+}
+
+.main-content {
+  padding: 15px;
+  margin: 0 auto;
 }
 .main-content .hero-section {
   border-radius: calc(0.5vw + 0.5rem);
-  height: calc(246px + 15vw);
+  height: clamp(280px, 48vw, 730px);
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -163,7 +166,7 @@ nav .menu-container span {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .main-content .hero-section .hero-content {
   position: absolute;
@@ -172,28 +175,36 @@ nav .menu-container span {
 }
 .main-content .hero-section .hero-content h1 {
   font-family: "Lora", serif;
-  font-size: calc(0.5vw + 1.5rem);
+  font-size: clamp(2rem, 4vw, 4rem);
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: clamp(15px, 2vw, 50px);
   color: #fff;
 }
 .main-content .hero-section .hero-content p {
   color: #fff;
   font-size: calc(1vw + 0.7rem);
   line-height: 1.2;
-  margin-bottom: 10px;
-}
-.main-content .hero-section .hero-content .button-container {
-  display: flex;
-  align-items: center;
-  margin: 20px 0;
+  margin-bottom: clamp(15px, 4vw, 70px);
 }
 .main-content .hero-section .hero-content .button-container a {
-  color: #fff;
-  font-weight: 500;
-  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: clamp(15px, 4vw, 70px);
+  background-color: #fff;
+  color: #000;
+  width: clamp(100px, 25vw, 180px);
+  height: clamp(30px, 12vw, 52px);
+  display: flex;
+  justify-content: center;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
 }
-.main-content .hero-section .hero-content .button-container .button-arrow-container {
+.main-content .hero-section .hero-content .button-container a:hover {
+  background-color: #f0f0f0;
+  opacity: 1 !important;
+}
+.main-content .hero-section .hero-content .button-container a .button-arrow-container {
   background-color: #fff;
   border-radius: 180px;
   width: 32px;
@@ -204,40 +215,44 @@ nav .menu-container span {
   margin-right: 15px;
 }
 .main-content .home-section-1 {
-  margin-top: calc(1vw + 4rem);
+  margin-top: clamp(60px, 12vw, 180px);
 }
 .main-content .home-section-1 h2 {
   font-family: "Lora", serif;
-  font-size: calc(1vw + 1.2rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 500;
-  margin-bottom: calc(1vw + 2rem);
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
   text-align: center;
+  color: #3e3e3e;
 }
 .main-content .home-section-1 h2 span {
   font-weight: 700;
   color: #8473FC;
 }
 .main-content .home-section-1 p {
-  font-size: 1rem;
+  font-size: clamp(1rem, 2vw, 1.3rem);
   line-height: 1.5;
   text-align: center;
+  max-width: 871px;
+  margin: 0 auto;
 }
 .main-content .home-section-2 {
-  margin-top: calc(1vw + 4rem);
+  margin-top: clamp(60px, 12vw, 180px);
 }
 .main-content .home-section-2 h2 {
   font-family: "Lora", serif;
-  font-size: calc(1vw + 1.2rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 500;
-  margin-bottom: calc(1vw + 2rem);
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
   text-align: left;
+  color: #3e3e3e;
 }
 .main-content .home-section-2 h2 span {
   font-weight: 700;
   color: #8473FC;
 }
 .main-content .home-section-2 .feature-item {
-  background-color: #F5F5F5;
+  background-color: #EFF7FF;
   margin: 20px 0;
   padding: 15px 20px;
   border-radius: 10px;
@@ -256,14 +271,18 @@ nav .menu-container span {
   margin-top: 15px;
 }
 .main-content .home-section-3 {
-  margin-top: calc(1vw + 4rem);
+  margin-top: clamp(60px, 12vw, 180px);
+}
+.main-content .home-section-3 .booth-360 {
+  margin-top: clamp(60px, 10vw, 120px);
 }
 .main-content .home-section-3 h2 {
   font-family: "Lora", serif;
-  font-size: calc(1vw + 1.2rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 500;
-  margin-bottom: calc(1vw + 2rem);
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
   text-align: center;
+  color: #3e3e3e;
 }
 .main-content .home-section-3 h2 span {
   font-weight: 700;
@@ -274,20 +293,22 @@ nav .menu-container span {
   border-radius: calc(0.5vw + 0.5rem);
 }
 .main-content .home-section-3 p {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   line-height: 1.5;
   text-align: left;
   margin-top: 15px;
+  text-align: left;
 }
 .main-content .home-section-4 {
-  margin-top: calc(1vw + 4rem);
+  margin-top: clamp(60px, 12vw, 180px);
 }
 .main-content .home-section-4 h2 {
   font-family: "Lora", serif;
-  font-size: calc(1vw + 1.2rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 500;
-  margin-bottom: calc(1vw + 2rem);
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
   text-align: left;
+  color: #3e3e3e;
 }
 .main-content .home-section-4 h2 span {
   font-weight: 700;
@@ -298,20 +319,22 @@ nav .menu-container span {
   justify-content: center;
 }
 .main-content .home-section-5 {
-  margin-top: calc(1vw + 4rem);
+  margin-top: clamp(60px, 12vw, 180px);
 }
 .main-content .home-section-5 .start-booking-container {
-  width: 85%;
+  min-width: 280px;
   background-color: #F5F1ED;
   margin: 0 auto;
   border-radius: calc(0.5vw + 0.5rem);
-  padding: 20px;
+  padding: 30px 40px;
+  max-width: 620px;
 }
 .main-content .home-section-5 .start-booking-container h2 {
   text-align: center;
   font-weight: 600;
-  font-size: calc(1vw + 1rem);
-  margin-bottom: calc(1vw + 2rem);
+  font-size: clamp(1.5rem, 3vw, 1.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
+  color: #3e3e3e;
 }
 .main-content .home-section-5 .start-booking-container input {
   border: none;
@@ -321,13 +344,15 @@ nav .menu-container span {
   justify-content: center;
 }
 .main-content .home-section-6 {
-  margin-top: calc(1vw + 4rem);
+  margin: clamp(60px, 12vw, 180px) auto 0 auto;
+  max-width: 1024px;
 }
 .main-content .home-section-6 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2vw, 2rem);
   font-weight: 500;
-  margin-bottom: calc(1vw + 2rem);
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
+  color: #3e3e3e;
 }
 .main-content .home-section-6 h2 span {
   font-weight: 700;
@@ -358,7 +383,7 @@ nav .menu-container span {
 
 /* FAQ Questions */
 .FAQ h3 {
-  font-size: 16px;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: 500;
   color: #333;
   margin: 0;
@@ -369,7 +394,7 @@ nav .menu-container span {
 
 /* FAQ Answers */
 .FAQ p {
-  font-size: 14px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   color: #666;
   margin: 0;
   max-height: 0;
@@ -470,14 +495,16 @@ footer {
 
 /* THE PROCESS */
 .process-wrapper {
-  margin-top: 70px;
+  margin-top: clamp(60px, 12vw, 50px);
+  max-width: 1024px;
 }
 .process-wrapper h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 500;
   margin-bottom: 20px;
   text-align: left;
+  color: #3e3e3e;
 }
 .process-wrapper h2 span {
   font-weight: 700;
@@ -531,7 +558,7 @@ footer {
 .process-wrapper .process-section-3 h4,
 .process-wrapper .process-section-4 h4,
 .process-wrapper .process-section-5 h4 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 15px;
 }
@@ -554,21 +581,27 @@ footer {
 
 /* THE PROCESS END */
 /* ABOUT */
-.about-section-1,
+.about-content {
+  margin: clamp(60px, 12vw, 50px) auto;
+  max-width: 1024px;
+}
+
 .about-section-2,
 .about-section-3,
 .about-section-4 {
-  margin-top: 70px;
+  margin-top: clamp(1.5rem, 8vw, 8rem);
 }
+
 .about-section-1 h2,
 .about-section-2 h2,
 .about-section-3 h2,
 .about-section-4 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
   text-align: center;
+  color: #3e3e3e;
 }
 .about-section-1 h2 span,
 .about-section-2 h2 span,
@@ -590,31 +623,35 @@ footer {
 
 /* ABOUT END */
 /* CONTACT */
-.contact-section-1 {
-  margin-top: 70px;
+.contact-container {
+  margin: clamp(60px, 12vw, 50px) auto !important;
+  max-width: 1024px;
 }
+
 .contact-section-1 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
   text-align: center;
+  color: #3e3e3e;
 }
 .contact-section-1 h2 span {
   font-weight: 700;
   color: #8473FC;
 }
 .contact-section-1 p {
-  font-size: 1rem;
+  font-size: clamp(1rem, 2vw, 1.3rem);
   line-height: 1.5;
-  text-align: left;
+  text-align: center;
   margin-top: 15px;
-  color: #323232;
 }
 
 .contact-section-2 {
   margin-top: 50px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 .contact-section-2 .contact-form {
@@ -622,6 +659,34 @@ footer {
 }
 .contact-section-2 .contact-form .form-group {
   margin-bottom: 20px;
+}
+.contact-section-2 .thank-you-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.contact-section-2 .thank-you-container .thank-you-message-container {
+  display: flex;
+  justify-content: center;
+}
+.contact-section-2 .thank-you-container .thank-you-message-container h1 {
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 30px 0;
+}
+.contact-section-2 .thank-you-container .thank-you-message-container p {
+  text-align: center;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1.5;
+}
+.contact-section-2 .thank-you-container .thank-you-message-container a {
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-top: 40px;
+  background-color: #000;
 }
 .contact-section-2 textarea {
   resize: none;
@@ -638,10 +703,12 @@ footer {
 }
 
 .contact-section-3 {
-  margin-top: 70px;
+  margin: 70px auto;
   padding: 15px;
   border-radius: 10px;
   background-color: #F5F1ED;
+  min-width: 280px;
+  max-width: 620px;
 }
 .contact-section-3 .contact-details {
   text-align: center;
@@ -671,16 +738,20 @@ footer {
 .booking-section-1 {
   margin-top: 70px;
 }
+.booking-section-1 .event-booking-form {
+  margin: 0 auto;
+}
 .booking-section-1 .booking-questionaire-container {
-  width: 100%;
+  max-width: 668px;
   margin: 20px auto;
 }
 .booking-section-1 h2 {
   font-family: "Lora", serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
   text-align: center;
+  color: #3e3e3e;
 }
 .booking-section-1 h2 span {
   font-weight: 700;
@@ -759,15 +830,18 @@ footer {
   position: relative;
   width: 100%;
   margin-top: 40px;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
 }
 .package-list .package-item {
   position: relative;
-  max-width: 300px;
+  max-width: 280px;
   background-color: #fff;
   border: 1px solid #E6E6E6;
   border-radius: 20px;
   padding: 20px;
-  margin: 25px auto;
+  margin: 25px 5px;
   box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, 0.1);
   height: min-content;
   scroll-snap-align: center;
@@ -876,13 +950,10 @@ footer {
 
 .checkbox-group {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-top: 30px;
 }
 
 .checkbox-group input[type=checkbox] {
-  margin-top: 3px;
+  margin-right: 10px;
   width: 18px;
   height: 18px;
   border: 1px solid #ccc;
@@ -907,7 +978,6 @@ footer {
 }
 
 .calendar {
-  max-width: 500px;
   margin: 40px auto;
 }
 
@@ -922,17 +992,28 @@ footer {
   margin: 0;
 }
 
+.days-of-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .calendar-grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
   text-align: center;
 }
 
+.calendar-grid div {
+  aspect-ratio: 1/1;
+  background-color: #fff;
+}
+
 .calendar-day {
-  padding: 10px;
-  border: 1px solid #ddd;
+  font-size: 0.9rem;
 }
 
 .grid__item::before,
@@ -944,7 +1025,7 @@ footer {
 }
 
 .calendar-day:hover {
-  background-color: #f0f0f0;
+  background-color: #f6f6f6;
 }
 
 .calendar-day.disabled {
@@ -954,8 +1035,18 @@ footer {
 }
 
 .selected {
-  background-color: blue;
-  color: white;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: rgb(80, 133, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
 }
 
 .time-selector {
@@ -974,14 +1065,22 @@ footer {
 }
 
 .current-day {
-  background-color: antiquewhite;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: coral;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 #todayButton {
-  padding: 5px 10px;
-  border: 1px solid #000;
-  border-radius: 50px;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 .booking-date-error-msg {
@@ -997,6 +1096,152 @@ footer {
   border: 1px solid #000;
   color: #000;
   margin-right: 25px;
+}
+
+.lds-ellipsis,
+.lds-ellipsis div {
+  box-sizing: border-box;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33.33333px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+#checkout {
+  display: flex;
+  justify-content: center;
+  min-height: 300px;
+  align-items: center;
+}
+
+.tab-menu-container {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .features-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .features-list .feature-item {
+    margin: 0 !important;
+  }
+  .home-section-3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
+  .home-section-3 .booth-360 {
+    margin-top: 0 !important;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-section {
+    height: calc(100vh - 110px) !important;
+  }
+}
+@media (min-width: 1250px) {
+  .nav-container {
+    padding: 15px 45px;
+  }
+  .content {
+    padding: 0 70px;
+  }
+  .mobile-menu-container {
+    display: none !important;
+  }
+  .tab-menu-container {
+    display: initial;
+  }
+  .tab-menu-container ul {
+    display: flex;
+    font-size: 1.1rem;
+    gap: 20px;
+    font-weight: 500;
+    align-items: center;
+  }
+  .mobile-menu-button {
+    display: none;
+  }
+  .process-wrapper {
+    padding: 0 50px;
+  }
+}
+.menu-item {
+  display: inline-block;
+  width: 100px; /* Adjust based on the longest menu item */
+  text-align: center;
+}
+
+.booking-nav-item a {
+  background-color: #5A4FCF;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.active-page {
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=style.css.map */
