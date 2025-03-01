@@ -5,3 +5,7 @@ composer.lock
 .env
 
 notes.txt
+
+public/scss
+
+doc

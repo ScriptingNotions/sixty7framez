@@ -668,7 +668,9 @@ footer {
 }
 .contact-section-2 .thank-you-container .thank-you-message-container {
   display: flex;
+  flex-flow: column;
   justify-content: center;
+  align-items: center;
 }
 .contact-section-2 .thank-you-container .thank-you-message-container h1 {
   font-weight: 600;

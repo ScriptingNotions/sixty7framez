@@ -36,7 +36,7 @@ export function toggleMobileMenu(e) {
         const totalPages = 5;
 
         function navigate(direction) {
-            let bookingPosition = ["Select a package", "Customer overview", "Event detaials", "Summary", "Payment"];
+            let bookingPosition = ["Select a package", "Customer overview", "Event details", "Summary", "Payment"];
 
             if(currentPage) {}
             // Hide current page

@@ -757,7 +757,9 @@ footer {
 
     .thank-you-message-container {
       display: flex;
+      flex-flow: column;
       justify-content: center;
+      align-items: center;
 
       h1 {
         font-weight: 600;

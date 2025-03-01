@@ -259,8 +259,9 @@ class RoutesController extends Controller
         
 
         $mail = new MailService();
-        $mail = $mail->send($post["email"], "Contact message", "Name: {$post["name"]} Email: {$post["email"]} Phone: {$post["phone"]} Message: {$post["message"]}");
+        $mail = $mail->send(["noviceone@outlook.com"], "Inquiry", "Name: {$post["name"]} Email: {$post["email"]} Phone: {$post["phone"]} Message: {$post["message"]}");
 
+        var_dump($mail);
         if($mail) {
             $this->returnJsonHttpResponse(200, ["message_sent" => true, "message_HTML" => $this->renderView($this->component("thank-you-message")) ]);
         } else {
