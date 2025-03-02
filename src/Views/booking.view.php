@@ -155,6 +155,19 @@
                         required
                     >
                 </div>
+
+                
+                <div class="form-group">
+                    <label for="company">Company name</label>
+                    <input 
+                        type="text" 
+                        id="companyName" 
+                        name="companyName" 
+
+                        value="<?= isset($this->bookingDetails["companyName"]) ? $this->bookingDetails["companyName"] : "" ?>"
+                        required
+                    >
+                </div>
             </form>
             <div class="booking-navigation">
                 <button type="button" class="back-button back-button-2" data-few="backBooking">Back</button>
@@ -228,17 +241,32 @@
 
                 <div class="form-group">
                     <label for="venueName">Venue name</label>
-                    <input type="text" id="venueName" name="venueName" >
+                    <input type="text" id="venueName" name="venueName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="venuePhone">Venue phone</label>
+                    <input type="text" id="venuePhone" name="venuePhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="venueEmail">Venue email</label>
+                    <input type="text" id="venueEmail" name="venueEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="venueContact">Venue contact person</label>
+                    <input type="text" id="venueContact" name="venueContact" required>
                 </div>
 
                 <div class="form-group">
                     <label for="venueAddress">Venue address</label>
-                    <input type="text" id="venueAddress" name="venueAddress" >
+                    <input type="text" id="venueAddress" name="venueAddress" required>
                 </div>
 
                 <div class="form-group">
                     <label for="venueCity">Venue city</label>
-                    <input type="text" id="venueCity" name="venueCity" >
+                    <input type="text" id="venueCity" name="venueCity" required>
                 </div>
 
                 <div class="form-group">
@@ -315,7 +343,7 @@
 
                 <div class="service-contract">
                     <h2>SIXTY7 FRAMEZ PHOTO BOOTHS - SERVICE CONTRACT</h2>
-                    <p>The following contract and its terms will set forth an agreement between Sixty7 Framez Photo Booths (Provider) and <span id="contract-client-name"></span> (Client) the parties, for photo booth services and their event outline in the deposit. This written contract sets forth the full, written intention of both parties and supersedes all other written and/or oral agreements between the parties.</p>
+                    <p>The following contract and its terms will set forth an agreement between Sixty7 Framez Photo Booths (Provider) and <span id="client-name"></span> (Client) the parties, for photo booth services and their event outline in the deposit. This written contract sets forth the full, written intention of both parties and supersedes all other written and/or oral agreements between the parties.</p>
                 </div>
 
                 <div class="terms-container">
@@ -323,7 +351,7 @@
                     
                     <div class="section">
                         <h4>SERVICE PERIOD</h4>
-                        <p>The Service Period will be from <strong><span class="contract-time-start">1pm</span></strong> - <strong><span class="contract-time-end">4pm</span></strong>: on <strong><span class="contract-date">3/1/2025</span></strong>. Provider agrees to have a Sixty7 Framez Photo Booth operational for a minimum of 80% during this period; occasionally, operations may need to be interrupted for maintenance of the Photo Booth or by the clients request.</p>
+                        <p>The Service Period will be from <strong><span class="contract-event-time-start"></span></strong> - <strong><span class="contract-event-time-end"></span></strong>: on <strong><span class="contract-date"></span></strong>. Provider agrees to have a Sixty7 Framez Photo Booth operational for a minimum of 80% during this period; occasionally, operations may need to be interrupted for maintenance of the Photo Booth or by the clients request.</p>
                     </div>
                     
                     <div class="section">
@@ -410,12 +438,13 @@
                     <div class="booking-details">
                         <h4>Client Information</h4>
                         <table>
-                            <tr><td>Name</td><td></td id="contract-client-name"></tr>
-                            <tr><td>Company (optional)</td><td id="contract-client-company"></td></tr>
-                            <tr><td>Address</td><td id="contract-client-address"></td></tr>
-                            <tr><td>City, State, Zip</td><td id="contract-client-city-state-zip"></td></tr>
+                            <tr><td>Name</td><td id="contract-client-name"></td></tr>
+                            <tr><td>Company</td><td id="contract-client-company"></td></tr>
+                            <!-- <tr><td>Address</td><td id="contract-client-address"></td></tr> -->
+                            <!-- <tr><td>City, State, Zip</td><td id="contract-client-city-state-zip"></td></tr> -->
                             <tr><td>Type of Event</td><td id="contract-client-event-type"></td></tr>
                             <tr><td>Package type</td><td id="contract-client-package-type"></td></tr>
+                            <tr><td>Event date</td><td id="contract-client-event-date"></td></tr>
                             <tr><td>Event time</td><td id="contract-client-event-time"></td></tr>
                             <tr><td>Phone number</td><td id="contract-client-phone"></td></tr>
                             <tr><td>Email address</td><td id="contract-client-email"></td></tr>
@@ -423,11 +452,11 @@
                         
                         <h4>Venue Information</h4>
                         <table>
-                            <tr><td>Name</td id="contract-venue-name"><td></td></tr>
+                            <tr><td>Name</td ><td id="contract-venue-name"></td></tr>
                             <tr><td>Address</td><td id="contract-venue-address"></td></tr>
-                            <tr><td>City, State, Zip</td><td id="contract-city-state-zip"></td></tr>
                             <tr><td>Contact Person</td><td id="contract-venue-contact-person"></td></tr>
-                            <tr><td>Email & Phone #</td id="contract-venue-contact"><td></td></tr>
+                            <tr><td>Email</td><td id="contract-venue-email"></td></tr>
+                            <tr><td>Phone</td><td id="contract-venue-phone"></td></tr>
                         </table>
 
                     </div>
@@ -449,7 +478,7 @@
                         <input 
                             type="text" 
                             id="contract-signature" 
-                            name="contract-signature" 
+                            name="contractSignature" 
                             required
                         >
                     </div>
@@ -458,7 +487,7 @@
                         <input 
                             type="email" 
                             id="contract-email" 
-                            name="contract-email" 
+                            name="contractEmail" 
                             required
                         >
                     </div>

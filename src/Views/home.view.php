@@ -189,7 +189,7 @@
                         <label for="home-last-name">Last name</label>
                         <input type="text" id="home-last-name" name="lastName" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="home-email">Email</label>
                         <input type="email" id="home-email" name="email"  required>
@@ -199,6 +199,20 @@
                         <label for="home-phone">Phone Number</label>
                         <input type="tel" id="home-phone" name="phone" required>
                     </div>
+
+                    
+                        
+                    <div class="form-group">
+                        <label for="company">Company name</label>
+                        <input 
+                            type="text" 
+                            id="companyName" 
+                            name="companyName" 
+
+                            value=""
+                        >
+                    </div>
+                    
                     <div class="button-container">
                         <button type="button" data-few="startBookingContact">Start Booking</button>
                     </div>

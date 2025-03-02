@@ -62,11 +62,7 @@ class RoutesController extends Controller
 
         $post = count($_POST) > 0 ? $this->filter_post() : false;
 
-
-        
-
            // var_dump(json_decode(html_entity_decode($post["bookingData"])));
-
 
         $package === "" ? $this->package = "standard-package" : $this->package = $package;
         
@@ -115,6 +111,7 @@ class RoutesController extends Controller
             $this->bookingDetails["lastName"] = $customerDetails[1];
             $this->bookingDetails["email"] = $customerDetails[2];
             $this->bookingDetails["phone"] = $customerDetails[3];
+            $this->bookingDetails["companyName"] = $customerDetails[4];
         }
 
 

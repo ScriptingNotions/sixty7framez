@@ -109,6 +109,20 @@ export function toggleMobileMenu(e) {
             const inputs = form.querySelectorAll('input[required]');
             let isValid = true;
 
+            if(_$("#companyName").value != "") {
+                let errorMsg = validateInput(_$("#companyName")) ? validateInput(_$("#companyName")) : ""; 
+    
+                if(errorMsg.outerHTML != undefined) {
+                    _$("#companyName").parentElement.insertAdjacentHTML("beforeend", errorMsg.outerHTML);
+    
+                    isValid = false;
+                }
+    
+                let inputName = _$("#companyName").name;
+    
+                bookingDetails[inputName] = _$("#companyName").value.replace(/^\w/, c => c.toUpperCase()) ;
+            }
+
             inputs.forEach((input, i) => {
                 let errorMsg = validateInput(input) ? validateInput(input) : ""; 
     
@@ -137,6 +151,9 @@ export function toggleMobileMenu(e) {
             const venueCity = _$("#venueCity");
             const venueState = _$("#venueState");
             const venueZip = _$("#venueZip");
+            const venuePhone = _$("#venuePhone");
+            const venueEmail = _$("#venueEmail");
+            const venueContact = _$("#venueContact");
 
             let isValid = true;
 
@@ -165,7 +182,10 @@ export function toggleMobileMenu(e) {
                 venueZip,
                 venueCity,
                 venueAddress,
-                venueName
+                venueName,
+                venuePhone,
+                venueEmail,
+                venueContact
             ].forEach(element => {
                 console.log(element);
                let errorMsg = validateInput(element) ? validateInput(element) : "";
@@ -202,32 +222,52 @@ export function toggleMobileMenu(e) {
 
             if(isValid) {
                 const dateString = bookingDetails.eventDate;
-                const date = new Date(dateString);
+                const date = new Date(dateString.split("-")[0], dateString.split("-")[1] - 1, dateString.split("-")[2]);
 
-                // Format: Wednesday, February 26, 2025
                 const readableDate = date.toLocaleDateString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
                 });
 
-                // _$(".field-value-summary-date").innerText = readableDate;
-                // _$(".field-value-summary-name").innerText = `${bookingDetails.firstName} ${bookingDetails.lastName}`;
-                // _$(".field-value-summary-phone").innerText = bookingDetails.phone;
-                // _$(".field-value-summary-email").innerText = bookingDetails.email;
-                // _$(".field-value-summary-start").innerText = _$(".field-value-summary-start").innerText = parseInt(bookingDetails.eventTime.split(':')[0]) == 12 
-                // ? 12 + ":" + bookingDetails.eventTime.split(':')[1] + " pm"
-                // : parseInt(bookingDetails.eventTime.split(':')[0]) > 12 
-                // ? (parseInt(bookingDetails.eventTime.split(':')[0]) - 12) + ":" + bookingDetails.eventTime.split(':')[1] + " pm"
-                // : parseInt(bookingDetails.eventTime.split(':')[0]) == 0
-                // ? 12 + ":" + bookingDetails.eventTime.split(':')[1] + " am"
-                // : parseInt(bookingDetails.eventTime.split(':')[0]) + ":" + bookingDetails.eventTime.split(':')[1] + " am";
-                // _$(".field-value-summary-hours").innerText = bookingDetails.packageTime;
-                // _$(".field-value-summary-package").innerText = bookingDetails.packageType;
-                // _$(".field-value-summary-venue-name").innerText = bookingDetails.venueName;
-                // _$(".field-value-summary-venue-address").innerText = bookingDetails.venueAddress + " " + bookingDetails.venueCity + ", " + bookingDetails.venueState + " " + bookingDetails.venueZip;
-                
+                const startTime = new Date();
+                startTime.setHours(bookingDetails.eventTime.split(":")[0], bookingDetails.eventTime.split(":")[1], 0 , 0).toExponential;
+
+                const endTime = new Date(startTime);
+                endTime.setHours(startTime.getHours() + +bookingDetails.packageTime);
+
+                _$(".contract-event-time-start").innerText = startTime.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit', 
+                    hour12: true 
+                  });
+
+                _$(".contract-event-time-end").innerText = endTime.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit', 
+                    hour12: true 
+                  });
+                _$("#contract-client-name").innerText = bookingDetails.firstName + " " + bookingDetails.lastName;
+                _$("#contract-client-phone").innerText = bookingDetails.phone;
+                _$("#contract-client-email").innerText = bookingDetails.email;
+                _$("#contract-client-event-time").innerText = startTime.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit', 
+                    hour12: true 
+                  });
+                //_$(".field-value-summary-hours").innerText = bookingDetails.packageTime;
+                _$("#contract-client-package-type").innerText = bookingDetails.packageType;
+                _$("#contract-venue-name").innerText = bookingDetails.venueName;
+                _$("#contract-venue-address").innerText = bookingDetails.venueAddress + " " + bookingDetails.venueCity + ", " + bookingDetails.venueState + " " + bookingDetails.venueZip;
+                _$("#contract-client-company").innerText = bookingDetails?.companyName != undefined ? bookingDetails.companyName : "";
+                _$("#contract-client-event-type").innerText = bookingDetails.eventType === "Other" ? bookingDetails.eventTypeOther : bookingDetails.eventType;
+                _$("#contract-venue-contact-person").innerText = bookingDetails.venueContact;
+                _$("#contract-venue-email").innerText =  bookingDetails.venueEmail;
+                _$("#contract-venue-phone").innerText =   bookingDetails.venuePhone;
+                _$("#contract-client-event-date").innerText =   readableDate;
+                _$(".contract-date").innerText = readableDate;
+
                 navigate("next");
 
                 return;
@@ -321,12 +361,37 @@ export function toggleMobileMenu(e) {
         }
 
         async function bookingPage4() {
+            let isValid = true;
+
+            let contractSignature = _$("#contract-signature");
+            let contractEmail = _$("#contract-email");
+
             const terms = _$("#booking-terms");
 
             _$("#checkout").innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
 
+            [
+                contractEmail,
+                contractSignature
+            ].forEach(element => {
+                console.log(element);
+               let errorMsg = validateInput(element) ? validateInput(element) : "";
 
-            if(terms.checked) {
+               if(errorMsg.outerHTML != undefined) {
+                    element.closest(".form-group").insertAdjacentHTML("beforeend", errorMsg.outerHTML);
+
+                    isValid = false;
+                } else {
+                    let inputName = element.name;
+
+                    bookingDetails[inputName] = element.value.replace(/^\w/, c => c.toUpperCase()) ;
+                }
+
+                console.log(bookingDetails);
+            });
+
+
+            if(terms.checked && isValid) {
                 navigate("next");
 
                     // Initialize Stripe.js
@@ -594,6 +659,20 @@ export function startBookingContact(e) {
     const inputs = form.querySelectorAll('input[required]');
     let isValid = true;
 
+        if(_$("#companyName").value != "") {
+            let errorMsg = validateInput(_$("#companyName")) ? validateInput(_$("#companyName")) : ""; 
+
+            if(errorMsg.outerHTML != undefined) {
+                _$("#companyName").parentElement.insertAdjacentHTML("beforeend", errorMsg.outerHTML);
+
+                isValid = false;
+            }
+
+            let inputName = _$("#companyName").name;
+
+            bookingDetails[inputName] = _$("#companyName").value.replace(/^\w/, c => c.toUpperCase()) ;
+        }
+
         inputs.forEach((input, i) => {
             let errorMsg = validateInput(input) ? validateInput(input) : ""; 
 
@@ -610,7 +689,7 @@ export function startBookingContact(e) {
         });
 
         if(isValid) {
-            let str = bookingDetails.firstName + "-" + bookingDetails.lastName + "-" + bookingDetails.email + "-" + bookingDetails.phone;
+            let str = bookingDetails.firstName + "-" + bookingDetails.lastName + "-" + bookingDetails.email + "-" + bookingDetails.phone + "-" + bookingDetails.companyName;
 
             str = scrambleString(str);
 
@@ -736,7 +815,9 @@ export function generateCalendarDays() {
         dateContainer.classList.add('calendar-day');
         dateContainer.style.position = "relative";
 
-        if(currentDate > new Date()) {
+        let date = new Date();
+        
+        if(currentDate > date.setDate(date.getDate() + 2) + 2) {
             dateContainer.dataset["few"] = "selectDate";
             dateContainer.dataset["date"] = currentDate;
         } else {
