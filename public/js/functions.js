@@ -18,7 +18,6 @@ export function scrambleString(str) {
 }
 
 export function toggleMobileMenu(e) {
-    console.log("fre");
     if(_$('.mobile-menu-container').style.display === "block") {
         _$('.mobile-menu-container').style.display = "none";
         _$('.mobile-menu-button').innerText = "Menu";
@@ -36,7 +35,7 @@ export function toggleMobileMenu(e) {
         const totalPages = 5;
 
         function navigate(direction) {
-            let bookingPosition = ["Select a package", "Customer overview", "Event details", "Summary", "Payment"];
+            let bookingPosition = ["Select a package", "Customer overview", "Event details", "Contract", "Payment"];
 
             if(currentPage) {}
             // Hide current page
@@ -213,21 +212,21 @@ export function toggleMobileMenu(e) {
                 day: 'numeric'
                 });
 
-                _$(".field-value-summary-date").innerText = readableDate;
-                _$(".field-value-summary-name").innerText = `${bookingDetails.firstName} ${bookingDetails.lastName}`;
-                _$(".field-value-summary-phone").innerText = bookingDetails.phone;
-                _$(".field-value-summary-email").innerText = bookingDetails.email;
-                _$(".field-value-summary-start").innerText = _$(".field-value-summary-start").innerText = parseInt(bookingDetails.eventTime.split(':')[0]) == 12 
-                ? 12 + ":" + bookingDetails.eventTime.split(':')[1] + " pm"
-                : parseInt(bookingDetails.eventTime.split(':')[0]) > 12 
-                ? (parseInt(bookingDetails.eventTime.split(':')[0]) - 12) + ":" + bookingDetails.eventTime.split(':')[1] + " pm"
-                : parseInt(bookingDetails.eventTime.split(':')[0]) == 0
-                ? 12 + ":" + bookingDetails.eventTime.split(':')[1] + " am"
-                : parseInt(bookingDetails.eventTime.split(':')[0]) + ":" + bookingDetails.eventTime.split(':')[1] + " am";
-                _$(".field-value-summary-hours").innerText = bookingDetails.packageTime;
-                _$(".field-value-summary-package").innerText = bookingDetails.packageType;
-                _$(".field-value-summary-venue-name").innerText = bookingDetails.venueName;
-                _$(".field-value-summary-venue-address").innerText = bookingDetails.venueAddress + " " + bookingDetails.venueCity + ", " + bookingDetails.venueState + " " + bookingDetails.venueZip;
+                // _$(".field-value-summary-date").innerText = readableDate;
+                // _$(".field-value-summary-name").innerText = `${bookingDetails.firstName} ${bookingDetails.lastName}`;
+                // _$(".field-value-summary-phone").innerText = bookingDetails.phone;
+                // _$(".field-value-summary-email").innerText = bookingDetails.email;
+                // _$(".field-value-summary-start").innerText = _$(".field-value-summary-start").innerText = parseInt(bookingDetails.eventTime.split(':')[0]) == 12 
+                // ? 12 + ":" + bookingDetails.eventTime.split(':')[1] + " pm"
+                // : parseInt(bookingDetails.eventTime.split(':')[0]) > 12 
+                // ? (parseInt(bookingDetails.eventTime.split(':')[0]) - 12) + ":" + bookingDetails.eventTime.split(':')[1] + " pm"
+                // : parseInt(bookingDetails.eventTime.split(':')[0]) == 0
+                // ? 12 + ":" + bookingDetails.eventTime.split(':')[1] + " am"
+                // : parseInt(bookingDetails.eventTime.split(':')[0]) + ":" + bookingDetails.eventTime.split(':')[1] + " am";
+                // _$(".field-value-summary-hours").innerText = bookingDetails.packageTime;
+                // _$(".field-value-summary-package").innerText = bookingDetails.packageType;
+                // _$(".field-value-summary-venue-name").innerText = bookingDetails.venueName;
+                // _$(".field-value-summary-venue-address").innerText = bookingDetails.venueAddress + " " + bookingDetails.venueCity + ", " + bookingDetails.venueState + " " + bookingDetails.venueZip;
                 
                 navigate("next");
 

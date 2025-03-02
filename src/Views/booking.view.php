@@ -16,7 +16,7 @@
         <div class="booking-item-1 booking-item page active" id="page1">
             <div class="package-list">
                 <div class="package-item <?= $this->package === "standard" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
-                    <h3>Standard</h3>
+                    <h4>Standard</h4>
                     <p>$375</p>
                     <ul>
                         <li>Tap to Start screen</li>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="package-item <?= $this->package === "memory-maker" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
-                    <h3>Memory Maker</h3>
+                    <h4>Memory Maker</h4>
                     <p>$550</p>
                     <ul>
                         <li>Open-air booth and 360 booth</li>
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="package-item <?= $this->package === "deluxe" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
-                    <h3>Deluxe</h3>
+                    <h4>Deluxe</h4>
                     <p>$750</p>
                     <ul>
                         <li>Open-air booth and 360 booth</li>
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="package-item <?= $this->package === "luxe" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
-                    <h3>Luxe</h3>
+                    <h4>Luxe</h4>
                     <p>$1,100</p>
                     <ul>
                         <li>Open-air booth and 360 booth</li>
@@ -311,69 +311,176 @@
         </div>
 
         <div class="booking-item-4 booking-item page" id="page4">
-            <div class="field-group">
-                <div class="field-label">Name</div>
-                <div class="field-value-summary-name"><?= $this->firstName . " " . $this->lastName ?></div>
-            </div>
+            <div class="contract-container">
 
-            <div class="field-group">
-                <div class="field-label">Phone Number</div>
-                <div class="field-value-summary-phone"><?= $this->phone ?></div>
-            </div>
+                <div class="service-contract">
+                    <h2>SIXTY7 FRAMEZ PHOTO BOOTHS - SERVICE CONTRACT</h2>
+                    <p>The following contract and its terms will set forth an agreement between Sixty7 Framez Photo Booths (Provider) and <span id="contract-client-name"></span> (Client) the parties, for photo booth services and their event outline in the deposit. This written contract sets forth the full, written intention of both parties and supersedes all other written and/or oral agreements between the parties.</p>
+                </div>
 
-            <div class="field-group">
-                <div class="field-label">Email</div>
-                <div class="field-value-summary-email"></div>
-            </div>
+                <div class="terms-container">
+                    <h1>TERMS & CONDITIONS</h1>
+                    
+                    <div class="section">
+                        <h4>SERVICE PERIOD</h4>
+                        <p>The Service Period will be from <strong><span class="contract-time-start">1pm</span></strong> - <strong><span class="contract-time-end">4pm</span></strong>: on <strong><span class="contract-date">3/1/2025</span></strong>. Provider agrees to have a Sixty7 Framez Photo Booth operational for a minimum of 80% during this period; occasionally, operations may need to be interrupted for maintenance of the Photo Booth or by the clients request.</p>
+                    </div>
+                    
+                    <div class="section">
+                        <h4>PAYMENT</h4>
+                        <p>A non-refundable reservation fee in the amount of 50% of the total cost is due upon signing of this contract. The remaining amount is due 15 days in advance of Client's Event.</p>
+                        <br>
+                        <p>If the client uses the equipment for a time period in excess of the service period agreed to in the invoice below, the overage in rental time will be billed to the client at the following rates: $125 per hour.</p>
+                        <br>
+                        <p>Payment for any overage in time must be paid before additional hours are provided. Client agrees that in addition to any and all other legal rights and remedies Provider may have, Client will pay a $50.00 fee for any and all returned payments which Client may write to Provider as payment for any service by Provider or rental of Provider's equipment.</p>
+                    </div>
+                    
+                    <div class="section">
+                        <h4>ACCESS, SPACE & POWER FOR PHOTO BOOTH</h4>
+                        <p>The Client shall provide Sixty7 Framez Photo Booths with safe and appropriate working conditions and a solid floor. The Client will arrange an appropriate 8′ x 8′ space and a minimum of 7.5′ of ceiling clearance for the Photo Booth at the event's venue. Client is responsible for providing power for the Photo Booth (110V, 10 amps, 3 prong outlet). Note: Power Adapter provided by Sixty7 Framez Photo Booth will be added as an ad-on service. Any delay in the performance or damage to the photo booth equipment due to improper power is the responsibility of the client.</p>
+                    </div>
+                    
+                    <div class="section">
+                        <h4>DATE CHANGES & CANCELLATIONS</h4>
+                        <p>Any request for a date change must be made in writing at least thirty days in advance of the original event date. Change is subject to photo booth availability and receipt of a new Service Contract. If there is no availability for the alternate date, the non-refundable reservation fee shall be forfeited and event cancelled. If event is cancelled for any reason, the non-refundable reservation fee is forfeited.</p>
+                    </div>
+                    
+                    <div class="section">
+                        <h4>VENUE LOCATION CHANGES</h4>
+                        <p>Any request for a venue location change must be made in writing at least 10 days in advance of the original event date. No travel fees for venues within 35 miles of our location. The provider will charge .45 per additional mile as measured by Google Maps driving directions from.</p>
+                    </div>
+                    
+                    <hr>
+                    
+                    
+                    <div class="section">
+                        <h4>INDEMNIFICATION</h4>
+                        <p>Client agrees to, and understands the following:</p>
+                        <br>
+                        <p class="indent">a) Client will indemnify provider against any and all liability related to Client's Event during or after Client's event. Client will indemnify Provider from the time of service and on into the future, against any liability associated with Client.</p>
+                        <br>
+                        <p class="indent">b) Client will indemnify Provider against any and all liability associated with the use of pictures taken within the Sixty7 Framez Photo Booth its representatives, employees or affiliates at Client's event.</p>
+                    </div>
+                    
+                    <div class="section">
+                        <h4>MODEL/MEDIA USAGE RELEASE OPTION</h4>
+                        <p>Client agrees to, and understands the following: All guests using Sixty7 Framez Photo Booths hereby give the right and permission to copyright and use, photographic portraits, video, images, or pictures captured by Sixty7 Framez Photo Booth of any photo booth user who may be included intact or in part, made through any and all media now or hereafter known for illustration, art, promotion, advertising, trade, or any other purpose. In addition the client, hereby release, discharge and agree to save harmless Sixty7 Framez Photo Booths, from any liability, that may occur or be produced in the taking of said picture or in any subsequent processing thereof, as well as any publication thereof, including without limitation any claims for libel or invasion of privacy. If you do not agree circle no: NO</p>
+                    </div>
+                    
+                    <div class="section">
+                        <h4>MISCELLANEOUS TERMS</h4>
+                        <p>If any provision of these terms shall be unlawful, void, or for any reason unenforceable under Contract Law, then that provision, or portion thereof, shall be deemed separate from the rest of this contract and shall not affect the validity and enforceability of any remaining provisions, or portions thereof. This is the entire agreement between Provider and Client relating to Sixty7 Framez Photo Booths herein and shall not be modified except in writing, signed by both parties. In the event of a conflict between parties, Client agrees to solve any arguments via arbitration. In the event Provider is unable to supply a working photo booth for at least 80% of the Service Period, Client shall be refunded a prorated amount based on the amount of service received.</p>
+                        <br>
+                        <p>If the printer fails to print out photos on site the Provider will be allowed to give a web site to the client where there guests can log onto and order prints free of charge with free shipping as well as the ability to download the digital files for their own use. If for reasons beyond our control the local distributor becomes sick or cannot perform we will ship the booth with instructions directly to the end user so they can set it up at their event and double the rental time period free of charge. If no service is received, Provider's maximum liability will be the return of all payments received from Client. Provider is not responsible for any consequential damages or lost opportunities upon breach of this agreement.</p>
+                    </div>
+                    
+                    <div class="section">
+                        <h4>DAMAGE TO PROVIDER'S EQUIPMENT</h4>
+                        <p>Client acknowledges that the client shall be responsible for any damage or loss to the Provider's Equipment caused by: a) Any misuse of the Provider's Equipment by Client or its guests, or b) Any theft or disaster (including but not limited to fire, flood or earthquake).</p>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="section client-duties">
+                        <h4>SUMMARY OF CLIENT DUTIES:</h4>
+                        <div class="during-booking-container">
+                            <p><strong>During booking:</strong></p>
+                            <ol>
+                                <li>Sign the contract.</li>
+                                <li>Send the deposit via your preferred method immediately after signing the contract if applicable.</li>
+                                <li>Fill out the photo template form at least 3 weeks before the event: http://www.radphotobooth.ca/photo-template/</li>
+                            </ol>
+                        </div>
 
-            <div class="field-group">
-                <div class="field-label">Date</div>
-                <div class="field-value-summary-date"></div>
-            </div>
+                        <div class="weeks-before-container">
+                            <p><strong>Two weeks before the event to avoid delays:</strong></p>
+                            <ol start="4">
+                                <li>Prepare the payment for the balance.</li>
+                                <li>Arrange an appropriate 8′ x 8′ space with an outlet at least 10ft away, and a minimum of 7.5′ of ceiling clearance. Please notify the provider if any tables 6ft long will be provided for the Photo Booth at the event's venue.</li>
+                            </ol>
+                        </div>
 
-            <div class="field-group">
-                <div class="field-label">Start</div>
-                <div class="field-value-summary-start"></div>
-            </div>
+                        
+                        <p>Your event is NOT booked until the contract is signed and the deposit is received. Reservations are made on on a "first come, first served" basis.</p>
+                            
+                    </div>
 
-            <div class="field-group">
-                <div class="field-label">Hours</div>
-                <div class="field-value-summary-hours"></div>
-            </div>
+                    <hr>
 
-            <div class="field-group">
-                <div class="field-label">Package</div>
-                <div class="field-value-summary-package"></div>
-            </div>
+                    <div class="booking-details">
+                        <h4>Client Information</h4>
+                        <table>
+                            <tr><td>Name</td><td></td id="contract-client-name"></tr>
+                            <tr><td>Company (optional)</td><td id="contract-client-company"></td></tr>
+                            <tr><td>Address</td><td id="contract-client-address"></td></tr>
+                            <tr><td>City, State, Zip</td><td id="contract-client-city-state-zip"></td></tr>
+                            <tr><td>Type of Event</td><td id="contract-client-event-type"></td></tr>
+                            <tr><td>Package type</td><td id="contract-client-package-type"></td></tr>
+                            <tr><td>Event time</td><td id="contract-client-event-time"></td></tr>
+                            <tr><td>Phone number</td><td id="contract-client-phone"></td></tr>
+                            <tr><td>Email address</td><td id="contract-client-email"></td></tr>
+                        </table>
+                        
+                        <h4>Venue Information</h4>
+                        <table>
+                            <tr><td>Name</td id="contract-venue-name"><td></td></tr>
+                            <tr><td>Address</td><td id="contract-venue-address"></td></tr>
+                            <tr><td>City, State, Zip</td><td id="contract-city-state-zip"></td></tr>
+                            <tr><td>Contact Person</td><td id="contract-venue-contact-person"></td></tr>
+                            <tr><td>Email & Phone #</td id="contract-venue-contact"><td></td></tr>
+                        </table>
 
-            <div class="field-group">
-                <div class="field-label">Venue Name</div>
-                <div class="field-value-summary-venue-name"></div>
-            </div>
+                    </div>
 
-            <div class="field-group">
-                <div class="field-label">Venue Address</div>
-                <div class="field-value-summary-venue-address"></div>
-            </div>
+                    
+                    <div class="section">
+                        <p><strong>PROVIDER’S STANDARD PRICE LIST:</strong> The charges in this Agreement are based on the Provider’s Standard Price
+                            List. This price list is adjusted periodically and future orders shall be charged at the prices in effect at the time
+                            when the order is placed</p>
+                        <br>
+                        <p>By executing this contract as the Client, the individual signing, whether in a personal capacity or as an agent or representative, represents and warrants that they are at least twenty-five (25) years of age. Furthermore, if signing as an agent or representative, the signer affirms that they possess the authority to enter into this agreement on behalf of the entity they represent. Should they lack such authority, the signer personally assumes full responsibility and liability under the terms of this contract.</p>
+                    </div>
+                </div>
+                </div>
 
-            <div class="checkbox-group">
-                <input type="checkbox" id="booking-terms" name="booking-terms">
-                <div>
-                    <span for="summary-terms">I agree to terms and service</span>
-                    <a class="learn-more-terms">Learn more</a>
+                <div class="accept-contract-input">
+                    <div class="form-group">
+                        <label for="contract-signature">Full name</label>
+                        <input 
+                            type="text" 
+                            id="contract-signature" 
+                            name="contract-signature" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email" 
+                            id="contract-email" 
+                            name="contract-email" 
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="checkbox-group contract-checkbox-group">
+                    <input type="checkbox" id="booking-terms" name="booking-terms">
+                    <div>
+                        <span for="summary-terms">I have read and agree to the terms of this contract.</span>
+                    </div>
+                </div>
+
+                <div class="booking-navigation">
+                    <button type="button" class="back-button back-button-4" data-few="backBooking">Back</button>
+                    <button type="button" class="next-button next-button-4" data-few="nextBooking">Next</button>
                 </div>
             </div>
-            <div class="booking-navigation">
-                <button type="button" class="back-button back-button-4" data-few="backBooking">Back</button>
-                <button type="button" class="next-button next-button-4" data-few="nextBooking">Next</button>
+
+            <div class="booking-item-5 booking-item page" id="page5">
+
+            <div id="checkout">
+                <!-- Checkout will insert the payment form here -->
             </div>
-        </div>
-
-        <div class="booking-item-5 booking-item page" id="page5">
-
-        <div id="checkout">
-            <!-- Checkout will insert the payment form here -->
-        </div>
 
         </div>
     </div>
