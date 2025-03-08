@@ -5,6 +5,8 @@ namespace ScriptingThoughts\Controllers;
 use ScriptingThoughts\Services\GoogleCalendarService;
 use ScriptingThoughts\Services\StripeService;
 use ScriptingThoughts\Services\MailService;
+use Dompdf\Dompdf;
+use ScriptingThoughts\Services\Uploadcare;
 
 class RoutesController extends Controller
 {
@@ -57,55 +59,21 @@ class RoutesController extends Controller
     public function booking($package = "", $bookingPosition = "", $customerDetails = "")
     {
         $this->pageTitle = "Booking";
-        $calendarService = new GoogleCalendarService();
-        $calendarId = $_ENV["GOOGLE_CALENDAR_ID"];
 
         $post = count($_POST) > 0 ? $this->filter_post() : false;
 
-           // var_dump(json_decode(html_entity_decode($post["bookingData"])));
+        // var_dump(json_decode(html_entity_decode($post["bookingData"])));
 
         $package === "" ? $this->package = "standard-package" : $this->package = $package;
-        
-
-
-        $eventData = [
-            'summary' => 'Project Meeting',
-            'location' => '123 Main Street, City, Country',
-            'description' => 'Discuss project updates and next steps.',
-            'start' => [
-                'dateTime' => '2025-01-29T10:00:00-07:00', // Specify the start time in ISO 8601 format
-                'timeZone' => 'America/New_York',
-            ],
-            'end' => [
-                'dateTime' => '2025-01-29T11:00:00-07:00', // Specify the end time in ISO 8601 format
-                'timeZone' => 'America/New_York',
-            ],
-            'reminders' => [
-                'useDefault' => false,
-                'overrides' => [
-                    ['method' => 'email', 'minutes' => 24 * 60], // Send email reminder 24 hours before
-                    ['method' => 'popup', 'minutes' => 10], // Popup reminder 10 minutes before
-                ],
-            ],
-        ];
-        
-        echo '<pre>';
-        foreach($calendarService->getListOfEvents($calendarId)["items"] as $event) {
-            //echo 'Start: '; 
-            // 
-            //print_r($event);
-
-           // echo 'End: ';
-            //print_r($event["end"]);
-        }
-        //print_r($calendarService->getListOfEvents($calendarId)[0]->end);
-       // print_r($calendarService->insertEvent($calendarId, $eventData));
-        echo '</pre>';
-
+        $package = trim($package);
+        $package = htmlspecialchars($package);
     
         if($customerDetails) {
             $customerDetails = urldecode(strrev(base64_decode($customerDetails)));
             $customerDetails = explode("-", $customerDetails);
+            $customerDetails = array_map('trim', $customerDetails);
+            $customerDetails = array_map('htmlspecialchars', $customerDetails);
+
             //explode("-", $customerDetails);
             $this->bookingDetails["firstName"] =  $customerDetails[0];
             $this->bookingDetails["lastName"] = $customerDetails[1];
@@ -198,8 +166,9 @@ class RoutesController extends Controller
        echo '<pre>';
         print_r($booking);
        echo '</pre>';
-
-       if($booking["status"] === "confirmed") { 
+// TODO: isset in it's own statement
+// TODO: log errors
+       if(isset($booking["status"]) && $booking["status"] === "confirmed") { 
             $this->bookingDetails["htmlLink"] = $booking["htmlLink"];
 
             $startTime =  new \DateTime($booking["start"]["dateTime"]);
@@ -219,11 +188,48 @@ class RoutesController extends Controller
                 $this->partial("bookingEmailConfirmation")
                 //"<h1>Your </h1>booking has been complete. Booking link: {$booking["htmlLink"]} Summary: {$booking["summary"]} Details: {$booking["description"]} Location: {$booking["location"]}" 
             );
+
+                    
+            // create contract pdf and send to provider
+            $signature = $this->bookingDetails['contractSignature'];
+            $date = date("Y-m-d H:i:s");
+            $ipAddress = $_SERVER['REMOTE_ADDR'];
+            $userAgent = $_SERVER['HTTP_USER_AGENT'];
+            $contractText = "Contract agreed upon by $signature on $date.\nIP: $ipAddress\nUser Agent: $userAgent";
+        
+            $img = file_get_contents("https://ucarecdn.com/d1ebc5f9-baf2-4090-ac28-d5894ba50828/logosmall3.png");
+            $base64_img = base64_encode($img);
+
+            $img_tag = '<img class="logo" src="data:image/png;base64,' . $base64_img . '" alt="Logo" style="width: 64px; height: 64px;">';
             
+            $dompdf = new Dompdf();
+
+            $dompdf->loadHtml($this->renderView($this->component("contract"), ['img_tag' => $img_tag, 'signature' => $signature, 'date' => $date, 'bookingDetails' => $this->bookingDetails]));
+
+            // (Optional) Setup the paper size and orientation
+            $dompdf->setPaper('A4', 'portait');
+
+            // Render the HTML as PDF
+            $dompdf->render();
+
+            // Save PDF output to a temporary file
+            $tempPdfPath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'temp_pdf_' . uniqid() . '.pdf';
+            file_put_contents($tempPdfPath, $dompdf->output());
+
+            $uploadcare = new Uploadcare();
+
+            $result = $uploadcare->uploadPdf($tempPdfPath, $this->bookingDetails['orderId']);
+            var_dump($result);
+            // Delete the temporary file after upload
+            unlink($tempPdfPath);
+
+            exit;
+        // send email to provider    
             if ($mail) {
 
             }
        }
+
         
     }
 

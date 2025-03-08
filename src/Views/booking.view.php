@@ -233,8 +233,8 @@
                             <option value="18:00:00">6:00 PM</option>
                             <option value="18:30:00">6:30 PM</option>
                             <option value="19:00:00">7:00 PM</option>
-                            <option value="19:30:00">7:30 PM</option>
-                            <option value="20:00:00">8:00 PM</option>
+                            <!-- <option value="19:30:00">7:30 PM</option>
+                            <option value="20:00:00">8:00 PM</option> -->
                         </select>
                     </div>
                 </div>

@@ -14,6 +14,7 @@ body {
   color: $primary-color;
 }
 
+
 a {
   text-decoration: none;
   color: #000;
@@ -91,7 +92,12 @@ footer {
 }
 
 nav { 
-  height: 80px;
+  position: absolute;
+  width: 120px;
+  bottom: 30px;
+  right: 25px;
+  height: 55px;
+  padding: 0 15px;
 
   .nav-container {
     display: flex;
@@ -99,16 +105,20 @@ nav {
     position: fixed;
     background-color: #fff;
     z-index: 5;
-    top: 0;
-    left: 0;
-    right: 0;
+    width: inherit;
+    top: inherit;
+    right: inherit;
+    height: inherit;
+    padding: inherit;
+    border-radius: 15px;
     align-items: center;
-    padding: 15px;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
   }
 
   .nav-logo {
-    width: 64px;
-    height: 64px;
+    width: 42px;
+    height: 42px;
     cursor: pointer;
   }
 
@@ -133,7 +143,7 @@ nav {
   position: absolute;
   z-index: 10;
   left: 50%;
-  top: 100px;
+  bottom: 100px;
   transform: translateX(-50%);
   border: 1px solid #e9e9e9;
   position: fixed;
@@ -518,7 +528,7 @@ nav {
 
 
 footer {
-  background-color: #E6E5ED;
+  background-color: #F6F6FF;
   padding: 40px 20px;
   font-family: system-ui, -apple-system, sans-serif;
 }
@@ -593,7 +603,7 @@ footer {
 
 .process-wrapper {
   margin-top: clamp(60px, 12vw, 50px);
-  max-width: 1024px;
+  // max-width: 1024px;
 
   h2 {
     font-family: $secondary-font;
@@ -706,7 +716,7 @@ footer {
 /* CONTACT */
 
 .contact-container {
-  margin: clamp(60px, 12vw, 50px) auto !important;
+  margin: clamp(60px, 12vw, 50px) auto;
   max-width: 1024px;
 }
 
@@ -840,7 +850,7 @@ footer {
 /* BOOKING */
 
 .booking-section-1 {
-  margin-top: 70px;
+  margin-top: clamp(60px, 12vw, 50px);
 
   .event-booking-form {
     margin: 0 auto;
@@ -969,13 +979,13 @@ footer {
       justify-content: center;
 
       a {
-        background-color: #3767ea;
+        background-color: #373737;
       }
     }
 
     .button-container {
       a {
-        background-color: #3767ea;
+        background-color: #373737;
       }
     }
 
@@ -1217,6 +1227,7 @@ footer {
 
 .booking-date-error-msg {
   width: 100%;
+  color: red;
 }
 
 .next-button-1,
@@ -1335,8 +1346,25 @@ footer {
 }
 
 @media (min-width: 1024px) {
+  .booking-section-1,
+  .contact-container,
+  .about-content,
+  .process-wrapper {
+    margin-top: clamp(130px, 12vw, 50px);
+
+  }
+
+  nav {
+    position: absolute;
+    width: 50%;
+    top: 35px;
+    right: 50px;
+    height: 55px;
+    padding: 0 15px;
+  }
+
   .hero-section {
-    height: calc(100vh - 110px) !important;
+    height: calc(100vh - 30px) !important;
   } 
 }
 
@@ -1360,7 +1388,7 @@ footer {
     ul {
       display: flex;
       font-size: 1.1rem;
-      gap: 20px;
+      gap: 25px;
       font-weight: 500;
       align-items: center;
     }
@@ -1377,8 +1405,9 @@ footer {
 
 .menu-item {
   display: inline-block;
-  width: 100px; /* Adjust based on the longest menu item */
   text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .booking-nav-item {

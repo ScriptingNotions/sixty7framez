@@ -231,31 +231,32 @@ export function toggleMobileMenu(e) {
                     day: 'numeric'
                 });
 
-                const startTime = new Date();
+                let startTime = new Date();
                 startTime.setHours(bookingDetails.eventTime.split(":")[0], bookingDetails.eventTime.split(":")[1], 0 , 0).toExponential;
 
-                const endTime = new Date(startTime);
+
+                let endTime = new Date(startTime);
                 endTime.setHours(startTime.getHours() + +bookingDetails.packageTime);
 
-                _$(".contract-event-time-start").innerText = startTime.toLocaleTimeString('en-US', { 
+                endTime = endTime.toLocaleTimeString('en-US', { 
                     hour: 'numeric', 
                     minute: '2-digit', 
                     hour12: true 
                   });
 
-                _$(".contract-event-time-end").innerText = endTime.toLocaleTimeString('en-US', { 
+                startTime = startTime.toLocaleTimeString('en-US', { 
                     hour: 'numeric', 
                     minute: '2-digit', 
                     hour12: true 
                   });
+
+                _$(".contract-event-time-start").innerText = startTime;
+
+                _$(".contract-event-time-end").innerText = endTime;
                 _$("#contract-client-name").innerText = bookingDetails.firstName + " " + bookingDetails.lastName;
                 _$("#contract-client-phone").innerText = bookingDetails.phone;
                 _$("#contract-client-email").innerText = bookingDetails.email;
-                _$("#contract-client-event-time").innerText = startTime.toLocaleTimeString('en-US', { 
-                    hour: 'numeric', 
-                    minute: '2-digit', 
-                    hour12: true 
-                  });
+                _$("#contract-client-event-time").innerText = startTime;
                 //_$(".field-value-summary-hours").innerText = bookingDetails.packageTime;
                 _$("#contract-client-package-type").innerText = bookingDetails.packageType;
                 _$("#contract-venue-name").innerText = bookingDetails.venueName;
@@ -267,6 +268,11 @@ export function toggleMobileMenu(e) {
                 _$("#contract-venue-phone").innerText =   bookingDetails.venuePhone;
                 _$("#contract-client-event-date").innerText =   readableDate;
                 _$(".contract-date").innerText = readableDate;
+
+                bookingDetails.readableDate = readableDate;
+                bookingDetails.contractStartTime = startTime;
+                bookingDetails.contractEndTime = endTime;
+                bookingDetails.eventType = bookingDetails.eventType === "Other" ? bookingDetails.eventTypeOther : bookingDetails.eventType;
 
                 navigate("next");
 
@@ -816,7 +822,7 @@ export function generateCalendarDays() {
         dateContainer.style.position = "relative";
 
         let date = new Date();
-        
+
         if(currentDate > date.setDate(date.getDate() + 2) + 2) {
             dateContainer.dataset["few"] = "selectDate";
             dateContainer.dataset["date"] = currentDate;
@@ -844,14 +850,44 @@ export function generateCalendarDays() {
     }
 }
 
+function subtractHours(time, hours) {
+    const date = new Date(`1970-01-01T${time}`);
+    date.setHours(date.getHours() - hours);
+    console.log(date.toTimeString().slice(0, 8));
+    // Format the result back to HH:MM:SS
+    return date.toTimeString().slice(0, 8);
+}
+
+function addHours(time, hours) {
+    const date = new Date(`1970-01-01T${time}`);
+    date.setHours(date.getHours() + hours);
+    // Format the result back to HH:MM:SS
+    return date.toTimeString().slice(0, 8);
+}
+
+function compareTime(time1, time2) {
+    const [h1, m1, s1] = time1.split(':').map(Number);
+    const [h2, m2, s2] = time2.split(':').map(Number);
+    
+    if (h1 < h2) return true;
+    if (h1 > h2) return false;
+    
+    // If hours are equal, compare minutes
+    if (m1 < m2) return true;
+    if (m1 > m2) return false;
+    
+    // If minutes are equal, compare seconds
+    return s1 < s2;
+}
+
 export function selectDate(e) {  
     let date = new Date(e.target.dataset.date);  
     const month = date.getMonth() + 1; // +1 because months are 0-indexed
     const day = date.getDate();
     const year = date.getFullYear();
 
+    let disabledCount = 0;
     let t = `${month}, ${day}, ${year}`; 
-    
 
     [..._$("#time-select").options].forEach(el => {
         el.disabled = false;
@@ -863,21 +899,22 @@ export function selectDate(e) {
         // if user selects a date that has events, block the booked event times
         if(t === u) {
             [..._$("#time-select").options].forEach(el => {
-
-                if(el.value >= bookedEvents[i].start.dateTime.split("T")[1] && el.value <= bookedEvents[i].end.dateTime.split("T")[1]) {
-                    //console.log(el);
-                    
-                    el?.previousElementSibling ? el.previousElementSibling.disabled = true : "";
-                    el?.previousElementSibling?.previousElementSibling ? el.previousElementSibling.previousElementSibling.disabled = true : "";
-                    el?.previousElementSibling?.previousElementSibling?.previousElementSibling ? el.previousElementSibling.previousElementSibling.previousElementSibling.disabled = true : "";
-                    el?.previousElementSibling?.previousElementSibling?.previousElementSibling?.previousElementSibling ? el.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.disabled = true : "";
+                // subtract package time plus 2 hours from the start time of the booked event
+                if(
+                    el.value >= subtractHours(bookedEvents[i].start.dateTime.split("T")[1].split("-")[0], +bookingDetails.packageTime + 2)
+                    && 
+                    el.value <= addHours(bookedEvents[i].end.dateTime.split("T")[1].split("-")[0], 2)
+                ) {
+                    disabledCount++;
                     el.disabled = true;
-                    el?.nextElementSibling ? el.nextElementSibling.disabled = true : "";
-                    el?.nextElementSibling?.nextElementSibling ? el.nextElementSibling.nextElementSibling.disabled = true : "";
-                    el?.nextElementSibling?.nextElementSibling?.nextElementSibling ? el.nextElementSibling.nextElementSibling.nextElementSibling.disabled = true : "";
-                    el?.nextElementSibling?.nextElementSibling?.nextElementSibling?.nextElementSibling ? el.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.disabled = true : "";
-                    
                 }
+//console.log([..._$("#time-select").options].length, disabledCount + 1);
+                if([..._$("#time-select").options].length === disabledCount + 1) {
+                    _$(".booking-date-error-msg").innerText = "There is no available time for that date.";
+                } else {
+                    _$(".booking-date-error-msg").innerText = "";
+                }
+                
             });
         }
     });
