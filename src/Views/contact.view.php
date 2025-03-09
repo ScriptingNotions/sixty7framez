@@ -9,6 +9,11 @@
     <section class="contact-section-2">
             <form action="#" id="contact-form">
                 <fieldset>
+                    <div class="form-group honeypot" style="display: none;">
+                        <label for="contact-website">Leave this field blank</label>
+                        <input type="text" id="contact-website" name="contact-website">
+                    </div>
+
                     <div class="form-group">
                         <label for="contact-full-name">Full Name</label>
                         <input type="text" id="contact-full-name" name="contact-full-name" required>
@@ -23,8 +28,9 @@
                     </div>
                     <div class="form-group">
                         <label for="contact-phone">Message</label>
-                    <textarea name="contact-message" id="contact-message"></textarea>
+                        <textarea name="contact-message" id="contact-message"></textarea>
                     </div>
+                    <div class="cf-turnstile" data-sitekey="3x00000000000000000000FF"></div>
                     <div class="button-group">
                         <button type="button" data-few="submitContactMsg">Send</button>
                     </div>

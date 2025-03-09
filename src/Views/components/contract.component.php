@@ -153,6 +153,7 @@ $header_html = <<<EOD
             <div class="section">
                 <h5>SERVICE PERIOD</h5>
                 <p>The Service Period will be from <strong><span class="contract-time-start">{$bookingDetails['contractStartTime']}</span></strong> - <strong><span class="contract-time-end">{$bookingDetails['contractEndTime']}</span></strong>: on <strong><span class="contract-date">{$bookingDetails['readableDate']}</span></strong>. Provider agrees to have a Sixty7 Framez Photo Booth operational for a minimum of 80% during this period; occasionally, operations may need to be interrupted for maintenance of the Photo Booth or by the clients request.</p>
+                <p>By signing this contract, you agree that we may collect and store your IP address, browser information, and User-Agent for fraud prevention, legal validation, and contract enforcement. This data will be securely stored and only used for these purposes. You may contact us at support@sixty7framez.com to request data deletion.</p>
             </div>
             
             <div class="section">
@@ -261,10 +262,12 @@ $header_html = <<<EOD
 
         <div class="signature-container">
             <div class="signature">
+                <img src="{$bookingDetails['signature']}" alt="signature">
                 <div class="signature-line"></div>
-                <div class="signature-label">Clients Printed Name</div>
+                <div class="signature-label">Clients signature</div>
             </div>
             <div class="signature">
+                 {$date}
                 <div class="signature-line"></div>
                 <div class="signature-label">Date</div>
             </div>
@@ -272,10 +275,12 @@ $header_html = <<<EOD
 
         <div class="signature-container">
             <div class="signature">
+                {$bookingDetails['signaturePrinted']}
                 <div class="signature-line"></div>
-                <div class="signature-label">Clients Signature Over Printed Name</div>
+                <div class="signature-label">Clients printed signature</div>
             </div>
             <div class="signature">
+                {$date}
                 <div class="signature-line"></div>
                 <div class="signature-label">Date</div>
             </div>
@@ -298,11 +303,11 @@ $header_html = <<<EOD
 
     </div>
 
-
-
-
-
-
+    <footer>
+        <p>Signed by: {$bookingDetails['signaturePrinted']}
+        <p>IP Address: $ipAddress</p>
+        <p>User Agent: $userAgent</p>
+    </footer>
 </body>
 </html>
 EOD;

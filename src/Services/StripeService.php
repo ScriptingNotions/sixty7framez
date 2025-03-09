@@ -51,14 +51,34 @@ class StripeService {
         return $checkoutSession;
     }
 
+    public function getCharge($sessionId) {
+        $session = $this->client->checkout->sessions->retrieve($sessionId);
+    
+        // Check payment status
+        if ($session->payment_status === 'paid') {
+            // Get the payment intent ID from the session
+            $paymentIntentId = $session->payment_intent;
+    
+            // Retrieve the payment intent
+            $paymentIntent = $this->client->paymentIntents->retrieve($paymentIntentId);
+            
+            // Get the latest charge ID
+            $chargeId = $paymentIntent->latest_charge;
+            
+            // Retrieve the charge details
+            $charge = $this->client->charges->retrieve($chargeId);
+                      
+            $charge = $this->client->charges->retrieve($chargeId);
+        }
+        return $charge;
+    }
+
     public function verifyPayment($sessionId) {
-        ignore_user_abort(true);
-        set_time_limit(60);
-        
         try {
             if ($sessionId === 'undefined') {
                 return json_encode([
                     'success' => false,
+                    'seesion_id' => $sessionId,
                     'error' => 'Session ID not provided'
                 ]);
             }
@@ -68,19 +88,7 @@ class StripeService {
     
             // Check payment status
             if ($session->payment_status === 'paid') {
-                // Get the payment intent ID from the session
-                $paymentIntentId = $session->payment_intent;
-                
-                // Retrieve the payment intent
-                $paymentIntent = $this->client->paymentIntents->retrieve($paymentIntentId);
-                
-                // Get the latest charge ID
-                $chargeId = $paymentIntent->latest_charge;
-                
-                // Retrieve the charge details
-                $charge = $this->client->charges->retrieve($chargeId);
-                
-
+  
 
                 // Payment successful
                 return [
@@ -88,11 +96,11 @@ class StripeService {
                     'checkout_session' => $session,
                     'order_id' => $session->metadata->order_id,
                     'amount' => $session->amount_total / 100,
-                    'currency' => $session->currency,
-                    'charge' => $charge, // Include the full charge details
-                    'customer_name' => $charge->billing_details->name,
-                    'customer_email' => $charge->billing_details->email,
-                    'payment_method_details' => $charge->payment_method_details
+                    'currency' => $session->currency
+                    // 'charge' => $charge, // Include the full charge details
+                    // 'customer_name' => $charge->billing_details->name,
+                    // 'customer_email' => $charge->billing_details->email,
+                    // 'payment_method_details' => $charge->payment_method_details
                 ];
             } else {
                 return [

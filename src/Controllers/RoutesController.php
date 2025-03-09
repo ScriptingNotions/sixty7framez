@@ -100,6 +100,15 @@ class RoutesController extends Controller
         $calendarService = new GoogleCalendarService();
         $calendarId = $_ENV["GOOGLE_CALENDAR_ID"];
 
+        $signatureData = $post["signature"];
+        $signatureData = str_replace('data:image/png;base64,', '', $signatureData);
+        $signatureData = base64_decode($signatureData);
+
+        // $signaturePath = "signatures/signature_" . time() . ".png";
+        // file_put_contents($signaturePath, $signatureData);
+
+        $stripeService = new StripeService();
+
         // var_dump(json_decode(html_entity_decode($post['data'])));
         // var_dump(json_encode($post['data']));
 
@@ -148,26 +157,25 @@ class RoutesController extends Controller
         ];
         
         
-        echo '<pre>';
-        foreach($calendarService->getListOfEvents($calendarId)["items"] as $event) {
-           // echo 'Start: '; 
+    //     echo '<pre>';
+    //     foreach($calendarService->getListOfEvents($calendarId)["items"] as $event) {
+    //        // echo 'Start: '; 
             
-            //print_r($event);
+    //         //print_r($event);
 
-          // echo 'End: ';
-           // print_r($event["end"]);
-        }
-        //print_r($calendarService->getListOfEvents($calendarId)[0]->end);
-       //print_r($calendarService->insertEvent($calendarId, $eventData)["status"]);
-        echo '</pre>';
+    //       // echo 'End: ';
+    //        // print_r($event["end"]);
+    //     }
+    //     //print_r($calendarService->getListOfEvents($calendarId)[0]->end);
+    //    //print_r($calendarService->insertEvent($calendarId, $eventData)["status"]);
+    //     echo '</pre>';
 
        $booking = $calendarService->insertEvent($calendarId, $eventData);
 
-       echo '<pre>';
-        print_r($booking);
-       echo '</pre>';
-// TODO: isset in it's own statement
-// TODO: log errors
+    //    echo '<pre>';
+    //     print_r($booking);
+    //    echo '</pre>';
+
        if(isset($booking["status"]) && $booking["status"] === "confirmed") { 
             $this->bookingDetails["htmlLink"] = $booking["htmlLink"];
 
@@ -180,6 +188,9 @@ class RoutesController extends Controller
             $this->bookingDetails["startTime"] = $formatedStartTime;
             $this->bookingDetails["endTime"] = $formatedEndTime;
             
+            $charge = $stripeService->getCharge($this->bookingDetails["sessionId"]);
+            $this->bookingDetails["receipt"] = $charge->receipt_url;
+
             // send emails
             $mail = new MailService();
             $mail = $mail->send(
@@ -188,14 +199,12 @@ class RoutesController extends Controller
                 $this->partial("bookingEmailConfirmation")
                 //"<h1>Your </h1>booking has been complete. Booking link: {$booking["htmlLink"]} Summary: {$booking["summary"]} Details: {$booking["description"]} Location: {$booking["location"]}" 
             );
-
                     
             // create contract pdf and send to provider
             $signature = $this->bookingDetails['contractSignature'];
-            $date = date("Y-m-d H:i:s");
+            $date = date("F j, Y");
             $ipAddress = $_SERVER['REMOTE_ADDR'];
             $userAgent = $_SERVER['HTTP_USER_AGENT'];
-            $contractText = "Contract agreed upon by $signature on $date.\nIP: $ipAddress\nUser Agent: $userAgent";
         
             $img = file_get_contents("https://ucarecdn.com/d1ebc5f9-baf2-4090-ac28-d5894ba50828/logosmall3.png");
             $base64_img = base64_encode($img);
@@ -204,7 +213,14 @@ class RoutesController extends Controller
             
             $dompdf = new Dompdf();
 
-            $dompdf->loadHtml($this->renderView($this->component("contract"), ['img_tag' => $img_tag, 'signature' => $signature, 'date' => $date, 'bookingDetails' => $this->bookingDetails]));
+            $dompdf->loadHtml($this->renderView($this->component("contract"), [
+                'img_tag' => $img_tag, 
+                'signature' => $signature, 
+                'date' => $date, 
+                'bookingDetails' => $this->bookingDetails,
+                'ipAddress' => $ipAddress,
+                'userAgent' => $userAgent
+            ]));
 
             // (Optional) Setup the paper size and orientation
             $dompdf->setPaper('A4', 'portait');
@@ -212,18 +228,22 @@ class RoutesController extends Controller
             // Render the HTML as PDF
             $dompdf->render();
 
+            // Save signature to a temporary file
+            $signaturePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'signature_' . uniqid() . '.png';
+            file_put_contents($signaturePath, $signatureData);
+
             // Save PDF output to a temporary file
             $tempPdfPath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'temp_pdf_' . uniqid() . '.pdf';
             file_put_contents($tempPdfPath, $dompdf->output());
 
             $uploadcare = new Uploadcare();
 
-            $result = $uploadcare->uploadPdf($tempPdfPath, $this->bookingDetails['orderId']);
-            var_dump($result);
+            $pdfUpload = $uploadcare->uploadPdf($tempPdfPath, $this->bookingDetails['orderId']);
             // Delete the temporary file after upload
             unlink($tempPdfPath);
 
-            exit;
+            $this->returnJsonHttpResponse(200, ["uploaded" => $pdfUpload, "charge" => $charge]);
+            
         // send email to provider    
             if ($mail) {
 
@@ -259,16 +279,40 @@ class RoutesController extends Controller
     public function postContactMsg() {
         $post = $this->filter_post();
 
+            $turnstileSecret = $_ENV['CF_TURNSTILE_SECRET'];
+            $turnstileResponse = $post['turnstileResponse'];
         
+            $verifyResponse = file_get_contents("https://challenges.cloudflare.com/turnstile/v0/siteverify", false, stream_context_create([
+                "http" => [
+                    "method" => "POST",
+                    "header" => "Content-Type: application/x-www-form-urlencoded",
+                    "content" => http_build_query([
+                        "secret" => $turnstileSecret,
+                        "response" => $turnstileResponse
+                    ])
+                ]
+            ]));
+        
+            $responseData = json_decode($verifyResponse);
+        
+            if (!$responseData->success) {
+                die('Turnstile verification failed. Please try again.');
+            }
+        
+            // Continue with form processing if successful
+
+        
+        if($post["honeypot"] !== "") {
+            $this->returnJsonHttpResponse(500, ["message_sent" => false]);
+        }
 
         $mail = new MailService();
         $mail = $mail->send(["noviceone@outlook.com"], "Inquiry", "Name: {$post["name"]} Email: {$post["email"]} Phone: {$post["phone"]} Message: {$post["message"]}");
 
-        var_dump($mail);
         if($mail) {
             $this->returnJsonHttpResponse(200, ["message_sent" => true, "message_HTML" => $this->renderView($this->component("thank-you-message")) ]);
         } else {
-            $this->returnJsonHttpResponse(500, ["message_sent" => false]);
+            $this->returnJsonHttpResponse(500, ["message_sent" => false, "honeypot" => $post["honeypot"]]);
         }
     }
 }

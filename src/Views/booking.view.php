@@ -344,6 +344,7 @@
                 <div class="service-contract">
                     <h2>SIXTY7 FRAMEZ PHOTO BOOTHS - SERVICE CONTRACT</h2>
                     <p>The following contract and its terms will set forth an agreement between Sixty7 Framez Photo Booths (Provider) and <span id="client-name"></span> (Client) the parties, for photo booth services and their event outline in the deposit. This written contract sets forth the full, written intention of both parties and supersedes all other written and/or oral agreements between the parties.</p>
+                    <p>By signing this contract, you agree that we may collect and store your IP address, browser information, and User-Agent for fraud prevention, legal validation, and contract enforcement. This data will be securely stored and only used for these purposes. You may contact us at support@sixty7framez.com to request data deletion.</p>
                 </div>
 
                 <div class="terms-container">
@@ -472,32 +473,34 @@
                 </div>
                 </div>
 
-                <div class="accept-contract-input">
-                    <div class="form-group">
-                        <label for="contract-signature">Full name</label>
-                        <input 
-                            type="text" 
-                            id="contract-signature" 
-                            name="contractSignature" 
-                            required
-                        >
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input 
-                            type="email" 
-                            id="contract-email" 
-                            name="contractEmail" 
-                            required
-                        >
-                    </div>
-                </div>
                 <div class="checkbox-group contract-checkbox-group">
                     <input type="checkbox" id="booking-terms" name="booking-terms">
                     <div>
                         <span for="summary-terms">I have read and agree to the terms of this contract.</span>
                     </div>
                 </div>
+
+                <div class="accept-contract-input">
+                    <div class="form-group">
+                        <label for="contract-signature">Full name</label>
+                        <input 
+                            type="text" 
+                            id="contract-signature" 
+                            name="signaturePrinted" 
+                            required
+                        >
+                    </div>
+                    <div class="signature-container">
+                        <label>Sign in the box below</label>
+                        <div>
+                            <canvas id="signature-pad" width="400" height="100"></canvas>
+                        </div>
+                        <button type="button" id="clear-signature" data-few="clearSignature" >Clear Signature</button>
+                    </div>
+                   
+                    <!-- <input type="hidden" name="signature_data" id="signature_data"> -->
+                </div>
+
 
                 <div class="booking-navigation">
                     <button type="button" class="back-button back-button-4" data-few="backBooking">Back</button>
@@ -507,6 +510,7 @@
 
             <div class="booking-item-5 booking-item page" id="page5">
 
+            <div class="loader-container"></div>
             <div id="checkout">
                 <!-- Checkout will insert the payment form here -->
             </div>

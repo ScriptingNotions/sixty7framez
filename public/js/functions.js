@@ -1,6 +1,12 @@
 import * as Utils from "./utils.js";
 
 const bookingDetails = new Object();
+// Initialize Signature Pad
+if(window.location.pathname.includes( "/booking" )) {
+    var canvas = _$('#signature-pad');
+    var signaturePad = new SignaturePad(canvas);
+}
+
 
 export function toggleFAQ(e) {
     console.log(e);
@@ -370,14 +376,13 @@ export function toggleMobileMenu(e) {
             let isValid = true;
 
             let contractSignature = _$("#contract-signature");
-            let contractEmail = _$("#contract-email");
+            // let contractEmail = _$("#contract-email");
 
             const terms = _$("#booking-terms");
 
-            _$("#checkout").innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
+            _$(".loader-container").innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
 
             [
-                contractEmail,
                 contractSignature
             ].forEach(element => {
                 console.log(element);
@@ -396,10 +401,13 @@ export function toggleMobileMenu(e) {
                 console.log(bookingDetails);
             });
 
+ 
 
-            if(terms.checked && isValid) {
+            if(terms.checked && isValid && !signaturePad.isEmpty()) {
                 navigate("next");
 
+                bookingDetails.signature = signaturePad.toDataURL();
+                console.log(bookingDetails);
                     // Initialize Stripe.js
                     const stripe = Stripe('pk_test_51QT8XgFQfS92WxX5eTYKdpaE17DJuRqyJRhDQwfNWvYl4JjnbHlHoj2tUAcVqzkEbwecFW3OH7BLGopClzLUjWXk002rlOCJA3');
 
@@ -415,6 +423,8 @@ export function toggleMobileMenu(e) {
                             if (!data.clientSecret) {
                                 throw new Error('Client secret not found in response');
                             }
+
+                            _$(".loader-container").innerHTML = "";
                             
                             return data.clientSecret; // Return just the string, not the object
                         } catch (error) {
@@ -427,6 +437,9 @@ export function toggleMobileMenu(e) {
                     const checkout = await stripe.initEmbeddedCheckout({
                         clientSecret: await fetchClientSecret(), // Changed to directly await the function,
                         onComplete: async () => {
+                            _$("#checkout").style.display = "none";
+                            _$(".loader-container").innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
+                            
                             try {
                                 // Get the checkout session ID
                                 const sessionId = checkout.embeddedCheckout.checkoutSessionId;
@@ -439,16 +452,26 @@ export function toggleMobileMenu(e) {
                                 const verificationResult = JSON.parse(verificationResponse);
                                 console.log(verificationResult);
                                 if (verificationResult.success) {
-                                    // Payment successful book event
-                                    console.log(bookingDetails);
-                                    bookingDetails.orderId = verificationResult.order_id;
+                                    // TODO: Now booking your event
+                                    //_$("#checkout").innerHTML = "<span>Booking your event...</span>";
 
+                                    // Payment successful book event
+                                    bookingDetails.orderId = verificationResult.order_id;
+                                    bookingDetails.sessionId = verificationResult.checkout_session.id;
+
+                                    console.log(bookingDetails);
                                     let data = JSON.stringify(bookingDetails);
-                                    const bookEvent = await Utils.initFetch("POST", "/book-event", {
+                                    let bookEvent = await Utils.initFetch("POST", "/book-event", {
                                         data
                                     });  
 
-                                    console.log(bookEvent);
+                                    
+                                    bookEvent = JSON.parse(bookEvent);
+                                    //console.log(bookEvent);
+                                    if(bookEvent.uploaded) {
+                                        _$(".loader-container").innerHTML = "";
+                                        _$("#checkout").style.display = "flex";
+                                    }
 
                                 } else {
                                     // Payment failed or pending
@@ -930,8 +953,14 @@ export function submitContactMsg() {
     let contactEmail = _$("#contact-email");
     let contactMsg = _$("#contact-message");
     let contactPhone = _$("#contact-phone");
+    let honeypot = _$("#contact-website");
+    let turnstileResponse = _$("input[name='cf-turnstile-response']").value;
 
     let isValid = true;
+
+    if(honeypot.value != "") {
+        isValid = false;
+    }
 
     [
         contactName,
@@ -952,10 +981,16 @@ export function submitContactMsg() {
         name: contactName.value,
         email: contactEmail.value,
         phone: contactPhone.value,
-        message: contactMsg.value
+        message: contactMsg.value,
+        honeypot: honeypot.value,
+        turnstileResponse: turnstileResponse.value
     };
 
-    if(isValid) {   
+    console.log(turnstileResponse);
+
+    if(isValid && turnstileResponse != "") {   
+        // validate turnstile response
+
         _$(".contact-section-2").innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
 
         Utils.initFetch("POST", "/contact", data).then(res => {
@@ -975,7 +1010,13 @@ if(calendarGridEl != undefined) {
     renderCalendar();
 }
 
+export function clearSignature() {
 
+    var canvas = _$('#signature-pad');
+    var signaturePad = new SignaturePad(canvas);
+
+    signaturePad.clear();
+}
 
 // class Calendar {
 //     constructor(options = {}) {

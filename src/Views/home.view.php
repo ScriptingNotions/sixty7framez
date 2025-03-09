@@ -3,7 +3,7 @@
 <section class="hero-section">
     <div class="hero-media-container">
         <!-- WebP video source -->
-        <img class="hero-media" src="<?= $this->getImage("hero-media-2.avif") ?>" type="video/webp">
+        <img class="hero-media" src="<?= $this->getImage("hero-media-3.avif") ?>" type="video/webp">
         <!-- Fallback image for unsupported browsers -->
         <!-- <img src="/path-to-fallback-image.jpg" alt="Hero Image"> -->
     </div>
@@ -212,7 +212,7 @@
                             value=""
                         >
                     </div>
-                    
+
                     <div class="button-container">
                         <button type="button" data-few="startBookingContact">Start Booking</button>
                     </div>
