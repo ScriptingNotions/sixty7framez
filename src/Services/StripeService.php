@@ -26,7 +26,7 @@ class StripeService {
                     ]
                 ],
                 'line_items' => [[
-                    'price' => 'price_1QT8iTFQfS92WxX5p9ADUFvi',
+                    'price' => 'price_1R0trFLvK2KcNfItANCXBQbX',
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',

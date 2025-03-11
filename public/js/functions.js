@@ -409,7 +409,7 @@ export function toggleMobileMenu(e) {
                 bookingDetails.signature = signaturePad.toDataURL();
                 console.log(bookingDetails);
                     // Initialize Stripe.js
-                    const stripe = Stripe('pk_test_51QT8XgFQfS92WxX5eTYKdpaE17DJuRqyJRhDQwfNWvYl4JjnbHlHoj2tUAcVqzkEbwecFW3OH7BLGopClzLUjWXk002rlOCJA3');
+                    const stripe = Stripe('pk_test_51R0tekLvK2KcNfItZJRXusWNBMqRxRdGZsM0ZUj4wldHkLA0DXIvxs7RY5KgASU9cXbLxLYX1KaWmThYsfX8VuRy00QlO0u3M2');
 
                     // Fetch Checkout Session and retrieve the client secret
                     const fetchClientSecret = async () => {
@@ -467,7 +467,7 @@ export function toggleMobileMenu(e) {
 
                                     
                                     bookEvent = JSON.parse(bookEvent);
-                                    //console.log(bookEvent);
+                                    console.log(bookEvent);
                                     if(bookEvent.uploaded) {
                                         _$(".loader-container").innerHTML = "";
                                         _$("#checkout").style.display = "flex";

@@ -100,10 +100,6 @@ class RoutesController extends Controller
         $calendarService = new GoogleCalendarService();
         $calendarId = $_ENV["GOOGLE_CALENDAR_ID"];
 
-        $signatureData = $post["signature"];
-        $signatureData = str_replace('data:image/png;base64,', '', $signatureData);
-        $signatureData = base64_decode($signatureData);
-
         // $signaturePath = "signatures/signature_" . time() . ".png";
         // file_put_contents($signaturePath, $signatureData);
 
@@ -113,6 +109,10 @@ class RoutesController extends Controller
         // var_dump(json_encode($post['data']));
 
         $this->bookingDetails = json_decode(html_entity_decode($post['data']), true);
+
+        $signatureData = $this->bookingDetails["signature"];
+        $signatureData = str_replace('data:image/png;base64,', '', $signatureData);
+        $signatureData = base64_decode($signatureData);
 
         $date = new \DateTime($this->bookingDetails['eventDate'], new \DateTimeZone('America/New_York'));
         $this->isDST = (bool)$date->format('I');
@@ -181,7 +181,9 @@ class RoutesController extends Controller
 
             $startTime =  new \DateTime($booking["start"]["dateTime"]);
             $endTime =  new \DateTime($booking["end"]["dateTime"]);
-            
+            $startTime->setTimezone(new \DateTimeZone('America/New_York'));
+            $endTime->setTimezone(new \DateTimeZone('America/New_York'));
+
             $formatedStartTime = $startTime->format("l, F j, Y g:i A T");
             $formatedEndTime = $endTime->format("l, F j, Y g:i A T");
 
@@ -201,7 +203,7 @@ class RoutesController extends Controller
             );
                     
             // create contract pdf and send to provider
-            $signature = $this->bookingDetails['contractSignature'];
+            $signature = $this->bookingDetails['signature'];
             $date = date("F j, Y");
             $ipAddress = $_SERVER['REMOTE_ADDR'];
             $userAgent = $_SERVER['HTTP_USER_AGENT'];

@@ -105,6 +105,8 @@ abstract class Controller {
      */
     protected function getStylesheet($filename)
     {
+        $file = "";
+        
         if ($filename != "") {
             $file = strtolower($filename);
         }
