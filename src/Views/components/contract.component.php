@@ -145,6 +145,7 @@ $header_html = <<<EOD
         <div class="service-contract">
             <h3>SIXTY7 FRAMEZ PHOTO BOOTHS - SERVICE CONTRACT</h3>
             <p>The following contract and its terms will set forth an agreement between Sixty7 Framez Photo Booths (Provider) and <strong><span id="contract-client-name">{$bookingDetails['firstName']} {$bookingDetails['lastName']}</span></strong> (Client) the parties, for photo booth services and their event outline in the deposit. This written contract sets forth the full, written intention of both parties and supersedes all other written and/or oral agreements between the parties.</p>
+            <p>By signing this contract, you agree that we may collect and store your IP address, browser information, and User-Agent for fraud prevention, legal validation, and contract enforcement. This data will be securely stored and only used for these purposes. You may contact us at support@sixty7framez.com to request data deletion.</p>
         </div>
 
         <div class="terms-container">
@@ -153,7 +154,6 @@ $header_html = <<<EOD
             <div class="section">
                 <h5>SERVICE PERIOD</h5>
                 <p>The Service Period will be from <strong><span class="contract-time-start">{$bookingDetails['contractStartTime']}</span></strong> - <strong><span class="contract-time-end">{$bookingDetails['contractEndTime']}</span></strong>: on <strong><span class="contract-date">{$bookingDetails['readableDate']}</span></strong>. Provider agrees to have a Sixty7 Framez Photo Booth operational for a minimum of 80% during this period; occasionally, operations may need to be interrupted for maintenance of the Photo Booth or by the clients request.</p>
-                <p>By signing this contract, you agree that we may collect and store your IP address, browser information, and User-Agent for fraud prevention, legal validation, and contract enforcement. This data will be securely stored and only used for these purposes. You may contact us at support@sixty7framez.com to request data deletion.</p>
             </div>
             
             <div class="section">
