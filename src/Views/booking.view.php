@@ -2,7 +2,7 @@
 
 <section class="booking-section-1">
     <h2>Booking <span>.</span></h2>
-    <p>Ready to make your event unforgettable? Fill out the form below, and we’ll be in touch soon!</p>
+    <p>Ready to make your event unforgettable? Start the booking process below, and we’ll be in touch soon!</p>
 
     <div class="booking-progress-container">
         <div class="booking-progress-bar">
@@ -15,7 +15,7 @@
         <!-- < //$this->bookingContent; -->
         <div class="booking-item-1 booking-item page active" id="page1">
             <div class="package-list">
-                <div class="package-item <?= $this->package === "standard" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
+                <div class="package-item <?= $this->package === "standard" ? "active-package" : "" ?>" data-package="<?= $this->package ?>" data-package-price="price_1R0trFLvK2KcNfItANCXBQbX" data-package-time="3">
                     <h4>Standard</h4>
                     <p>$375</p>
                     <ul>
@@ -29,31 +29,34 @@
                         <li>3 hours</li>
                     </ul>
                     <div class="package-button-container">
-                        <a class="booking-package-button button-style" data-few="selectPackage" data-package-type="standard" data-package-time="3">Select package</a>
+                        <a class="booking-package-button button-style" data-few="selectPackage" data-package-type="standard" data-package-price="price_1R0trFLvK2KcNfItANCXBQbX" data-package-time="3">Select package</a>
                     </div>
                 </div>
 
-                <div class="package-item <?= $this->package === "memory-maker" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
+                <div class="package-item <?= $this->package === "memory-maker" ? "active-package" : "" ?>" data-package="<?= $this->package ?>" data-package-price="price_1R0tuLLvK2KcNfItsoVlFI9p" data-package-time="3">
                     <h4>Memory Maker</h4>
                     <p>$550</p>
                     <ul>
                         <li>Open-air booth and 360 booth</li>
+                        <li>Choice of 1 standard backdrop</li>
                         <li>Customized Tap to Start screen</li>
+                        <li>Photo/GIF/Boomerang</li>
                         <li>Fun props (hats, glasses, signs, etc.)</li>
                         <li>Unlimited photo sessions</li>
                         <li>Unlimited digital photos</li>
+                        <li>50 personalized photo template 2x6 prints</li>
                         <li>Live gallery with real-time photo access for guests</li>
                         <li>Instant sharing via Text/Email/QR Code</li>
+                        <li>On-site attendant</li>
                         <li>Setup/Breakdown</li>
-                        <li>Optional drop-off service</li>
                         <li>3 hours</li>
                     </ul>
                     <div class="package-button-container">
-                        <a class="booking-package-button button-style" data-few="selectPackage"  data-package-type="memory-maker" data-package-time="3">Select package</a>
+                        <a class="booking-package-button button-style" data-few="selectPackage"  data-package-type="memory-maker" data-package-price="price_1R0tuLLvK2KcNfItsoVlFI9p" data-package-time="3">Select package</a>
                     </div>
                 </div>
 
-                <div class="package-item <?= $this->package === "deluxe" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
+                <div class="package-item <?= $this->package === "deluxe" ? "active-package" : "" ?>" data-package="<?= $this->package ?>" data-package-price="price_1R0tvtLvK2KcNfItXupSziwJ" data-package-time="3">
                     <h4>Deluxe</h4>
                     <p>$750</p>
                     <ul>
@@ -61,10 +64,10 @@
                         <li>Choice of premium backdrop</li>
                         <li>Premium props</li>
                         <li>Customized Tap to Start screen and LED Ring</li>
-                        <li>Photo/GIF/Boomerang/Video</li>
-                        <li>Select up to 2 each face effects & pose tips</li>
+                        <li>Photo/GIF/Boomerang</li>
+                        <li>Select up to 2 face effects & pose tips</li>
                         <li>Unlimited personalized photo templates (digital only)</li>
-                        <li>100 personalized photo templates 2x6 prints</li>
+                        <li>150 personalized photo templates 2x6 prints</li>
                         <li>Live gallery with real-time photo access for guests</li>
                         <li>Instant sharing via Text/Email/QR Code</li>
                         <li>Setup/Breakdown</li>
@@ -72,13 +75,13 @@
                         <li>4 hours</li>
                     </ul>
                     <div class="package-button-container">
-                        <a class="booking-package-button button-style" data-few="selectPackage"  data-package-type="deluxe" data-package-time="4">Select package</a>
+                        <a class="booking-package-button button-style" data-few="selectPackage"  data-package-type="deluxe" data-package-price="price_1R0tvtLvK2KcNfItXupSziwJ" data-package-time="4">Select package</a>
                     </div>
                 </div>
 
-                <div class="package-item <?= $this->package === "luxe" ? "active-package" : "" ?>" data-package="<?= $this->package ?>">
+                <div class="package-item <?= $this->package === "luxe" ? "active-package" : "" ?>" data-package="<?= $this->package ?>" data-package-price="price_1R0txzLvK2KcNfItTW0p2ll7" data-package-time="3">
                     <h4>Luxe</h4>
-                    <p>$1,100</p>
+                    <p>$995</p>
                     <ul>
                         <li>Open-air booth and 360 booth</li>
                         <li>Choice of premium backdrop</li>
@@ -88,7 +91,7 @@
                         <li>Select up to 2 each face effects & pose tips</li>
                         <li>Filter options - Black/White & Instant</li>
                         <li>Unlimited personalized photo templates (digital only)</li>
-                        <li>200 personalized photo templates 2x6 prints</li>
+                        <li>Unlimited personalized photo templates 2x6 prints</li>
                         <li>Live gallery with real-time photo access for guests</li>
                         <li>Instant sharing via Text/Email/QR Code</li>
                         <li>Social Sharing Station</li>
@@ -97,7 +100,7 @@
                         <li>5 hours</li>
                     </ul>
                     <div class="package-button-container">
-                        <a class="booking-package-button button-style" data-few="selectPackage"  data-package-type="luxe" data-package-time="5">Select package</a>
+                        <a class="booking-package-button button-style" data-few="selectPackage"  data-package-type="luxe" data-package-price="price_1R0txzLvK2KcNfItTW0p2ll7" data-package-time="5">Select package</a>
                     </div>
                 </div>
             </div>
@@ -146,6 +149,7 @@
 
                 <div class="form-group">
                     <label for="phone">Phone</label>
+                    <!-- TODO: id -->
                     <input 
                         type="tel" 
                         id="phone" 
@@ -165,7 +169,6 @@
                         name="companyName" 
 
                         value="<?= isset($this->bookingDetails["companyName"]) ? $this->bookingDetails["companyName"] : "" ?>"
-                        required
                     >
                 </div>
             </form>
@@ -239,14 +242,14 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="venueName">Venue name</label>
                     <input type="text" id="venueName" name="venueName" required>
                 </div>
 
                 <div class="form-group">
                     <label for="venuePhone">Venue phone</label>
-                    <input type="text" id="venuePhone" name="venuePhone" required>
+                    <input type="tel" id="venuePhone" name="venuePhone" required>
                 </div>
 
                 <div class="form-group">
@@ -329,8 +332,8 @@
 
                 <div class="form-group">
                     <label for="venueZip">Venue zip</label>
-                    <input type="text" id="venueZip" name="venueZip" >
-                </div>
+                    <input type="number" id="venueZip" name="venueZip" >
+                </div> -->
             </form>
             <div class="booking-navigation">
                 <button type="button" class="back-button back-button-3" data-few="backBooking">Back</button>
@@ -451,14 +454,14 @@
                             <tr><td>Email address</td><td id="contract-client-email"></td></tr>
                         </table>
                         
-                        <h4>Venue Information</h4>
+                        <!-- <h4>Venue Information</h4>
                         <table>
                             <tr><td>Name</td ><td id="contract-venue-name"></td></tr>
                             <tr><td>Address</td><td id="contract-venue-address"></td></tr>
                             <tr><td>Contact Person</td><td id="contract-venue-contact-person"></td></tr>
                             <tr><td>Email</td><td id="contract-venue-email"></td></tr>
                             <tr><td>Phone</td><td id="contract-venue-phone"></td></tr>
-                        </table>
+                        </table> -->
 
                     </div>
 
@@ -493,7 +496,7 @@
                     <div class="signature-container">
                         <label>Sign in the box below</label>
                         <div>
-                            <canvas id="signature-pad" width="400" height="100"></canvas>
+                            <canvas id="signature-pad" width="300" height="100"></canvas>
                         </div>
                         <button type="button" id="clear-signature" data-few="clearSignature" >Clear Signature</button>
                     </div>

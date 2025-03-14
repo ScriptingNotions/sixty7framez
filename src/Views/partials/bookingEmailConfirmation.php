@@ -37,14 +37,6 @@
                   <td><?= $this->bookingDetails["endTime"] ?></td>
                 </tr>
                 <tr>
-                  <td width="30%" style="font-weight: bold;">Address:</td>
-                  <td><?= $this->bookingDetails['venueAddress'] ?>, <?= $this->bookingDetails['venueCity'] ?>, <?= $this->bookingDetails['venueState'] ?> <?= $this->bookingDetails['venueZip'] ?></td>
-                </tr>
-                <tr>
-                  <td width="30%" style="font-weight: bold;">Venue:</td>
-                  <td><?= $this->bookingDetails['venueName'] ?></td>
-                </tr>
-                <tr>
                   <td width="30%" style="font-weight: bold;">Receipt:</td>
                   <td><a href="<?= $this->bookingDetails['receipt'] ?>">View receipt</a></td>
                 </tr>
@@ -60,6 +52,12 @@
             <td align="center" style="padding: 20px; font-size: 14px; color: #777777; background-color: #f9f9f9;">
               Sixty7Framez Photo Booth | 4833 Berewick Town Center Dr, Charlotte, NC 28278<br>
               <a href="mailto:info@sixty7framez.com" style="color: #777777; text-decoration: none;">info@sixty7framez.com</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.facebook.com/people/Sixty7-Framez-Photo-Booth-Events/61565025722424/"><img src="<?= $this->getIcon("facebook-fill.svg") ?>" alt="facebook icon"></a></li>
+              <a href="https://www.instagram.com/sixty7framez_pb/"><img src="<?= $this->getIcon("instagram-line.svg") ?>" alt="instagram icon"></a></li>
             </td>
           </tr>
         </table>

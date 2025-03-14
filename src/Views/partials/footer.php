@@ -18,6 +18,7 @@
         </footer>
 
     </main>
+    
     <script>
         const _$ = document.querySelector.bind(document);
         const _$$ = document.querySelectorAll.bind(document);

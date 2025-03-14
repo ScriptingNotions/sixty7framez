@@ -24,14 +24,22 @@ export function scrambleString(str) {
 }
 
 export function toggleMobileMenu(e) {
-    if(_$('.mobile-menu-container').style.display === "block") {
-        _$('.mobile-menu-container').style.display = "none";
-        _$('.mobile-menu-button').innerText = "Menu";
-    } else {
-        _$('.mobile-menu-container').style.display = "block";
-        _$('.mobile-menu-button').innerText = "Close";
-    }
+    // if(_$('.mobile-menu-container').style.display === "block") {
+    //     _$('.mobile-menu-container').style.display = "none";
+    //     _$('.mobile-menu-button').innerText = "Menu";
+    // } else {
+    //     _$('.mobile-menu-container').style.display = "block";
+    //     _$('.mobile-menu-button').innerText = "Close";
+    // }
 
+    if(_$(".main-nav").style.display === "flex") {
+        _$(".main-nav").style.display = "none";
+        e.target.innerText = "Menu";
+        
+    } else {
+        _$(".main-nav").style.display = "flex"; 
+        e.target.innerText = "Close";
+    }
 
 }
 
@@ -102,6 +110,8 @@ export function toggleMobileMenu(e) {
             _$$(".package-item").forEach(el => {
                 if(el.classList.contains("active-package")){
                     bookingDetails.packageType = el.dataset.package;
+                    bookingDetails.packagePrice = el.dataset.packagePrice;
+                    bookingDetails.packageTime = el.dataset.packageTime;
                 }
             });
 
@@ -152,19 +162,19 @@ export function toggleMobileMenu(e) {
             const eventType = _$("#eventType");
             const eventTypeOther = _$("#eventTypeOther");
             const timeSelect = _$("#time-select");
-            const venueName = _$("#venueName");
-            const venueAddress = _$("#venueAddress");
-            const venueCity = _$("#venueCity");
-            const venueState = _$("#venueState");
-            const venueZip = _$("#venueZip");
-            const venuePhone = _$("#venuePhone");
-            const venueEmail = _$("#venueEmail");
-            const venueContact = _$("#venueContact");
+            //const venueName = _$("#venueName");
+            // const venueAddress = _$("#venueAddress");
+            // const venueCity = _$("#venueCity");
+            // const venueState = _$("#venueState");
+            // const venueZip = _$("#venueZip");
+            // const venuePhone = _$("#venuePhone");
+            // const venueEmail = _$("#venueEmail");
+            // const venueContact = _$("#venueContact");
 
             let isValid = true;
 
             [
-                venueState,
+               // venueState,
                 timeSelect,
                 eventType
             ].forEach(element => {
@@ -185,13 +195,13 @@ export function toggleMobileMenu(e) {
 
             [
                 eventTypeOther,
-                venueZip,
-                venueCity,
-                venueAddress,
-                venueName,
-                venuePhone,
-                venueEmail,
-                venueContact
+                // venueZip,
+                // venueCity,
+                // venueAddress,
+                // venueName,
+                // venuePhone,
+                // venueEmail,
+                // venueContact
             ].forEach(element => {
                 console.log(element);
                let errorMsg = validateInput(element) ? validateInput(element) : "";
@@ -239,7 +249,9 @@ export function toggleMobileMenu(e) {
 
                 let startTime = new Date();
                 startTime.setHours(bookingDetails.eventTime.split(":")[0], bookingDetails.eventTime.split(":")[1], 0 , 0).toExponential;
+console.log(bookingDetails.packageTime
 
+);
 
                 let endTime = new Date(startTime);
                 endTime.setHours(startTime.getHours() + +bookingDetails.packageTime);
@@ -265,13 +277,13 @@ export function toggleMobileMenu(e) {
                 _$("#contract-client-event-time").innerText = startTime;
                 //_$(".field-value-summary-hours").innerText = bookingDetails.packageTime;
                 _$("#contract-client-package-type").innerText = bookingDetails.packageType;
-                _$("#contract-venue-name").innerText = bookingDetails.venueName;
-                _$("#contract-venue-address").innerText = bookingDetails.venueAddress + " " + bookingDetails.venueCity + ", " + bookingDetails.venueState + " " + bookingDetails.venueZip;
+               // _$("#contract-venue-name").innerText = bookingDetails.venueName;
+               // _$("#contract-venue-address").innerText = bookingDetails.venueAddress + " " + bookingDetails.venueCity + ", " + bookingDetails.venueState + " " + bookingDetails.venueZip;
                 _$("#contract-client-company").innerText = bookingDetails?.companyName != undefined ? bookingDetails.companyName : "";
                 _$("#contract-client-event-type").innerText = bookingDetails.eventType === "Other" ? bookingDetails.eventTypeOther : bookingDetails.eventType;
-                _$("#contract-venue-contact-person").innerText = bookingDetails.venueContact;
-                _$("#contract-venue-email").innerText =  bookingDetails.venueEmail;
-                _$("#contract-venue-phone").innerText =   bookingDetails.venuePhone;
+                // _$("#contract-venue-contact-person").innerText = bookingDetails.venueContact;
+                // _$("#contract-venue-email").innerText =  bookingDetails.venueEmail;
+                // _$("#contract-venue-phone").innerText =   bookingDetails.venuePhone;
                 _$("#contract-client-event-date").innerText =   readableDate;
                 _$(".contract-date").innerText = readableDate;
 
@@ -414,7 +426,7 @@ export function toggleMobileMenu(e) {
                     // Fetch Checkout Session and retrieve the client secret
                     const fetchClientSecret = async () => {
                         try {
-                            const response = await Utils.initFetch("POST", "/booking-payment");
+                            const response = await Utils.initFetch("POST", "/booking-payment", bookingDetails);
                             // Parse the response once
                             console.log(JSON.parse(response));
                             const data = JSON.parse(response);
@@ -465,7 +477,7 @@ export function toggleMobileMenu(e) {
                                         data
                                     });  
 
-                                    
+                                   // console.log(bookEvent);
                                     bookEvent = JSON.parse(bookEvent);
                                     console.log(bookEvent);
                                     if(bookEvent.uploaded) {
@@ -566,6 +578,8 @@ export function toggleMobileMenu(e) {
         }
         
         export function selectPackage(e) {
+            let packagePrice = e.target.dataset.packagePrice;
+
             _$$(".package-item").forEach(element => {
                 element.classList.remove("active-package");
             });
@@ -574,6 +588,7 @@ export function toggleMobileMenu(e) {
 
             bookingDetails.packageType = e.target.dataset.packageType;
             bookingDetails.packageTime = e.target.dataset.packageTime;
+            bookingDetails.packagePrice = packagePrice;
 
             console.log(bookingDetails);
         }
@@ -913,7 +928,7 @@ export function selectDate(e) {
     let t = `${month}, ${day}, ${year}`; 
 
     [..._$("#time-select").options].forEach(el => {
-        el.disabled = false;
+        el.style.display = "initial";
     });
 
     bookedEvents.forEach((event, i) => {
@@ -929,9 +944,11 @@ export function selectDate(e) {
                     el.value <= addHours(bookedEvents[i].end.dateTime.split("T")[1].split("-")[0], 2)
                 ) {
                     disabledCount++;
-                    el.disabled = true;
+                    el.style.display = "none";
+                } else {
+                    el.style.display = "initial";
                 }
-//console.log([..._$("#time-select").options].length, disabledCount + 1);
+console.log([..._$("#time-select").options].length, disabledCount + 1);
                 if([..._$("#time-select").options].length === disabledCount + 1) {
                     _$(".booking-date-error-msg").innerText = "There is no available time for that date.";
                 } else {

@@ -1,2 +1,4 @@
 booking Company name optional
 ivailid date
+
+confirm valid contract by compare user generated contract with your original contract to make sure it has not been tampered with before you sign and send it to the customer.

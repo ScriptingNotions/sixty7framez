@@ -20,14 +20,14 @@
         <div>
         <h4>Event Setup</h4>
             <p>
-                <span>Arrival and Setup:</span>On the event day, the photo booth operator arrives early to set up the equipment, which includes:
+                <span>Arrival and Setup:</span>On the event day, the photo booth attendant arrives early to set up the equipment, which includes:
             </p>
             <ul>
                 <li>The booth or open-air setup (camera, printer, lighting).</li>
                 <li>Props, backdrops, and digital tools, if applicable.</li>
                 <li>Test the equipment to ensure everything works smoothly.</li>
             </ul>
-            <p><span>Walkthrough:</span>The operator explains how the photo booth works to event hosts or coordinators.</p>
+            <p><span>Walkthrough:</span>The attendant explains how the photo booth works to event hosts or coordinators.</p>
         </div>
     </section>
 
@@ -36,7 +36,7 @@
         <div>
             <h4>Using the Photo Booth</h4>
             <p>
-                <span>Guests Take Photos:</span>On the event day, the photo booth operator arrives early to set up the equipment, which includes: The booth or open-air setup (camera, printer, lighting). Props, backdrops, and digital tools, if applicable. Test the equipment to ensure everything works smoothly.
+                <span>Guests Take Photos:</span>On the event day, the photo booth attendant arrives early to set up the equipment, which includes: The booth or open-air setup (camera, printer, lighting). Props, backdrops, and digital tools, if applicable. Test the equipment to ensure everything works smoothly.
             </p>
             <ul>
                 <li>Green screen backgrounds.</li>
@@ -53,7 +53,7 @@
         <h3>04</h3>
         <div>
             <h4>End of Event</h4>
-            <p><span>Booth Takedown:</span>After the event, the operator dismantles and packs up the equipment.</p>
+            <p><span>Booth Takedown:</span>After the event, the attendant dismantles and packs up the equipment.</p>
             <p><span>Full Payment (if necessary): </span>Any remaining balance is settled.</p>
         </div>
     </section>
@@ -68,8 +68,8 @@
                 <li>A downloadable link (Google Drive, Dropbox).</li>
                 <li>Social media upload (depending on privacy settings).</li>
             </ul>
-            <p><span>Photo Album or USB: </span>Some packages may include a physical photo album or a USB drive with all the high-resolution images.</p>
-            <p><span>Delivery Time: </span>Delivery of photos usually takes 1-2 days digitally, while physical items (albums, USB) may take longer to deliver.</p>
+            <p><span>Photo Album: </span>Some packages may include a physical photo album with all the high-resolution images.</p>
+            <p><span>Delivery Time: </span>Delivery of photos usually takes 1-2 days digitally, while physical items (albums) may take longer to deliver.</p>
         </div>
     </section>
 

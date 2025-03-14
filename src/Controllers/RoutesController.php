@@ -22,8 +22,6 @@ class RoutesController extends Controller
     public $eventType;
     public $eventTime; 
     public $eventDate; 
-    public $venueAddress; 
-    public $venueName;
     public $bookingDetails;
     public $isDST;
 
@@ -56,18 +54,41 @@ class RoutesController extends Controller
         $this->view("contact");
     }
 
-    public function booking($package = "", $bookingPosition = "", $customerDetails = "")
+    public function booking($package = "", $customerDetails = "")
     {
+
         $this->pageTitle = "Booking";
 
-        $post = count($_POST) > 0 ? $this->filter_post() : false;
+        $packageDetails = [
+            "luxe" => [
+                "price" => "price_1R0trFLvK2KcNfItANCXBQbX",
+                "time" => 5
+            ], 
+            "deluxe" => [
+                "price" => "price_1R0trFLvK2KcNfItANCXBQbX",
+                "time" => 4
+            ], 
+            "memory-maker" => [
+                "price" => "price_1R0trFLvK2KcNfItANCXBQbX",
+                "time" => 3
+            ], 
+            "standard" => [
+                "price" => "price_1R0trFLvK2KcNfItANCXBQbX",
+                "time" => 3
+            ]
+        ];
 
         // var_dump(json_decode(html_entity_decode($post["bookingData"])));
 
         $package === "" ? $this->package = "standard-package" : $this->package = $package;
         $package = trim($package);
         $package = htmlspecialchars($package);
-    
+
+        if(isset($packageDetails[$package]["price"]) && isset($packageDetails[$package]["time"])) {
+            $this->bookingDetails["price"] = $packageDetails[$package]["price"];
+            $this->bookingDetails["packageTime"] = $packageDetails[$package]["time"];
+        }
+
         if($customerDetails) {
             $customerDetails = urldecode(strrev(base64_decode($customerDetails)));
             $customerDetails = explode("-", $customerDetails);
@@ -87,11 +108,14 @@ class RoutesController extends Controller
     }
 
     public function bookingPayment() {
+        $bookingDetails = $this->filter_post();
+
         $stripeService = new StripeService();
 
         $this->returnJsonHttpResponse(200, [
-            "clientSecret" => $stripeService->stripeCheckoutSession()->client_secret, 
-            "sessionId" => $stripeService->stripeCheckoutSession()->id
+            "kk" => $bookingDetails["packagePrice"],
+            "clientSecret" => $stripeService->stripeCheckoutSession($bookingDetails["packagePrice"])->client_secret, 
+            "sessionId" => $stripeService->stripeCheckoutSession($bookingDetails["packagePrice"])->id
         ]);
     }
 
@@ -125,14 +149,12 @@ class RoutesController extends Controller
     
         $time[0] = $hour + $packageTime;
 
-        var_dump('Photo booth event with: ' . $this->bookingDetails['firstName']." ".$this->bookingDetails['lastName'] . " at " . $this->bookingDetails['venueName']. " Event Type: " . $this->bookingDetails['eventType'] . $this->bookingDetails['eventTypeOther'] != "" ? $this->bookingDetails['eventTypeOther'] : " " . " Phone: " . $this->bookingDetails['phone'] . " Email: " . $this->bookingDetails['email'] . " Package: " . $this->bookingDetails['package'] . " ID: ".$this->bookingDetails['orderId']);
+        //var_dump('Photo booth event with: ' . $this->bookingDetails['firstName']." ".$this->bookingDetails['lastName'] . " at " . $this->bookingDetails['venueName']. " Event Type: " . $this->bookingDetails['eventType'] . $this->bookingDetails['eventTypeOther'] != "" ? $this->bookingDetails['eventTypeOther'] : " " . " Phone: " . $this->bookingDetails['phone'] . " Email: " . $this->bookingDetails['email'] . " Package: " . $this->bookingDetails['package'] . " ID: ".$this->bookingDetails['orderId']);
         $eventData = [
             'summary' => 'Photo booth event',
-            'location' => $this->bookingDetails['venueAddress'] . " " . $this->bookingDetails['venueCity'] . ", " . 
-                          $this->bookingDetails['venueState'] . " " . $this->bookingDetails['venueZip'],
+            'location' => 'North Carolina',
             'description' => "<b>Event With:</b> " . $this->bookingDetails['firstName'] . " " .
                               $this->bookingDetails['lastName'] . "<br>" .
-                              "<b>Place:</b> " . $this->bookingDetails['venueName'] . "<br>" .
                               "<b>Event Type:</b> " . $this->bookingDetails['eventType'] . 
                               ($this->bookingDetails['eventTypeOther'] != "" ? " - " . $this->bookingDetails['eventTypeOther'] : "") . "<br>" . 
                               "<b>Phone:</b> " . $this->bookingDetails['phone'] . "<br>" . 
@@ -171,10 +193,6 @@ class RoutesController extends Controller
     //     echo '</pre>';
 
        $booking = $calendarService->insertEvent($calendarId, $eventData);
-
-    //    echo '<pre>';
-    //     print_r($booking);
-    //    echo '</pre>';
 
        if(isset($booking["status"]) && $booking["status"] === "confirmed") { 
             $this->bookingDetails["htmlLink"] = $booking["htmlLink"];

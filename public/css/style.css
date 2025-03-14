@@ -79,39 +79,49 @@ footer {
   margin-top: 70px;
 }
 
-nav {
-  position: absolute;
-  width: 120px;
-  bottom: 30px;
-  right: 25px;
-  height: 55px;
-  padding: 0 15px;
-}
-nav .nav-container {
+.nav-container {
+  position: fixed;
+  z-index: 10;
+  background-color: #fff;
   display: flex;
   justify-content: space-between;
-  position: fixed;
-  background-color: #fff;
-  z-index: 5;
-  width: inherit;
-  top: inherit;
-  right: inherit;
-  height: inherit;
-  padding: inherit;
-  border-radius: 15px;
+  border-radius: 20px;
+  padding: 10px 15px;
   align-items: center;
-  border: 1px solid #e8e8e8;
+  bottom: 15px;
+  right: 25px;
+  gap: 25px;
+  flex-direction: column;
   box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
+  transform: translateY(0dvh);
+  border: 1px solid #dfdfdf;
 }
-nav .nav-logo {
-  width: 42px;
-  height: 42px;
-  cursor: pointer;
+.nav-container .mobile-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
-nav .menu-container span {
-  font-size: 1rem;
+.nav-container .mobile-nav-inner a {
+  align-self: baseline;
+}
+.nav-container .mobile-nav-inner a img {
+  width: 48px;
+  height: 48px;
+}
+.nav-container .mobile-nav-inner .mobile-menu-button {
   font-weight: 600;
-  cursor: pointer;
+}
+.nav-container .main-nav {
+  display: none;
+}
+.nav-container .main-nav ul {
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  align-items: baseline;
+}
+.nav-container .main-nav ul li {
+  display: flex;
 }
 
 .mobile-menu-container {
@@ -122,11 +132,10 @@ nav .menu-container span {
   border: 1px solid #E6E6E6;
   border-radius: 10px;
   padding: 15px;
-  position: absolute;
   z-index: 10;
   left: 50%;
   bottom: 100px;
-  transform: translateX(-50%);
+  transform: translateX(-80%);
   border: 1px solid #e9e9e9;
   position: fixed;
 }
@@ -148,7 +157,7 @@ nav .menu-container span {
 }
 
 .main-content {
-  padding: 15px;
+  padding: 10px;
   margin: 0 auto;
 }
 .main-content .hero-section {
@@ -184,14 +193,14 @@ nav .menu-container span {
 }
 .main-content .hero-section .hero-content h1 {
   font-family: "Lora", serif;
-  font-size: clamp(2rem, 4vw, 4rem);
+  font-size: clamp(1.7rem, 4vw, 4rem);
   font-weight: 500;
-  margin-bottom: clamp(15px, 2vw, 50px);
+  margin-bottom: clamp(5px, 2vw, 50px);
   color: #fff;
 }
 .main-content .hero-section .hero-content p {
   color: #fff;
-  font-size: calc(1vw + 0.7rem);
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
   line-height: 1.2;
   margin-bottom: clamp(15px, 4vw, 70px);
 }
@@ -202,12 +211,13 @@ nav .menu-container span {
   background-color: #fff;
   color: #000;
   width: clamp(100px, 25vw, 180px);
-  height: clamp(30px, 9vw, 52px);
+  height: clamp(35px, 9vw, 52px);
   display: flex;
   justify-content: center;
   border-radius: 25px;
   cursor: pointer;
   font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
 }
 .main-content .hero-section .hero-content .button-container a:hover {
   background-color: #f0f0f0;
@@ -331,7 +341,7 @@ nav .menu-container span {
   margin-top: clamp(60px, 12vw, 180px);
 }
 .main-content .home-section-5 .start-booking-container {
-  min-width: 280px;
+  min-width: 230px;
   background-color: #F5F1ED;
   margin: 0 auto;
   border-radius: calc(0.5vw + 0.5rem);
@@ -341,7 +351,7 @@ nav .menu-container span {
 .main-content .home-section-5 .start-booking-container h2 {
   text-align: center;
   font-weight: 600;
-  font-size: clamp(1.5rem, 3vw, 1.5rem);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   margin-bottom: clamp(1.5rem, 3vw, 3rem);
   color: #3e3e3e;
 }
@@ -723,6 +733,10 @@ footer {
 .contact-section-3 .contact-details {
   text-align: center;
 }
+.contact-section-3 .contact-details a {
+  text-decoration: underline;
+  color: #0070FF;
+}
 .contact-section-3 .paper-plane-container {
   width: 48px;
   height: 48px;
@@ -839,7 +853,6 @@ footer {
 .package-list {
   position: relative;
   width: 100%;
-  margin-top: 40px;
   display: flex;
   flex-flow: wrap;
   justify-content: center;
@@ -1083,7 +1096,7 @@ footer {
   padding: 3px;
   border-radius: 50%;
   color: #fff;
-  background-color: coral;
+  background-color: #8a7fff;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -1104,7 +1117,7 @@ footer {
 .back-button-4,
 .back-button-5 {
   background-color: transparent;
-  border: 1px solid #000;
+  border: 1px solid #a4a4a4;
   color: #000;
   margin-right: 25px;
 }
@@ -1217,21 +1230,35 @@ footer {
   .process-wrapper {
     margin-top: clamp(130px, 12vw, 50px);
   }
-  nav {
-    position: absolute;
-    width: 50%;
-    top: 35px;
-    right: 50px;
-    height: 55px;
-    padding: 0 15px;
-  }
   .hero-section {
     height: calc(100vh - 30px) !important;
   }
 }
 @media (min-width: 1250px) {
   .nav-container {
-    padding: 15px 45px;
+    position: fixed;
+    z-index: 10;
+    background-color: #fff;
+    display: flex;
+    justify-content: initial;
+    border-radius: 20px;
+    padding: 5px 15px;
+    align-items: initial;
+    top: 30px;
+    right: 50px;
+    bottom: initial;
+    gap: 25px;
+    flex-flow: initial;
+  }
+  .nav-container .main-nav {
+    display: flex;
+    align-items: center;
+  }
+  .nav-container .main-nav ul {
+    align-items: center;
+    margin-bottom: 0;
+    flex-flow: initial;
+    gap: 25px;
   }
   .content {
     padding: 0 70px;
@@ -1417,12 +1444,12 @@ footer {
   border-radius: 10px;
   border: 1px solid #CDCDCD;
   margin-bottom: 20px;
-  width: 400px;
+  width: clamp(300px, 2vw, 400px);
   height: 100px;
 }
 
 #signature-pad {
-  width: 400px;
+  width: clamp(300px, 2vw, 400px);
   height: 100px;
   border-radius: 10px;
 }

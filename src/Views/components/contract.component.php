@@ -238,15 +238,6 @@ $header_html = <<<EOD
                     <tr><td>Phone number</td><td id="contract-client-phone">{$bookingDetails['phone']}</td></tr>
                     <tr><td>Email address</td><td id="contract-client-email">{$bookingDetails['email']}</td></tr>
                 </table>
-                
-                <h4>Venue Information</h4>
-                <table>
-                    <tr><td>Name</td ><td id="contract-venue-name">{$bookingDetails['venueName']}</td></tr>
-                    <tr><td>Address</td><td id="contract-venue-address">{$bookingDetails['venueAddress']} {$bookingDetails['venueCity']} {$bookingDetails['venueState']} {$bookingDetails['venueZip']}</td></tr>
-                    <tr><td>Contact Person</td><td id="contract-venue-contact-person">{$bookingDetails['venueContact']}</td></tr>
-                    <tr><td>Email</td><td id="contract-venue-email">{$bookingDetails['venueEmail']}</td></tr>
-                    <tr><td>Phone</td><td id="contract-venue-phone">{$bookingDetails['venuePhone']}</td></tr>
-                </table>
 
             </div>
 

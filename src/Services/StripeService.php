@@ -14,7 +14,7 @@ class StripeService {
         $this->client = new StripeClient($_ENV["STRIPE_API_KEY"]);
     }
 
-    public function stripeCheckoutSession() {
+    public function stripeCheckoutSession($price) {
         $uuid = StringUtils::generateUuid();
     
         try {
@@ -26,7 +26,7 @@ class StripeService {
                     ]
                 ],
                 'line_items' => [[
-                    'price' => 'price_1R0trFLvK2KcNfItANCXBQbX',
+                    'price' => $price,
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',

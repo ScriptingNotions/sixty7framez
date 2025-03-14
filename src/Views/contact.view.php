@@ -45,8 +45,8 @@
                 <img src="<?= $this->getIcon("paper-plane-line.svg") ?>" alt="paper airplane icon">
             </div>
             <p>4833 Berewick Town Center Dr. Suite #191 Charlotte, NC 28278</p>
-            <p>email@email.com</p>
-            <p>(704) 555-5555</p>
+            <p><a href="mailto:info@sixty7framezphotobooths.com?subject=Inquiry">info@sixty7framezphotobooths.com</a></p>
+            <p><a href="tel:704-619-8698">704-619-8698</a></p>
         </div>
     </section>
 </div>

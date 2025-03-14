@@ -1,9 +1,44 @@
 <?= $this->partial("header"); ?>
 
+    <!-- <nav>
+        <div class="nav-container">
+            <a href="/">
+                <img class="nav-logo" src="<?= $this->getImage("logo-small.svg") ?>" alt="brand logo">
+            </a>
+            <div class="menu-container">
+                <span class="mobile-menu-button" data-few="toggleMobileMenu">Menu</span>
+                
+                <div class="mobile-menu-container">
+                    <ul>
+                        <li><a href="/" class="menu-item <?= $this->pageTitle === "Home" ? "active-page" : "" ?>">Home</a></li>
+                        <li><a href="/process" class="menu-item <?= $this->pageTitle === "The Process" ? "active-page" : "" ?>">The process</a></li>
+                        <li><a href="/#packages" class="menu-item">Packages</a></li>
+                        <li><a href="/about" class="menu-item <?= $this->pageTitle === "About" ? "active-page" : "" ?>">About</a></li>
+                        <li><a href="/contact" class="menu-item <?= $this->pageTitle === "Contact" ? "active-page" : "" ?>">Contact</a></li>
+                        
+                        <li class="booking-nav-item"><a href="/booking">Book</a></li>
+                    </ul>
+                </div>
+
+                <div class="tab-menu-container">
+                    <ul>
+                        <li><a href="/" class="menu-item <?= $this->pageTitle === "Home" ? "active-page" : "" ?>">Home</a></li>
+                        <li><a href="/process" class="menu-item <?= $this->pageTitle === "The Process" ? "active-page" : "" ?>">The process</a></li>
+                        <li><a href="/#packages" class="menu-item">Packages</a></li>
+                        <li><a href="/about" class="menu-item <?= $this->pageTitle === "About" ? "active-page" : "" ?>">About</a></li>
+                        <li><a href="/contact" class="menu-item <?= $this->pageTitle === "Contact" ? "active-page" : "" ?>">Contact</a></li>
+                        
+                        <li class="booking-nav-item"><a href="/booking">Book</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+-->
 <section class="hero-section">
     <div class="hero-media-container">
         <!-- WebP video source -->
-        <img class="hero-media" src="<?= $this->getImage("hero-media-3.avif") ?>" type="video/webp">
+        <video class="hero-media" src="<?= $this->getImage("hero5.webm") ?>" type="video/webm"  autoplay loop muted></video>
         <!-- Fallback image for unsupported browsers -->
         <!-- <img src="/path-to-fallback-image.jpg" alt="Hero Image"> -->
     </div>
@@ -12,7 +47,7 @@
         <h1>An experience to remember</h1>
         <p>Elevate your event with a photo booth experience that's all about fun, style, and lasting memories.</p>
         <div class="button-container">
-            <a href="/booking" class="hero-cta-button">Book Now</a>
+            <a href="/booking" class="hero-cta-button"><span>Book</span></a>
         </div>
     </div>
 </section>
@@ -21,7 +56,7 @@
     <section class="home-section-1 intro">
         <h2>Unforgettable Moments <span>.</span></h2>
         <p>
-            Be it a wedding, a conference, a corporate event, a virtual meet-up, a brand launch, or a birthday celebration, we craft unforgettable, immersive moments.
+            Be it a wedding, a conference, a corporate event, a virtual meet-up, a brand launch, or a birthday celebration, we craft unforgettable moments.
         </p>
     </section>
     
@@ -61,7 +96,7 @@
                     <img src="<?= $this->getIcon("users-01.svg") ?>" alt="Users icon">
                     <h4>Group Photos</h4>
                 </div>
-                <p>Spacious booth fits up to 10 people</p>
+                <p>Spacious enough for 5- 8 people</p>
             </div>
             <div class="feature-item">
                 <div class="feature-details-container">
@@ -76,13 +111,13 @@
     <section class="home-section-3">
         <div class="open-air-booth">
             <h2>Our Open-Air Booth <span>.</span></h2>
-            <img src="<?= $this->getImage("open-air.jpg") ?>" alt="Group of women taking a photo in a photo booth">
+            <img src="<?= $this->getImage("open-air.webp") ?>" alt="Group of women taking a photo in a photo booth">
             <p>Capture the fun with our Open-Air Photo Booth, the perfect addition to any event! Designed for flexibility and style, this booth creates high-quality photos with a sleek, modern setup that fits any venue. Unlike traditional enclosed booths, our open-air design allows for group shots, custom backdrops, and plenty of creative freedom. Guests can snap, pose, and instantly share their memories with digital and print options available. Whether it’s a wedding, corporate event, or birthday party, our Open-Air Photo Booth brings energy, engagement, and endless smiles to your celebration!</p>
         </div>
         <div class="booth-360">
             <h2>Our 360 Booth <span>.</span></h2>
-            <img src="<?= $this->getImage("booth-1.jpg") ?>" alt="Group of women taking a photo in a photo booth">
-            <p>Step into the spotlight with our **360 Photo Booth**, the ultimate way to capture unforgettable moments! This immersive experience lets you and your guests stand on a platform while our rotating camera spins 360 degrees, creating stunning slow-motion, boomerang, or high-definition video clips. Perfect for weddings, corporate events, birthdays, and more, our booth adds a touch of glamour and excitement to any occasion. With customizable overlays, instant social media sharing, and professional-quality results, our **360 Photo Booth** ensures your memories are captured in style. Get ready to strike a pose and make every moment a masterpiece!</p>
+            <img src="<?= $this->getImage("booth-1.webp") ?>" alt="Group of women taking a photo in a photo booth">
+            <p>Step into the spotlight with our **360 Photo Booth**, the ultimate way to capture unforgettable moments! This immersive experience lets you and your guests stand on a platform while our rotating camera spins 360 degrees, creating stunning slow-motion, boomerang, or high-definition video clips. Perfect for weddings, corporate events, birthdays, and more, our booth adds a touch of glamour and excitement to any occasion. With instant social media sharing, and professional-quality results, our **360 Photo Booth** ensures your memories are captured in style. Get ready to strike a pose and make every moment a masterpiece!</p>
         </div>
     </section>
 
@@ -110,15 +145,18 @@
                 <h3>Memory Maker</h3>
                 <p>$550</p>
                 <ul>
-                    <li>Open-air booth</li>
+                    <li>Open-air booth and 360 booth</li>
+                    <li>Choice of 1 standard backdrop</li>
                     <li>Customized Tap to Start screen</li>
+                    <li>Photo/GIF/Boomerang</li>
                     <li>Fun props (hats, glasses, signs, etc.)</li>
                     <li>Unlimited photo sessions</li>
                     <li>Unlimited digital photos</li>
+                    <li>50 personalized photo template 2x6 prints</li>
                     <li>Live gallery with real-time photo access for guests</li>
                     <li>Instant sharing via Text/Email/QR Code</li>
+                    <li>On-site attendant</li>
                     <li>Setup/Breakdown</li>
-                    <li>Optional drop-off service</li>
                     <li>3 hours</li>
                 </ul>
                 <div class="package-button-container">
@@ -129,14 +167,14 @@
                 <h3>Deluxe</h3>
                 <p>$750</p>
                 <ul>
-                    <li>Open-air booth</li>
+                    <li>Open-air booth and 360 booth</li>
                     <li>Choice of premium backdrop</li>
                     <li>Premium props</li>
                     <li>Customized Tap to Start screen and LED Ring</li>
-                    <li>Photo/GIF/Boomerang/Video</li>
-                    <li>Select up to 2 each face effects & pose tips</li>
+                    <li>Photo/GIF/Boomerang</li>
+                    <li>Select up to 2 face effects & pose tips</li>
                     <li>Unlimited personalized photo templates (digital only)</li>
-                    <li>100 personalized photo templates 2x6 prints</li>
+                    <li>150 personalized photo templates 2x6 prints</li>
                     <li>Live gallery with real-time photo access for guests</li>
                     <li>Instant sharing via Text/Email/QR Code</li>
                     <li>Setup/Breakdown</li>
@@ -149,9 +187,9 @@
             </div>
             <div class="package-item luxe">
                 <h3>Luxe</h3>
-                <p>$1,100</p>
+                <p>$995</p>
                 <ul>
-                    <li>Open-air booth</li>
+                    <li>Open-air booth and 360 booth</li>
                     <li>Choice of premium backdrop</li>
                     <li>Custom prop set tailored to your event (theme options available)</li>
                     <li>Customized Tap to Start screen and LED Ring</li>
@@ -159,7 +197,7 @@
                     <li>Select up to 2 each face effects & pose tips</li>
                     <li>Filter options - Black/White & Instant</li>
                     <li>Unlimited personalized photo templates (digital only)</li>
-                    <li>200 personalized photo templates 2x6 prints</li>
+                    <li>Unlimited personalized photo templates 2x6 prints</li>
                     <li>Live gallery with real-time photo access for guests</li>
                     <li>Instant sharing via Text/Email/QR Code</li>
                     <li>Social Sharing Station</li>
@@ -167,7 +205,6 @@
                     <li>On-site attendant</li>
                     <li>5 hours</li>
                 </ul>
-
                 <div class="package-button-container">
                     <a href="/booking/package/luxe" class="button-style">Start Booking</a>
                 </div>

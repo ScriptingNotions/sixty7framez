@@ -91,45 +91,98 @@ footer {
   margin-top: 70px;
 }
 
-nav { 
-  position: absolute;
-  width: 120px;
-  bottom: 30px;
+.nav-container {
+  position: fixed;
+  z-index: 10;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  padding: 10px 15px;
+  align-items: center;
+  bottom: 15px;
   right: 25px;
-  height: 55px;
-  padding: 0 15px;
+  gap: 25px;
+  flex-direction: column;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
+  // transform: translateY(calc(100dvh - 75px));
+  transform: translateY(0dvh);
+  border: 1px solid #dfdfdf;
 
-  .nav-container {
+  .mobile-nav-inner {
     display: flex;
-    justify-content: space-between;
-    position: fixed;
-    background-color: #fff;
-    z-index: 5;
-    width: inherit;
-    top: inherit;
-    right: inherit;
-    height: inherit;
-    padding: inherit;
-    border-radius: 15px;
     align-items: center;
-    border: 1px solid #e8e8e8;
-    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
-  }
+    gap: 20px;
 
-  .nav-logo {
-    width: 42px;
-    height: 42px;
-    cursor: pointer;
-  }
+    a {
+      align-self: baseline;
+  
+      img {
+        width: 48px;
+        height: 48px;
+      }
+    }
 
-  .menu-container {
-    span {
-      font-size: 1rem;
+    .mobile-menu-button {
       font-weight: 600;
-      cursor: pointer;
+    }
+  }
+
+  .main-nav {
+    display: none;
+
+    ul {
+      display: flex;
+      flex-flow: column;
+      gap: 20px;
+      align-items: baseline;
+
+      li {
+        display: flex;
+      }
     }
   }
 }
+
+// nav { 
+//   position: fixed;
+//   width: 120px;
+//   right: 10px;
+//   height: 55px;
+//   padding: 0 15px;
+//   transform: translateY(calc(100dvh - 75px));
+//   z-index: 10;
+
+//   .nav-container {
+//     display: flex;
+//     justify-content: space-between;
+//     position: fixed;
+//     background-color: #fff;
+//     z-index: inherit;
+//     width: inherit;
+//     right: inherit;
+//     height: inherit;
+//     padding: inherit;
+//     border-radius: 15px;
+//     align-items: center;
+//     border: 1px solid #e8e8e8;
+//     box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
+//   }
+
+//   .nav-logo {
+//     width: 42px;
+//     height: 42px;
+//     cursor: pointer;
+//   }
+
+//   .menu-container {
+//     span {
+//       font-size: 1rem;
+//       font-weight: 600;
+//       cursor: pointer;
+//     }
+//   }
+// }
 
 .mobile-menu-container {
   display: none;
@@ -140,11 +193,10 @@ nav {
   border: 1px solid #E6E6E6;
   border-radius: 10px;
   padding: 15px;
-  position: absolute;
   z-index: 10;
   left: 50%;
   bottom: 100px;
-  transform: translateX(-50%);
+  transform: translateX(-80%);
   border: 1px solid #e9e9e9;
   position: fixed;
 
@@ -173,7 +225,7 @@ nav {
 }
 
 .main-content {
-  padding: 15px;
+  padding: 10px;
   //max-width: 1475px;;
   margin: 0 auto;
 
@@ -215,15 +267,15 @@ nav {
 
       h1 {
         font-family: $secondary-font;
-        font-size: clamp(2rem, 4vw, 4rem);
+        font-size: clamp(1.7rem, 4vw, 4rem);
         font-weight: 500;
-        margin-bottom: clamp(15px, 2vw, 50px);
+        margin-bottom: clamp(5px, 2vw, 50px);
         color: #fff;
       }
 
       p {
         color: #fff;
-        font-size: calc(1vw + .7rem);
+        font-size: clamp(0.9rem, 3vw, 1.3rem);
         line-height: 1.2;
         margin-bottom: clamp(15px, 4vw, 70px);
       }
@@ -235,12 +287,13 @@ nav {
         background-color: #fff;
         color: #000;
         width: clamp(100px, 25vw, 180px);
-        height: clamp(30px, 9vw, 52px);
+        height: clamp(35px, 9vw, 52px);
         display: flex;
         justify-content: center;
         border-radius: 25px;
         cursor: pointer;
         font-weight: 600;
+        font-size: clamp(.9rem, 2vw, 1.2rem);
 
         &:hover {
           background-color: #f0f0f0;
@@ -395,7 +448,7 @@ nav {
     margin-top: clamp(60px, 12vw, 180px);
 
     .start-booking-container {
-      min-width: 280px;
+      min-width: 230px;
       background-color: #F5F1ED;
       margin: 0 auto;
       border-radius: calc(0.5vw + 0.5rem);
@@ -405,7 +458,7 @@ nav {
       h2 {
         text-align: center;
         font-weight: 600;
-        font-size: clamp(1.5rem, 3vw, 1.5rem);
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
         margin-bottom: clamp(1.5rem, 3vw, 3rem);
         color: #3e3e3e;
       }
@@ -821,6 +874,11 @@ footer {
 
   .contact-details {
     text-align: center;
+
+    a {
+      text-decoration: underline;
+      color: #0070FF;
+    }
   }
 
   .paper-plane-container {
@@ -957,7 +1015,6 @@ footer {
 .package-list {
   position: relative;
   width: 100%;
-  margin-top: 40px;
   display: flex;
   flex-flow: wrap;
   justify-content: center;
@@ -1216,11 +1273,12 @@ footer {
   padding: 3px;
   border-radius: 50%;
   color: #fff;
-  background-color: coral;
+  background-color: #8a7fff;
   justify-content: center;
   align-items: center;
   display: flex;
 }
+
 #todayButton {
   font-size: 1rem;
 }
@@ -1245,7 +1303,7 @@ footer {
 .back-button-4,
 .back-button-5 {
   background-color: transparent;
-  border: 1px solid #000;
+  border: 1px solid #a4a4a4;
   color: #000;
   margin-right: 25px;
 }
@@ -1360,14 +1418,14 @@ footer {
 
   }
 
-  nav {
-    position: absolute;
-    width: 50%;
-    top: 35px;
-    right: 50px;
-    height: 55px;
-    padding: 0 15px;
-  }
+  // nav {
+  //   position: absolute;
+  //   width: 50%;
+  //   top: 35px;
+  //   right: 50px;
+  //   height: 55px;
+  //   padding: 0 15px;
+  // }
 
   .hero-section {
     height: calc(100vh - 30px) !important;
@@ -1377,7 +1435,31 @@ footer {
 
 @media (min-width: 1250px) {
   .nav-container {
-    padding: 15px 45px;
+    position: fixed;
+    z-index: 10;
+    background-color: #fff;
+    display: flex;
+    justify-content: initial;
+    border-radius: 20px;
+    padding: 5px 15px;
+    align-items: initial;
+    top: 30px;
+    right: 50px;
+    bottom: initial;
+    gap: 25px;
+    flex-flow: initial;
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+
+      ul {
+        align-items: center;
+        margin-bottom: 0;
+        flex-flow: initial;
+        gap: 25px;
+      }
+    }
   }
 
   .content { 
@@ -1563,12 +1645,12 @@ font-weight: 600;
   border-radius: 10px;
   border: 1px solid #CDCDCD;
   margin-bottom: 20px;
-  width: 400px;
+  width: clamp(300px, 2vw, 400px);
   height: 100px;
 }
 
 #signature-pad {
-  width: 400px;
+  width: clamp(300px, 2vw, 400px);
   height: 100px;
   border-radius: 10px;
 }
