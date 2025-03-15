@@ -9,7 +9,7 @@ if(window.location.pathname.includes( "/booking" )) {
 
 
 export function toggleFAQ(e) {
-    console.log(e);
+    //console.log(e);
     if(e.target.parentElement.children[1].style.maxHeight === "initial") {
         e.target.parentElement.children[1].style.maxHeight = "0px";
         e.target.style.transform = "rotate(0deg) translateY(-50%)";
@@ -75,7 +75,7 @@ export function toggleMobileMenu(e) {
         }
 
         function updateButtons() {
-            console.log(currentPage);
+           // console.log(currentPage);
             const backBtn = _$(`.back-button-${currentPage}`);
             const nextBtn = _$(`.next-button-${currentPage}`);
 
@@ -92,7 +92,7 @@ export function toggleMobileMenu(e) {
 
         function bookingPage1() {
             _$("#eventType").addEventListener('change', (e) => {
-                console.log(e.target.value);
+               // console.log(e.target.value);
                 if (e.target.value === "Other") {
                     _$(".eventTypeOther").style.display = "flex";
                 } 
@@ -178,11 +178,11 @@ export function toggleMobileMenu(e) {
                 timeSelect,
                 eventType
             ].forEach(element => {
-                console.log(element);
+                //console.log(element);
                 let errorMsg = validateSelect(element) ? validateSelect(element) : ""; 
   
                 if(errorMsg.outerHTML != undefined) {
-                    console.log(element.closest(".form-group"));
+                    //console.log(element.closest(".form-group"));
                     element.closest(".form-group").insertAdjacentHTML("beforeend", errorMsg.outerHTML);
     
                     isValid = false;
@@ -203,7 +203,7 @@ export function toggleMobileMenu(e) {
                 // venueEmail,
                 // venueContact
             ].forEach(element => {
-                console.log(element);
+                //console.log(element);
                let errorMsg = validateInput(element) ? validateInput(element) : "";
 
                if(errorMsg.outerHTML != undefined) {
@@ -216,7 +216,7 @@ export function toggleMobileMenu(e) {
                     bookingDetails[inputName] = element.value.replace(/^\w/, c => c.toUpperCase()) ;
                 }
 
-                console.log(bookingDetails);
+                //console.log(bookingDetails);
             });
 
             if(bookingDetails.eventDate === undefined || bookingDetails.eventTime === undefined) {
@@ -234,7 +234,7 @@ export function toggleMobileMenu(e) {
                 _$(".booking-date-error-msg").innerHTML = errorElement.outerHTML;
             }
 
-            console.log(isValid);
+            //console.log(isValid);
 
             if(isValid) {
                 const dateString = bookingDetails.eventDate;
@@ -249,9 +249,9 @@ export function toggleMobileMenu(e) {
 
                 let startTime = new Date();
                 startTime.setHours(bookingDetails.eventTime.split(":")[0], bookingDetails.eventTime.split(":")[1], 0 , 0).toExponential;
-console.log(bookingDetails.packageTime
+//console.log(bookingDetails.packageTime
 
-);
+
 
                 let endTime = new Date(startTime);
                 endTime.setHours(startTime.getHours() + +bookingDetails.packageTime);
@@ -294,94 +294,8 @@ console.log(bookingDetails.packageTime
 
                 navigate("next");
 
-                return;
-                Utils.initFetch("POST", "/booking", bookingDetails)
-                .then(res => {
-                    if(isValid) {
-                        navigate("next");
-                    }
-                    console.log(JSON.parse(res));
-
-                    res = JSON.parse(res);
-
-                    _$(".field-value-summary-name").innerText = res.firstName + " " + res.lastName;
-                    _$(".field-value-summary-phone").innerText = res.phone;
-                    _$(".field-value-summary-email").innerText = res.email;
-                    _$(".field-value-summary-start").innerText = res.eventDate + " at " + res.eventTime;
-                    _$(".field-value-summary-hours").innerText = 4;
-                    _$(".field-value-summary-package").innerText = res.package;
-                    _$(".field-value-summary-venue-name").innerText = res.venueName;
-                    _$(".field-value-summary-venue-address").innerText = res.venueAddress;
-                })
             }
 
-        }
-
-        async function bookingPage44() {
-            return;
-            const terms = _$("#booking-terms");
-
-            if(terms.checked) {
-                navigate("next");
-
-                    // Initialize Stripe.js
-                    const stripe = Stripe('pk_test_51QT8XgFQfS92WxX5eTYKdpaE17DJuRqyJRhDQwfNWvYl4JjnbHlHoj2tUAcVqzkEbwecFW3OH7BLGopClzLUjWXk002rlOCJA3');
-
-                    // Fetch Checkout Session and retrieve the client secret
-                    const fetchClientSecret = async () => {
-                        try {
-                            const response = await Utils.initFetch("POST", "/booking-payment");
-                            // Parse the response once
-                            console.log(JSON.parse(response));
-                            const data = JSON.parse(response);
-
-                            
-                            if (!data.clientSecret) {
-                                throw new Error('Client secret not found in response');
-                            }
-                            
-                            return data.clientSecret; // Return just the string, not the object
-                        } catch (error) {
-                            console.error('Error fetching client secret:', error);
-                            throw error;
-                        }
-                    }
-                    
-                    // Initialize Checkout
-                    const checkout = await stripe.initEmbeddedCheckout({
-                        clientSecret: await fetchClientSecret(),
-                        onComplete: async () => {
-                            try {
-                                // Get the checkout session ID
-                                const sessionId = checkout.checkoutSessionId;
-                                
-                                // Verify payment status with your server
-                                const verificationResponse = await Utils.initFetch("POST", "/verify-payment", {
-                                    session_id: sessionId
-                                });
-                                
-                                const verificationResult = JSON.parse(verificationResponse);
-                                
-                                if (verificationResult.success) {
-                                    // Payment successful
-                                } else {
-                                    // Payment failed or pending
-                                    console.error('Payment verification failed:', verificationResult.error);
-                                    navigate("/booking/error");
-                                }
-                                
-                                checkout.mount("#checkout");
-                                // Cleanup
-                                checkout.destroy();
-                            } catch (error) {
-                                console.error('Error in checkout completion:', error);
-                                navigate("/booking/error");
-                            }
-                        }
-                    });
-          
-                
-            }
         }
 
         async function bookingPage4() {
@@ -397,7 +311,7 @@ console.log(bookingDetails.packageTime
             [
                 contractSignature
             ].forEach(element => {
-                console.log(element);
+                //console.log(element);
                let errorMsg = validateInput(element) ? validateInput(element) : "";
 
                if(errorMsg.outerHTML != undefined) {
@@ -410,7 +324,7 @@ console.log(bookingDetails.packageTime
                     bookingDetails[inputName] = element.value.replace(/^\w/, c => c.toUpperCase()) ;
                 }
 
-                console.log(bookingDetails);
+                //console.log(bookingDetails);
             });
 
  
@@ -419,7 +333,7 @@ console.log(bookingDetails.packageTime
                 navigate("next");
 
                 bookingDetails.signature = signaturePad.toDataURL();
-                console.log(bookingDetails);
+                //console.log(bookingDetails);
                     // Initialize Stripe.js
                     const stripe = Stripe('pk_test_51R0tekLvK2KcNfItZJRXusWNBMqRxRdGZsM0ZUj4wldHkLA0DXIvxs7RY5KgASU9cXbLxLYX1KaWmThYsfX8VuRy00QlO0u3M2');
 
@@ -428,7 +342,7 @@ console.log(bookingDetails.packageTime
                         try {
                             const response = await Utils.initFetch("POST", "/booking-payment", bookingDetails);
                             // Parse the response once
-                            console.log(JSON.parse(response));
+                            //console.log(JSON.parse(response));
                             const data = JSON.parse(response);
 
                             
@@ -440,7 +354,7 @@ console.log(bookingDetails.packageTime
                             
                             return data.clientSecret; // Return just the string, not the object
                         } catch (error) {
-                            console.error('Error fetching client secret:', error);
+                            //console.error('Error fetching client secret:', error);
                             throw error;
                         }
                     }
@@ -455,14 +369,14 @@ console.log(bookingDetails.packageTime
                             try {
                                 // Get the checkout session ID
                                 const sessionId = checkout.embeddedCheckout.checkoutSessionId;
-                                console.log(checkout.embeddedCheckout.checkoutSessionId);
+                                //console.log(checkout.embeddedCheckout.checkoutSessionId);
                                 // Verify payment status with your server
                                 const verificationResponse = await Utils.initFetch("POST", "/verify-payment", {
                                     session_id: sessionId
                                 });
 
                                 const verificationResult = JSON.parse(verificationResponse);
-                                console.log(verificationResult);
+                                //console.log(verificationResult);
                                 if (verificationResult.success) {
                                     // TODO: Now booking your event
                                     //_$("#checkout").innerHTML = "<span>Booking your event...</span>";
@@ -471,7 +385,7 @@ console.log(bookingDetails.packageTime
                                     bookingDetails.orderId = verificationResult.order_id;
                                     bookingDetails.sessionId = verificationResult.checkout_session.id;
 
-                                    console.log(bookingDetails);
+                                   // console.log(bookingDetails);
                                     let data = JSON.stringify(bookingDetails);
                                     let bookEvent = await Utils.initFetch("POST", "/book-event", {
                                         data
@@ -479,7 +393,7 @@ console.log(bookingDetails.packageTime
 
                                    // console.log(bookEvent);
                                     bookEvent = JSON.parse(bookEvent);
-                                    console.log(bookEvent);
+                                   // console.log(bookEvent);
                                     if(bookEvent.uploaded) {
                                         _$(".loader-container").innerHTML = "";
                                         _$("#checkout").style.display = "flex";
@@ -487,13 +401,13 @@ console.log(bookingDetails.packageTime
 
                                 } else {
                                     // Payment failed or pending
-                                    console.error('Payment verification failed:', verificationResult.error);
+                                   // console.error('Payment verification failed:', verificationResult.error);
                                    // navigate("/booking/error");
                                 }
                                 
                                 // Cleanup
                             } catch (error) {
-                                console.error('Error in checkout completion:', error);
+                               // console.error('Error in checkout completion:', error);
                             }
                         }
                     });
@@ -503,7 +417,7 @@ console.log(bookingDetails.packageTime
                     // Mount Checkout
                     checkout.mount('#checkout');
 
-                    console.log("checkout: ", checkout);
+                    //console.log("checkout: ", checkout);
           
                 
             }
@@ -590,7 +504,7 @@ console.log(bookingDetails.packageTime
             bookingDetails.packageTime = e.target.dataset.packageTime;
             bookingDetails.packagePrice = packagePrice;
 
-            console.log(bookingDetails);
+           // console.log(bookingDetails);
         }
   
 
@@ -598,7 +512,7 @@ console.log(bookingDetails.packageTime
             const formGroup = input.closest('.form-group');
             let errorMessage = '';
     
-            console.log("Display: ", input.style.display);
+            //console.log("Display: ", input.style.display);
 
             if(formGroup.style.display != "none") {
         
@@ -677,7 +591,7 @@ console.log(bookingDetails.packageTime
             if (existingError) {
                 existingError.remove();
             }
-    console.log(select.value, "value: ", select.value === "");
+    //console.log(select.value, "value: ", select.value === "");
             if (select.value === "") {
                 errorMessage = 'Fill out required field.';
             } 
@@ -779,13 +693,13 @@ const calendarGridEl = _$('#calendarGrid');
 const selectedDateDisplayEl = _$('#selectedDateDisplay');
 
 export function changeMonth(e) {
-    console.log("ff");
+    //console.log("ff");
     let delta = parseInt(e.target.dataset.direction);
     let date = new Date();
 
-    console.log(date.getMonth());
-    console.log(currentDate.getMonth());
-    console.log(delta);
+    //console.log(date.getMonth());
+    //console.log(currentDate.getMonth());
+    //console.log(delta);
 
     if(date.getMonth() < currentDate.getMonth()) {
         currentDate.setMonth(currentDate.getMonth() + delta);
@@ -804,7 +718,7 @@ export function goToToday() {
 export function renderCalendar() {
     if(bookedEvents.length === 0) {
         Utils.initFetch("GET", "/events").then(res => {
-            console.log(JSON.parse(res));
+            //console.log(JSON.parse(res));
             bookedEvents = JSON.parse(res);
         });
     }
@@ -872,10 +786,10 @@ export function generateCalendarDays() {
             currentDate.toDateString() === selectedDate.toDateString()) {
             dateEl.classList.add('selected');
             bookingDetails.eventDate = new Date(currentDate).toISOString().slice(0, 10);
-            console.log(bookingDetails);
+            //console.log(bookingDetails);
         }
 
-        // console.log(currentDate.toDateString());
+        // //console.log(currentDate.toDateString());
         // console.log(new Date().toDateString());
 
         if(new Date().toDateString() === currentDate.toDateString()) {
@@ -891,7 +805,7 @@ export function generateCalendarDays() {
 function subtractHours(time, hours) {
     const date = new Date(`1970-01-01T${time}`);
     date.setHours(date.getHours() - hours);
-    console.log(date.toTimeString().slice(0, 8));
+    //console.log(date.toTimeString().slice(0, 8));
     // Format the result back to HH:MM:SS
     return date.toTimeString().slice(0, 8);
 }
@@ -948,7 +862,7 @@ export function selectDate(e) {
                 } else {
                     el.style.display = "initial";
                 }
-console.log([..._$("#time-select").options].length, disabledCount + 1);
+//console.log([..._$("#time-select").options].length, disabledCount + 1);
                 if([..._$("#time-select").options].length === disabledCount + 1) {
                     _$(".booking-date-error-msg").innerText = "There is no available time for that date.";
                 } else {
@@ -1003,7 +917,7 @@ export function submitContactMsg() {
         turnstileResponse: turnstileResponse.value
     };
 
-    console.log(turnstileResponse);
+    //console.log(turnstileResponse);
 
     if(isValid && turnstileResponse != "") {   
         // validate turnstile response
@@ -1011,7 +925,7 @@ export function submitContactMsg() {
         _$(".contact-section-2").innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
 
         Utils.initFetch("POST", "/contact", data).then(res => {
-            console.log(res);
+            //console.log(res);
             res = JSON.parse(res);
 
             if(res.message_sent) {
@@ -1035,145 +949,3 @@ export function clearSignature() {
     signaturePad.clear();
 }
 
-// class Calendar {
-//     constructor(options = {}) {
-//         this.currentDate = new Date();
-//         this.selectedDate = null;
-//         this.bookedEvents = options.bookedEvents || [];
-
-//         this.initElements();
-//         this.initEventListeners();
-//         this.renderCalendar();
-//     }
-
-//     initElements() {
-//         this.monthYearEl = document.getElementById('monthYear');
-//         this.calendarGridEl = document.getElementById('calendarGrid');
-//         this.selectedDateDisplayEl = document.getElementById('selectedDateDisplay');
-//     }
-
-//     initEventListeners() {
-//         document.getElementById('prevMonth').addEventListener('click', () => this.changeMonth(-1));
-//         document.getElementById('nextMonth').addEventListener('click', () => this.changeMonth(1));
-//         document.getElementById('todayButton').addEventListener('click', () => this.goToToday());
-//     }
-
-//     changeMonth(delta) {
-//         this.currentDate.setMonth(this.currentDate.getMonth() + delta);
-//         this.renderCalendar();
-//     }
-
-//     goToToday() {
-//         this.currentDate = new Date();
-//         this.renderCalendar();
-//     }
-
-//     renderCalendar() {
-//         this.updateMonthYear();
-//         this.generateCalendarDays();
-//     }
-
-//     updateMonthYear() {
-//         const monthYear = this.currentDate.toLocaleString('default', { 
-//             month: 'long', 
-//             year: 'numeric' 
-//         });
-//         this.monthYearEl.textContent = monthYear;
-//     }
-
-//     generateCalendarDays() {
-//         this.calendarGridEl.innerHTML = '';
-//         const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-//         weekdays.forEach(day => {
-//             const dayEl = document.createElement('div');
-//             dayEl.textContent = day;
-//             dayEl.style.fontWeight = 'bold';
-//             this.calendarGridEl.appendChild(dayEl);
-//         });
-
-//         const year = this.currentDate.getFullYear();
-//         const month = this.currentDate.getMonth();
-        
-//         const firstDay = new Date(year, month, 1);
-//         const lastDay = new Date(year, month + 1, 0);
-
-//         for (let i = 0; i < firstDay.getDay(); i++) {
-//             this.calendarGridEl.appendChild(document.createElement('div'));
-//         }
-
-//         for (let day = 1; day <= lastDay.getDate(); day++) {
-//             const dateContainer = document.createElement('div');
-//             const dateEl = document.createElement('span');
-//             const currentDate = new Date(year, month, day);
-
-            
-
-//             dateEl.textContent = day;
-//             dateContainer.classList.add('calendar-day');
-
-//             dateContainer.addEventListener('click', () => this.selectDate(currentDate));
-
-//             if (this.selectedDate && 
-//                 currentDate.toDateString() === this.selectedDate.toDateString()) {
-//                 dateEl.classList.add('selected');
-//                 bookingDetails.eventDate = new Date(currentDate).toISOString().slice(0, 10);
-//                 console.log(bookingDetails);
-//             }
-
-//             if(new Date().getDate() === currentDate.getDate()) {
-//                 dateEl.classList.add('current-day');
-//             }
-
-//             dateContainer.innerHTML = dateEl.outerHTML;
-
-//             this.calendarGridEl.appendChild(dateContainer);
-//         }
-//     }
-
-//     selectDate(date) {
-//         const month = date.getMonth() + 1; // +1 because months are 0-indexed
-//         const day = date.getDate();
-//         const year = date.getFullYear();
-
-//         let t = `${month}, ${day}, ${year}`; 
-
-//         [..._$("#time-select").options].forEach(el => {
-//             el.disabled = false;
-//         });
-
-//         bookedEvents.forEach((event, i) => {
-
-//             let u = `${new Date(event.start.dateTime).getMonth() + 1}, ${new Date(event.start.dateTime).getDate()}, ${new Date(event.start.dateTime).getFullYear()}`;
-//             // if user selects a date that has events, block the booked event times
-//             if(t === u) {
-//                 [..._$("#time-select").options].forEach(el => {
-
-//                     if(el.value >= bookedEvents[i].start.dateTime.split("T")[1] && el.value <= bookedEvents[i].end.dateTime.split("T")[1]) {
-//                         console.log(el);
-                        
-//                         el.previousElementSibling.disabled = true;
-//                         el.previousElementSibling.previousElementSibling.disabled = true;
-//                         el.disabled = true;
-//                         el.nextElementSibling.disabled = true;
-//                         el.nextElementSibling.nextElementSibling.disabled = true;
-//                     }
-//                 });
-//             }
-//         });
-
-
-//         bookingDetails.eventDate = date;
-//         this.selectedDate = date;
-//         this.renderCalendar();
-//     }
-// }
-
-
-
-// const calendar = new Calendar({
-//     bookedEvents: bookedEvents,
-//     onDateTimeSelect: (dateTime) => {
-//         console.log('Selected date and time:', dateTime);
-//     }
-// });

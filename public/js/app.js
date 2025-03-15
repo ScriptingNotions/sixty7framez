@@ -4,7 +4,6 @@ import { initFetch } from './utils.js';
 document.addEventListener('DOMContentLoaded', () => {
     
     _$('body').onclick = (e) => {
-        console.log(e.target);
         // make click function file
         [...e.target.attributes].some(attr => {
             if(attr.name.startsWith("data-few")) {
@@ -31,17 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(window.location.pathname.includes( "/booking" )) {
         _$$(".package-item").forEach(element => {
             if(element.classList.contains("active-package")) {
-                console.log(element); 
                 element.scrollIntoView(true);
             } 
         });
-
-
     }
-
-
-
-    
-    
-
 });
